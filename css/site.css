@@ -150,10 +150,11 @@ main { padding-bottom: var(--space-12); }
 .landing-note { margin: 0; font-size: 14px; line-height: 20px; color: var(--grey-600); text-align: center; }
 .roam-roll { justify-self: end; font: inherit; font-size: 18px; line-height: 24px; font-weight: 300; color: var(--paper); background: var(--ink); border: 0; border-radius: var(--radius-none); padding: var(--space-4) var(--space-6); display: inline-flex; align-items: center; gap: var(--space-4); cursor: pointer; white-space: nowrap; }
 .roam-roll:hover { background: var(--grey-800); }
-.roam-die { display: block; }
-.roam-roll.is-rolling .roam-die { animation: roam-roll .6s cubic-bezier(.3,.7,.4,1); }
-@keyframes roam-roll { 0% { transform: rotate(0) scale(1); } 50% { transform: rotate(270deg) scale(.8); } 100% { transform: rotate(360deg) scale(1); } }
-@media (prefers-reduced-motion: reduce) { .roam-roll.is-rolling .roam-die { animation: none; } }
+.roam-spin { display: none; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.25); border-top-color: var(--paper); border-right-color: var(--paper); border-radius: 50%; animation: roam-spin .8s linear infinite; }
+.roam-roll.is-loading .roam-spin { display: block; }
+.roam-roll.is-loading { cursor: progress; }
+@keyframes roam-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .roam-spin { animation-duration: 2s; } }
 @media (max-width: 720px) {
   .roam { padding: var(--space-4) var(--space-6); gap: var(--space-4); }
   .roam-bottom { grid-template-columns: 1fr; }

@@ -1,4 +1,4 @@
-/* "Take me somewhere new": rolls a die and shows Google Street View of a random beautiful place.
+/* "Take me somewhere new": shows a loading spinner while it loads Google Street View of a random beautiful place.
    To add a place: copy a line below and change the name and coordinates (latitude, longitude, heading). */
 (function () {
   var PLACES = [
@@ -32,13 +32,16 @@
   var placeEl = document.querySelector('.roam-place');
   var openEl = document.querySelector('.roam-open');
   var btn = document.querySelector('.roam-roll');
-  var pips = document.querySelector('.roam-pips');
-  var FACES = [[[14,14]],[[8,8],[20,20]],[[8,8],[14,14],[20,20]],[[8,8],[20,8],[8,20],[20,20]],[[8,8],[20,8],[14,14],[8,20],[20,20]],[[8,7],[20,7],[8,14],[20,14],[8,21],[20,21]]];
   var last = -1;
 
-  function face(n) {
-    pips.innerHTML = FACES[n].map(function (p) { return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="2.2"/>'; }).join('');
+  var done = null;
+  function loading(on) {
+    btn.classList.toggle('is-loading', on);
+    btn.setAttribute('aria-busy', on ? 'true' : 'false');
+    clearTimeout(done);
+    if (on) done = setTimeout(function () { loading(false); }, 10000);
   }
+  frame.addEventListener('load', function () { if (frame.src) loading(false); });
   function show(i) {
     var p = PLACES[i];
     frame.src = 'https://www.google.com/maps?layer=c&cbll=' + p[1] + ',' + p[2] + '&cbp=11,' + p[3] + ',0,0,0&output=svembed';
@@ -50,8 +53,7 @@
     var i;
     do { i = Math.floor(Math.random() * PLACES.length); } while (i === last && PLACES.length > 1);
     last = i;
-    face(Math.floor(Math.random() * 6));
-    btn.classList.remove('is-rolling'); void btn.offsetWidth; btn.classList.add('is-rolling');
+    loading(true);
     show(i);
   }
   btn.addEventListener('click', roll);
