@@ -16,29 +16,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap">
-  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/site.css?v=3">
 </head>
 <body class="landing">
   <!-- Temporary landing page while the site is being built. The full site starts at home.html. -->
-  <main class="wrap landing-main">
-    <div class="landing-head">
-      <h1 class="site-title">Toby Kessler</h1>
-      <p class="landing-note">Site under construction.</p>
-    </div>
-    <div class="roam">
-      <figure class="roam-frame">
-        <iframe class="roam-view" title="Street View" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-        <figcaption class="roam-cap">
-          <span class="roam-place" aria-live="polite"></span>
-          <a class="roam-open" target="_blank" rel="noopener">Open in Google Maps</a>
-        </figcaption>
-      </figure>
-      <button type="button" class="roam-roll">
-        <svg class="roam-die" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="25" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><g fill="currentColor" class="roam-pips"></g></svg>
-        <span>Take me somewhere new</span>
-      </button>
-    </div>
-  </main>
-  <script src="js/roam.js"></script>
+  <iframe class="roam-view" title="Street View" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  <header class="roam-top">
+    <h1 class="site-title roam-chip">Toby Kessler</h1>
+    <p class="landing-note roam-chip">Site under construction.</p>
+  </header>
+  <div class="roam-bottom">
+    <p class="roam-cap roam-chip">
+      <span class="roam-place" aria-live="polite"></span>
+      <a class="roam-open" target="_blank" rel="noopener">Open in Google Maps</a>
+    </p>
+    <button type="button" class="roam-roll">
+      <svg class="roam-die" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="25" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><g fill="currentColor" class="roam-pips"></g></svg>
+      <span>Take me somewhere new</span>
+    </button>
+  </div>
+  <script src="js/roam.js?v=3"></script>
 </body>
 </html>
