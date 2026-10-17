@@ -66,15 +66,22 @@ window.SITE = {
   photography: {
     summary: 'Personal work.',
     items: [
-      { src: 'images/photography/photo-01.svg', width: 1600, height: 1067, title: 'Untitled', meta: 'New York, 2025' },
-      { src: 'images/photography/photo-02.svg', width: 1000, height: 1500, title: 'Untitled', meta: 'New York, 2025' },
-      { src: 'images/photography/photo-03.svg', width: 1600, height: 1067, title: 'Untitled', meta: '2024' },
-      { src: 'images/photography/photo-04.svg', width: 1200, height: 1500, title: 'Untitled', meta: '2024' },
-      { src: 'images/photography/photo-05.svg', width: 1600, height: 900, title: 'Untitled', meta: '2024' },
-      { src: 'images/photography/photo-06.svg', width: 1067, height: 1600, title: 'Untitled', meta: '2023' },
-      { src: 'images/photography/photo-07.svg', width: 1600, height: 1067, title: 'Untitled', meta: '2023' },
-      { src: 'images/photography/photo-08.svg', width: 1200, height: 1200, title: 'Untitled', meta: '2022' },
-      { src: 'images/photography/photo-09.svg', width: 1600, height: 1067, title: 'Untitled', meta: '2021' }
+      { src: 'images/photography/36365472400_46bbc34987_o.jpg', width: 2400, height: 1500, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/DSC08418.jpg', width: 1500, height: 1001, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/DSC08422.jpg', width: 1500, height: 1001, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/Kessler_Tobias_1.jpg', width: 1001, height: 1500, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/Kessler_Toby_02.jpg', width: 1200, height: 1500, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/Kessler_Toby_04.jpg', width: 1000, height: 1500, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/Kessler_Toby_05.jpg', width: 1000, height: 1500, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/Kessler_Toby_08.jpg', width: 1500, height: 1000, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/Kessler_Toby_12.jpg', width: 1000, height: 1500, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/L1110051-3.jpg', width: 2400, height: 1600, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/McPhee-Final-Collection-4.jpg', width: 1000, height: 1500, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/Seaport-34.jpg', width: 1200, height: 800, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/_K8A8978-HDR.jpg', width: 1500, height: 1000, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/_K8A9930.jpg', width: 2400, height: 1600, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/_K8A9952-Enhanced-NR.jpg', width: 2400, height: 1600, alt: 'Photograph by Toby Kessler' },
+      { src: 'images/photography/final_crit_sp21-11.jpg', width: 1500, height: 1000, alt: 'Photograph by Toby Kessler' }
     ]
   }
 };
