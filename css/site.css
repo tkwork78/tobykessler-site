@@ -30,7 +30,7 @@ a { color: inherit; }
 
 /* Type */
 .display { font-size: 72px; line-height: 72px; font-weight: 300; letter-spacing: -.02em; margin: 0; }
-.headline { font-size: 40px; line-height: 44px; font-weight: 700; letter-spacing: -.01em; margin: 0; }
+.headline { font-size: 40px; line-height: 44px; font-weight: 700; letter-spacing: -.01em; margin: 3px 0 0; }
 .title { font-size: 20px; line-height: 26px; font-weight: 700; margin: 0; }
 .lead { font-size: 20px; line-height: 30px; font-weight: 300; margin: 0; }
 .caption { font-size: 13px; line-height: 18px; font-weight: 300; color: var(--grey-600); margin: 0; }
@@ -122,15 +122,15 @@ main { padding-bottom: var(--space-12); }
 .about-co:hover { text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 900px) { .about { grid-template-columns: 1fr; } }
 
-/* Home page: the big name sits in the header, level with the menu */
-.site-header.is-home { padding-top: var(--space-12); }
+/* Home page: the name sits in the header, top-aligned with the menu */
+.site-header.is-home .wrap { align-items: flex-start; }
 .site-header.is-home .site-nav { margin-left: auto; }
-.site-header.is-home + main .page-intro { padding-top: var(--space-2); }
+.site-title { font-size: 32px; line-height: 36px; font-weight: 300; letter-spacing: -.01em; margin: 3px 0 0; }
+.site-header.is-home + main .page-intro { padding-top: var(--space-6); }
 .site-header.is-home + main .page-intro .lead { margin-top: 0; }
 
 /* Phones: menu stays on one line, spread across the width */
 @media (max-width: 720px) {
-  .site-header.is-home { padding-top: var(--space-6); }
   .site-header.is-home .wrap { row-gap: var(--space-4); }
   .site-nav { width: 100%; flex-wrap: nowrap; justify-content: space-between; gap: var(--space-2); }
   .site-nav a { white-space: nowrap; }
