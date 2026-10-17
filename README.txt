@@ -2,7 +2,8 @@ TOBY KESSLER — PORTFOLIO SITE
 =============================
 
 Pages
-  index.html        Home: intro + a row of work from each section
+  index.html        Temporary "Site under construction" page (what tobykessler.com shows)
+  home.html         Home: intro + a row of work from each section
   design.html       Design, split into Triton Construction and TF Cornerstone
   photography.html  Personal photography
   about.html        Short bio, experience and focus areas
@@ -22,6 +23,12 @@ on GitHub Pages as-is (push this folder to a repo, then Settings > Pages >
 Deploy from branch > main / root). The empty .nojekyll file keeps GitHub
 from processing it.
 
-Preview on your computer: double-click index.html, or run
+Preview on your computer: double-click home.html, or run
   python3 -m http.server 8000
 in this folder and open http://localhost:8000
+
+While the site is under construction
+  tobykessler.com shows index.html (the landing page). The full site is
+  live but unlisted at tobykessler.com/home.html, and every page has a
+  noindex tag so search engines skip it. To launch: replace index.html
+  with home.html and remove the noindex tags.

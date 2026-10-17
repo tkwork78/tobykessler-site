@@ -136,3 +136,10 @@ main { padding-bottom: var(--space-12); }
   .site-nav a { white-space: nowrap; }
 }
 @media (max-width: 360px) { .site-nav a { font-size: 13px; } }
+
+/* Under construction landing page (index.html) */
+.landing-main { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: space-between; padding-top: var(--space-6); padding-bottom: var(--space-12); }
+.landing-main .site-title { margin-top: 3px; }
+.landing-lead { margin-top: var(--space-4); color: var(--grey-600); }
+.landing-lead a { text-decoration: none; border-bottom: 1px solid var(--grey-200); }
+.landing-lead a:hover { color: var(--ink); border-bottom-color: var(--ink); }
