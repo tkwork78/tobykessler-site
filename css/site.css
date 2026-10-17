@@ -138,21 +138,21 @@ main { padding-bottom: var(--space-12); }
 @media (max-width: 360px) { .site-nav a { font-size: 13px; } }
 
 /* Under construction landing page (index.html): roll the dice for a random Street View */
-.landing-main { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; gap: var(--space-6); padding-top: var(--space-6); padding-bottom: var(--space-6); }
+.landing-main { height: 100vh; height: 100svh; min-height: 560px; max-width: none; display: flex; flex-direction: column; gap: var(--space-6); padding-top: var(--space-6); padding-bottom: var(--space-6); }
 .landing-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: var(--space-2) var(--space-6); }
 .landing-head .site-title { margin-top: 3px; }
 .landing-note { margin: 9px 0 0; font-size: 14px; line-height: 20px; color: var(--grey-600); }
-.roam { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-6); }
-.roam-frame { margin: 0; width: min(100%, 1040px, calc((100svh - 260px) * 16 / 9)); min-width: 260px; }
-.roam-view { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: var(--grey-200); }
+.roam { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: var(--space-4); }
+.roam-frame { margin: 0; flex: 1; min-height: 320px; display: flex; flex-direction: column; }
+.roam-view { display: block; width: 100%; flex: 1; min-height: 0; border: 0; background: var(--grey-200); }
 .roam-cap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-4); padding-top: var(--space-2); font-size: 14px; line-height: 20px; }
 .roam-place { color: var(--ink); }
 .roam-open { color: var(--grey-600); text-decoration: none; border-bottom: 1px solid var(--grey-200); }
 .roam-open:hover { color: var(--ink); border-bottom-color: var(--ink); }
-.roam-roll { font: inherit; font-size: 20px; line-height: 28px; font-weight: 300; color: var(--paper); background: var(--ink); border: 0; border-radius: var(--radius-none); padding: var(--space-4) var(--space-6); display: inline-flex; align-items: center; gap: var(--space-4); cursor: pointer; }
+.roam-roll { align-self: center; font: inherit; font-size: 20px; line-height: 28px; font-weight: 300; color: var(--paper); background: var(--ink); border: 0; border-radius: var(--radius-none); padding: var(--space-4) var(--space-6); display: inline-flex; align-items: center; gap: var(--space-4); cursor: pointer; }
 .roam-roll:hover { background: var(--grey-800); }
 .roam-die { display: block; }
 .roam-roll.is-rolling .roam-die { animation: roam-roll .6s cubic-bezier(.3,.7,.4,1); }
 @keyframes roam-roll { 0% { transform: rotate(0) scale(1); } 50% { transform: rotate(270deg) scale(.8); } 100% { transform: rotate(360deg) scale(1); } }
 @media (prefers-reduced-motion: reduce) { .roam-roll.is-rolling .roam-die { animation: none; } }
-@media (max-width: 720px) { .landing-note { margin-top: 0; width: 100%; } .roam-frame { width: 100%; } .roam-view { aspect-ratio: 4 / 5; max-height: calc(100svh - 300px); } .roam-roll { width: 100%; justify-content: center; } }
+@media (max-width: 720px) { .landing-note { margin-top: 0; width: 100%; } .roam-roll { width: 100%; justify-content: center; } }
