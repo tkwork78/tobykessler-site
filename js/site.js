@@ -142,7 +142,7 @@
     home: function (mount) {
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
-          sectionHead('Design · ' + c.years, c.company, c.role, { href: 'design.html#' + c.id, text: 'View all →' }),
+          sectionHead('Design', c.company, c.summary, { href: 'design.html#' + c.id, text: 'View all →' }),
           grid(c.items, { maxRows: 1 })
         ]));
       });
@@ -156,7 +156,7 @@
       (S.design || []).forEach(function (c) {
         if (sub) sub.appendChild(el('a', { href: '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
-          sectionHead(c.role + ' · ' + c.years, c.company, c.summary),
+          sectionHead(null, c.company, c.summary),
           grid(c.items)
         ]));
       });
@@ -169,12 +169,9 @@
       mount.appendChild(el('section', { class: 'section about' }, [
         el('div', { class: 'about-bio' }, (A.bio || []).map(function (t) { return el('p', { class: 'lead', text: t }); })),
         el('div', { class: 'about-side' }, [
-          el('p', { class: 'label', text: 'Experience' }),
+          el('p', { class: 'label', text: 'Selected work' }),
           el('ul', { class: 'about-list' }, (S.design || []).map(function (c) {
-            return el('li', {}, [
-              el('a', { class: 'about-co', href: 'design.html#' + c.id, text: c.company }),
-              el('span', { class: 'caption', text: c.role + ' · ' + c.years })
-            ]);
+            return el('li', {}, [el('a', { class: 'about-co', href: 'design.html#' + c.id, text: c.company })]);
           })),
           A.skills && A.skills.length ? el('p', { class: 'label', text: 'Focus' }) : null,
           A.skills && A.skills.length ? el('ul', { class: 'about-list' }, A.skills.map(function (k) { return el('li', { text: k }); })) : null,
