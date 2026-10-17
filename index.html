@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Toby Kessler</title>
-  <meta name="description" content="Designer and photographer in New York. New site coming soon.">
+  <meta name="description" content="Designer and photographer in New York. New site coming soon. Play snake while you wait.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://www.tobykessler.com/">
   <meta property="og:type" content="website">
@@ -21,11 +21,18 @@
 <body class="landing">
   <!-- Temporary landing page while the site is being built. The full site starts at home.html. -->
   <main class="wrap landing-main">
-    <h1 class="site-title">Toby Kessler</h1>
-    <div>
-      <p class="display">Site under construction.</p>
-      <p class="lead landing-lead"><a href="mailto:tobykessler.work@gmail.com">tobykessler.work@gmail.com</a></p>
+    <div class="landing-head">
+      <h1 class="site-title">Toby Kessler</h1>
+      <p class="landing-note">Site under construction.</p>
+    </div>
+    <div class="snake">
+      <canvas class="snake-board" width="600" height="600" tabindex="0" aria-label="Snake game. Use the arrow keys to play."></canvas>
+      <div class="snake-bar">
+        <p class="snake-score" aria-live="polite">Score 0</p>
+        <p class="snake-hint" data-snake-hint>Press any arrow key to play</p>
+      </div>
     </div>
   </main>
+  <script src="js/snake.js"></script>
 </body>
 </html>
