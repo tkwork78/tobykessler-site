@@ -14,6 +14,9 @@
   (e.g. images/triton/website.jpg), change src to that name,
   and update width and height.
   The first 3 images of each section also appear on the home page.
+
+  About page: edit the "about" block below. Each line in "bio" is one
+  paragraph. Experience is built from the "design" list automatically.
 */
 window.SITE = {
   name: 'Toby Kessler',
@@ -22,6 +25,14 @@ window.SITE = {
   links: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/' }
   ],
+
+  about: {
+    bio: [
+      'I\'m a designer and photographer based in New York. I work in-house on marketing, proposal, web and social design, and I shoot personal photography on the side.',
+      'Right now I\'m Marketing & Proposal Coordinator at Triton Construction. Before that I developed social media and content for TF Cornerstone.'
+    ],
+    skills: ['Brand & marketing design', 'Proposals & RFP packages', 'Web design', 'Tradeshow & environmental', 'Social content', 'Photography']
+  },
 
   design: [
     {

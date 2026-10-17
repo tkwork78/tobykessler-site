@@ -164,6 +164,24 @@
     photography: function (mount) {
       if (S.photography) mount.appendChild(el('section', { class: 'section' }, [grid(S.photography.items)]));
     },
+    about: function (mount) {
+      var A = S.about || {};
+      mount.appendChild(el('section', { class: 'section about' }, [
+        el('div', { class: 'about-bio' }, (A.bio || []).map(function (t) { return el('p', { class: 'lead', text: t }); })),
+        el('div', { class: 'about-side' }, [
+          el('p', { class: 'label', text: 'Experience' }),
+          el('ul', { class: 'about-list' }, (S.design || []).map(function (c) {
+            return el('li', {}, [
+              el('a', { class: 'about-co', href: 'design.html#' + c.id, text: c.company }),
+              el('span', { class: 'caption', text: c.role + ' · ' + c.years })
+            ]);
+          })),
+          A.skills && A.skills.length ? el('p', { class: 'label', text: 'Focus' }) : null,
+          A.skills && A.skills.length ? el('ul', { class: 'about-list' }, A.skills.map(function (k) { return el('li', { text: k }); })) : null,
+          el('a', { class: 'more', href: 'contact.html', text: 'Get in touch →' })
+        ])
+      ]));
+    },
     contact: function (mount) {
       var rows = [];
       if (S.email) rows.push(['Email', 'mailto:' + S.email, S.email]);
