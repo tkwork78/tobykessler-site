@@ -34,12 +34,17 @@
   var btn = document.querySelector('.roam-roll');
   var last = -1;
 
-  var done = null;
+  var MIN_SPIN = 1000, started = 0, done = null;
   function loading(on) {
-    btn.classList.toggle('is-loading', on);
-    btn.setAttribute('aria-busy', on ? 'true' : 'false');
     clearTimeout(done);
-    if (on) done = setTimeout(function () { loading(false); }, 10000);
+    if (on) {
+      started = Date.now();
+      btn.classList.add('is-loading'); btn.setAttribute('aria-busy', 'true');
+      done = setTimeout(function () { loading(false); }, 10000);
+    } else {
+      /* keep the spinner up for at least MIN_SPIN ms so it never just flickers */
+      done = setTimeout(function () { btn.classList.remove('is-loading'); btn.setAttribute('aria-busy', 'false'); }, Math.max(0, MIN_SPIN - (Date.now() - started)));
+    }
   }
   frame.addEventListener('load', function () { if (frame.src) loading(false); });
   function show(i) {
