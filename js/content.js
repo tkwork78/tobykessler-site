@@ -66,22 +66,22 @@ window.SITE = {
   photography: {
     summary: 'Personal work.',
     items: [
-      { src: 'images/photography/36365472400_46bbc34987_o.jpg', width: 2400, height: 1500, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/DSC08418.jpg', width: 1500, height: 1001, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/DSC08422.jpg', width: 1500, height: 1001, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/Kessler_Tobias_1.jpg', width: 1001, height: 1500, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/Kessler_Toby_02.jpg', width: 1200, height: 1500, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/Kessler_Toby_04.jpg', width: 1000, height: 1500, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/Kessler_Toby_05.jpg', width: 1000, height: 1500, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/Kessler_Toby_08.jpg', width: 1500, height: 1000, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/Kessler_Toby_12.jpg', width: 1000, height: 1500, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/L1110051-3.jpg', width: 2400, height: 1600, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/McPhee-Final-Collection-4.jpg', width: 1000, height: 1500, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/Seaport-34.jpg', width: 1200, height: 800, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/_K8A8978-HDR.jpg', width: 1500, height: 1000, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/_K8A9930.jpg', width: 2400, height: 1600, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/_K8A9952-Enhanced-NR.jpg', width: 2400, height: 1600, alt: 'Photograph by Toby Kessler' },
-      { src: 'images/photography/final_crit_sp21-11.jpg', width: 1500, height: 1000, alt: 'Photograph by Toby Kessler' }
+      { src: 'images/photography/blue-and-red-wall.jpg', width: 2400, height: 1500, alt: 'Blue and red painted walls' },
+      { src: 'images/photography/jump-start.jpg', width: 1500, height: 1001, alt: 'Two cars being jump-started on a street' },
+      { src: 'images/photography/stop-signs.jpg', width: 1500, height: 1001, alt: 'Stop and do-not-enter signs at a street corner' },
+      { src: 'images/photography/sunflower-mural.jpg', width: 1001, height: 1500, alt: 'Sunflower mural behind a chain-link fence' },
+      { src: 'images/photography/red-trees.jpg', width: 1200, height: 1500, alt: 'Red trees in front of a house' },
+      { src: 'images/photography/desert-yucca.jpg', width: 1000, height: 1500, alt: 'Yucca plants outside a desert building' },
+      { src: 'images/photography/fallen-tree.jpg', width: 1000, height: 1500, alt: 'Fallen tree across a green bench' },
+      { src: 'images/photography/birds-in-sky.jpg', width: 1500, height: 1000, alt: 'Flock of birds against a blue sky' },
+      { src: 'images/photography/u-do-it-at-night.jpg', width: 1000, height: 1500, alt: 'U-Do-It sign at night behind a fence' },
+      { src: 'images/photography/plastic-bag.jpg', width: 2400, height: 1600, alt: 'Person carrying a large plastic bag on a city sidewalk' },
+      { src: 'images/photography/green-house-at-dusk.jpg', width: 1000, height: 1500, alt: 'Green house at dusk' },
+      { src: 'images/photography/seagulls.jpg', width: 1200, height: 800, alt: 'Seagulls taking off in a parking lot' },
+      { src: 'images/photography/dark-workshop.jpg', width: 1500, height: 1000, alt: 'Dim cluttered workshop' },
+      { src: 'images/photography/smoky-park.jpg', width: 2400, height: 1600, alt: 'Tree in a park under smoky orange sky' },
+      { src: 'images/photography/overgrown-garden.jpg', width: 2400, height: 1600, alt: 'Overgrown garden in the woods' },
+      { src: 'images/photography/hand-with-coin.jpg', width: 1500, height: 1000, alt: 'Open hand holding a coin in window light' }
     ]
   }
 };
