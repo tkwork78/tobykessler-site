@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Toby Kessler</title>
-  <meta name="description" content="Designer and photographer in New York. New site coming soon. Play snake while you wait.">
+  <meta name="description" content="Designer and photographer in New York. New site coming soon.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://www.tobykessler.com/">
   <meta property="og:type" content="website">
@@ -25,14 +25,20 @@
       <h1 class="site-title">Toby Kessler</h1>
       <p class="landing-note">Site under construction.</p>
     </div>
-    <div class="snake">
-      <canvas class="snake-board" width="600" height="600" tabindex="0" aria-label="Snake game. Use the arrow keys to play."></canvas>
-      <div class="snake-bar">
-        <p class="snake-score" aria-live="polite">Score 0</p>
-        <p class="snake-hint" data-snake-hint>Press any arrow key to play</p>
-      </div>
+    <div class="roam">
+      <figure class="roam-frame">
+        <iframe class="roam-view" title="Street View" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <figcaption class="roam-cap">
+          <span class="roam-place" aria-live="polite"></span>
+          <a class="roam-open" target="_blank" rel="noopener">Open in Google Maps</a>
+        </figcaption>
+      </figure>
+      <button type="button" class="roam-roll">
+        <svg class="roam-die" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="25" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><g fill="currentColor" class="roam-pips"></g></svg>
+        <span>Take me somewhere new</span>
+      </button>
     </div>
   </main>
-  <script src="js/snake.js"></script>
+  <script src="js/roam.js"></script>
 </body>
 </html>
