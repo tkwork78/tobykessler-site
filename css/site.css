@@ -122,5 +122,17 @@ main { padding-bottom: var(--space-12); }
 .about-co:hover { text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 900px) { .about { grid-template-columns: 1fr; } }
 
-/* Home page shows the name as the big heading, so the small header name is hidden there */
+/* Home page: the big name sits in the header, level with the menu */
+.site-header.is-home { padding-top: var(--space-12); }
 .site-header.is-home .site-nav { margin-left: auto; }
+.site-header.is-home + main .page-intro { padding-top: var(--space-2); }
+.site-header.is-home + main .page-intro .lead { margin-top: 0; }
+
+/* Phones: menu stays on one line, spread across the width */
+@media (max-width: 720px) {
+  .site-header.is-home { padding-top: var(--space-6); }
+  .site-header.is-home .wrap { row-gap: var(--space-4); }
+  .site-nav { width: 100%; flex-wrap: nowrap; justify-content: space-between; gap: var(--space-2); }
+  .site-nav a { white-space: nowrap; }
+}
+@media (max-width: 360px) { .site-nav a { font-size: 13px; } }
