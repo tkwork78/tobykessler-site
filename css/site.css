@@ -138,14 +138,14 @@ main { padding-bottom: var(--space-12); }
 @media (max-width: 360px) { .site-nav a { font-size: 13px; } }
 
 /* Under construction landing page (index.html): full-screen Street View, roll the dice for a new place */
-.landing { overflow: hidden; background: var(--ink); }
-.roam-view { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; background: var(--grey-800); }
+.landing { overflow: hidden; background: var(--paper); --inset: var(--margin); }
+.roam-view { position: fixed; top: var(--inset); left: var(--inset); width: calc(100% - 2 * var(--inset)); height: calc(100% - 2 * var(--inset)); border: 0; background: var(--grey-200); }
 .roam-chip { background: var(--paper); color: var(--ink); padding: var(--space-2) var(--space-4); margin: 0; }
-.roam-top { position: fixed; top: var(--space-6); left: var(--margin); right: var(--margin); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: var(--space-2) var(--space-6); pointer-events: none; }
+.roam-top { position: fixed; top: calc(var(--inset) + var(--space-4)); left: calc(var(--inset) + var(--space-4)); right: calc(var(--inset) + var(--space-4)); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: var(--space-2) var(--space-6); pointer-events: none; }
 .roam-top > * { pointer-events: auto; }
 .roam-top .site-title { font-size: 24px; line-height: 28px; }
 .landing-note { font-size: 14px; line-height: 20px; }
-.roam-bottom { position: fixed; left: var(--margin); right: var(--margin); bottom: var(--space-6); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--space-4); pointer-events: none; }
+.roam-bottom { position: fixed; left: calc(var(--inset) + var(--space-4)); right: calc(var(--inset) + var(--space-4)); bottom: calc(var(--inset) + var(--space-4)); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--space-4); pointer-events: none; }
 .roam-bottom > * { pointer-events: auto; }
 .roam-cap { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: 14px; line-height: 20px; }
 .roam-open { color: var(--grey-600); text-decoration: none; border-bottom: 1px solid var(--grey-200); }
@@ -157,7 +157,6 @@ main { padding-bottom: var(--space-12); }
 @keyframes roam-roll { 0% { transform: rotate(0) scale(1); } 50% { transform: rotate(270deg) scale(.8); } 100% { transform: rotate(360deg) scale(1); } }
 @media (prefers-reduced-motion: reduce) { .roam-roll.is-rolling .roam-die { animation: none; } }
 @media (max-width: 720px) {
-  .roam-top { top: var(--space-4); }
-  .roam-bottom { bottom: var(--space-4); }
-  .roam-roll { width: 100%; justify-content: center; }
+  .landing { --inset: var(--space-4); }
+  .roam-roll { width: 100%; justify-content: center; font-size: 18px; padding: var(--space-4); gap: var(--space-2); white-space: nowrap; }
 }
