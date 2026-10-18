@@ -45,7 +45,7 @@ window.SITE = {
       page: 'design-tf-cornerstone.html',   // has its own page, set up below
       summaryOnPageOnly: true,
       tags: 'Copywriting, Social Media, Video, Design, Photography',
-      designScale: 0.5,   // Design page row at half height, nothing cropped
+      designScale: 0.5,   // Design page row at half height, filling the width; emails trimmed from the top down
       designPreview: [   // Design page row: the three emails
         'images/tf-cornerstone/email%20templates/2023-10-13_OLR_595-Dean-St-Final-(1)-1.jpg',
         'images/tf-cornerstone/email%20templates/Malt_Dr_2024-9-06-2024-OLR-1.jpg',
