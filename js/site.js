@@ -367,8 +367,8 @@
     if (!S.intro) return;
     var place = S.introPlace, at = place ? S.intro.lastIndexOf(place) : -1;
     if (at < 0) { n.textContent = S.intro; return; }
-    // The place spins like a slot reel, blurred, and lands on the real name.
-    var words = [];   // the reel is copies of the place itself, blurred while it moves, so nothing else can ever be read
+    // The place spins like a slot reel of copies of itself and lands on the real name.
+    var words = [];   // the reel is copies of the place itself, so nothing else can ever be read
     for (var i = 0; i < 15; i++) words.push(place);
     var strip = el('span', { class: 'spin-strip' }, words.map(function (w) { return el('span', { text: w }); }));
     var reel = el('span', { class: 'spin-reel', 'aria-hidden': 'true' }, [strip]);
