@@ -145,8 +145,8 @@ window.SITE = {
     {
       id: 'triton',
       company: 'Triton Construction',
-      summary: 'Website, tradeshow, proposal and project documentation design for a construction company with offices in New York City, Upstate New York and Florida.',
-      note: 'This is current work, please reach out for info.',   // shown instead of images
+      summary: 'I am currently the marketing coordinator at Triton Construction, a full-service construction manager and consulting firm for projects across New York City, the Hudson Valley, Long Island, and Florida.',
+      note: 'For more information on my work, please [contact me].',   // shown instead of images; [text] links to Contact
       items: []
     }
   ],

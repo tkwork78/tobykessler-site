@@ -154,7 +154,9 @@
   }
 
   function noteOf(c) {
-    return el('p', { class: 'lead work-note' }, [document.createTextNode(c.note + ' '), el('a', { href: 'contact.html', text: 'Get in touch →' })]);
+    return el('p', { class: 'lead work-note' }, c.note.split(/(\[[^\]]+\])/).map(function (part) {
+      return /^\[/.test(part) ? el('a', { href: 'contact.html', text: part.slice(1, -1) }) : document.createTextNode(part);
+    }));
   }
   function itemsOf(c) {
     return c.items || (c.sections || []).reduce(function (all, s) { return all.concat(s.items || []); }, []);
