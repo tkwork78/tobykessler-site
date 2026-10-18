@@ -216,11 +216,12 @@
           sectionHead('Design', c.company, c.summary, c.note ? null : { href: companyHref(c), text: 'View all →' }),
           c.note ? noteOf(c) : grid(previewOf(c), { maxRows: 1, href: companyHref(c) })
         ]));
+        // Photography sits right after TF Cornerstone
+        if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
+          sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all →' }),
+          grid(itemsOf(S.photography), { maxRows: 1, href: 'photography.html' })
+        ]));
       });
-      if (S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
-        sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all →' }),
-        grid(itemsOf(S.photography), { maxRows: 1, href: 'photography.html' })
-      ]));
     },
     design: function (mount) {
       var sub = document.querySelector('[data-subnav]');
