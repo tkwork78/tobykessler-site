@@ -149,7 +149,7 @@
         titleHref ? el('h2', { class: 'headline' }, [el('a', { href: titleHref }, [document.createTextNode(title + ' '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : el('h2', { class: 'headline', text: title }),
         summary ? el('p', { class: 'summary', text: summary }) : null
       ]),
-      link ? el('a', { class: 'more', href: link.href, text: link.text }) : null
+      link ? el('a', { class: 'more', href: link.href }, [document.createTextNode(link.text + ' '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })]) : null
     ]);
   }
 
@@ -245,7 +245,7 @@
 
   function instagramSection(ig) {
     var url = 'https://www.instagram.com/' + ig.handle + '/';
-    var kids = [sectionHead(null, 'Instagram', '@' + ig.handle, { href: url, text: 'View on Instagram →' })];
+    var kids = [sectionHead(null, 'Instagram', '@' + ig.handle, { href: url, text: 'View on Instagram' })];
     if (ig.posts && ig.posts.length) {
       kids.push(el('div', { class: 'ig-posts' }, ig.posts.map(function (p) {
         return el('blockquote', { class: 'instagram-media', 'data-instgrm-permalink': p, 'data-instgrm-version': '14' }, [el('a', { href: p, text: 'View this post on Instagram' })]);
@@ -265,12 +265,12 @@
     home: function (mount) {
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
-          sectionHead(c.homeLabel || c.tags || 'Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all →' }, c.links ? null : companyHref(c)),
+          sectionHead(c.homeLabel || c.tags || 'Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all' }, c.links ? null : companyHref(c)),
           c.links ? noteOf(c) : grid(homePreviewOf(c), { maxRows: 1, columns: c.homePhotos || c.homePreview ? 4 : 3, href: companyHref(c) })
         ]));
         // Photography sits right after TF Cornerstone
         if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
-          sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all →' }, 'photography.html'),
+          sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all' }, 'photography.html'),
           grid(pickPhotos(itemsOf(S.photography), S.photography.homePhotos) || itemsOf(S.photography), { maxRows: 1, href: 'photography.html' })
         ]));
       });
@@ -280,7 +280,7 @@
       (S.design || []).forEach(function (c) {
         if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
-          sectionHead(null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View project →' }, c.page),
+          sectionHead(null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View project' }, c.page),
           grid(previewOf(c), { maxRows: 1, href: c.page })
         ] : [
           sectionHead(c.tags || null, c.company, c.summary),
@@ -312,7 +312,7 @@
       ((S.photography || {}).sections || []).forEach(function (sec) {
         if (sub) sub.appendChild(el('a', { href: sec.page || '#' + sec.id, text: sec.title }));
         mount.appendChild(el('section', { class: 'section', id: sec.id }, [
-          sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View project →' } : null, sec.page),
+          sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View project' } : null, sec.page),
           sec.page ? grid(sec.items.slice(0, 6), { href: sec.page }) : grid(sec.items)
         ]));
       });
@@ -334,7 +334,7 @@
           })),
           A.skills && A.skills.length ? el('p', { class: 'label', text: 'Focus' }) : null,
           A.skills && A.skills.length ? el('ul', { class: 'about-list' }, A.skills.map(function (k) { return el('li', { text: k }); })) : null,
-          el('a', { class: 'more', href: 'contact.html', text: 'Get in touch →' })
+          el('a', { class: 'more', href: 'contact.html' }, [document.createTextNode('Get in touch '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])
         ])
       ]));
     },
@@ -358,7 +358,9 @@
     var place = S.introPlace, at = place ? S.intro.lastIndexOf(place) : -1;
     if (at < 0) { n.textContent = S.intro; return; }
     // The place spins through other cities like a slot reel and lands on the real one.
-    var words = (S.introSpin || []).concat(place);
+    var words = [];   // blurred filler: random letters, so no real word shows while spinning
+    for (var i = 0; i < 14; i++) words.push(place.replace(/\S/g, function () { return 'abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random() * 26)]; }));
+    words.push(place);
     var strip = el('span', { class: 'spin-strip' }, words.map(function (w) { return el('span', { text: w }); }));
     var reel = el('span', { class: 'spin-reel', 'aria-hidden': 'true' }, [strip]);
     n.textContent = '';
@@ -366,6 +368,8 @@
     n.appendChild(el('span', { class: 'spin-sr', text: place }));
     n.appendChild(reel);
     n.appendChild(document.createTextNode(S.intro.slice(at + place.length)));
+    var probe = el('span', { text: place }); n.appendChild(probe);   // the reel is as wide as the real place name
+    reel.style.width = probe.getBoundingClientRect().width + 'px'; n.removeChild(probe);
     var lh = parseFloat(getComputedStyle(n).lineHeight) || 24;
     reel.style.setProperty('--lh', lh + 'px');
     var end = 'translateY(-' + (words.length - 1) * lh + 'px)';

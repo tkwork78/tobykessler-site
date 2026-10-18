@@ -22,8 +22,7 @@
 window.SITE = {
   name: 'Toby Kessler',
   intro: 'Designer and photographer in New York.',
-  introPlace: 'New York',   // spins through introSpin on the home page, then lands here
-  introSpin: ['Paris', 'Tokyo', 'London', 'Lisbon', 'Berlin', 'Seoul', 'Milan', 'Oslo', 'Sydney', 'Rome', 'Madrid', 'Kyoto'],
+  introPlace: 'New York',   // on the home page it spins as a blur, then lands here
   email: 'tobykessler.work@gmail.com',
   links: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/tobykessler/' }
@@ -160,7 +159,7 @@ window.SITE = {
       summary: 'I am currently the marketing coordinator at Triton Construction, a full-service construction manager and consulting firm working on projects across New York City, the Hudson Valley, Long Island, and Florida.',
       tags: 'Design, Proposals, Photography, Events, Web Design',
       links: [                // shown instead of images
-        { text: 'Triton Construction Website', href: 'https://tritonconstruction.net/' },
+        { text: 'Triton Construction On LinkedIn', href: 'https://www.linkedin.com/company/2493096/' },
         { text: 'Contact Me', href: 'contact.html' }
       ],
       items: []
