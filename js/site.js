@@ -361,7 +361,7 @@
     if (!S.intro) return;
     var place = S.introPlace, at = place ? S.intro.lastIndexOf(place) : -1;
     if (at < 0) { n.textContent = S.intro; return; }
-    // The place spins through other cities like a slot reel and lands on the real one.
+    // The place spins like a slot reel, blurred, and lands on the real name.
     var words = [];   // the reel is copies of the place itself, blurred while it moves, so nothing else can ever be read
     for (var i = 0; i < 15; i++) words.push(place);
     var strip = el('span', { class: 'spin-strip' }, words.map(function (w) { return el('span', { text: w }); }));
@@ -371,12 +371,17 @@
     n.appendChild(el('span', { class: 'spin-sr', text: place }));
     n.appendChild(reel);
     n.appendChild(document.createTextNode(S.intro.slice(at + place.length)));
-    var probe = el('span', { text: place }); n.appendChild(probe);   // the reel is as wide as the real place name
-    reel.style.width = probe.getBoundingClientRect().width + 'px'; n.removeChild(probe);
+    // The reel is as wide as the real place name; measure again once the web font has loaded,
+    // since the fallback font is narrower and would clip the last letter.
+    function fit() { var probe = el('span', { text: place }); n.appendChild(probe); reel.style.width = Math.ceil(probe.getBoundingClientRect().width) + 2 + 'px'; n.removeChild(probe); }
+    fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    // Once it lands, swap the reel for plain text so nothing can be clipped.
+    function settle() { if (!reel.parentNode) return; n.replaceChild(document.createTextNode(place), reel); n.removeChild(n.querySelector('.spin-sr')); n.normalize(); }
+    strip.addEventListener('transitionend', settle); setTimeout(settle, 3500);
     var lh = parseFloat(getComputedStyle(n).lineHeight) || 24;
     reel.style.setProperty('--lh', lh + 'px');
     var end = 'translateY(-' + (words.length - 1) * lh + 'px)';
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { strip.style.transform = end; return; }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { settle(); return; }
     requestAnimationFrame(function () { requestAnimationFrame(function () {
       reel.classList.add('is-spinning');
       strip.style.transform = end;
