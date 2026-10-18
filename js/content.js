@@ -60,13 +60,6 @@ window.SITE = {
           ]
         },
         {
-          id: 'floor-plans',
-          title: 'Floor Plans',
-          items: [
-            { src: 'images/tf-cornerstone/floorplans/220MALT_803-TK_GR-Notes_125%25-200%25.jpg', width: 1855, height: 2400, title: '220 Malt Drive', meta: 'Floor plan' }
-          ]
-        },
-        {
           id: 'email-templates',
           full: true,   // show whole emails, no cropping
           zoom: true,   // click in the lightbox to zoom in and scroll
@@ -85,6 +78,13 @@ window.SITE = {
             { src: 'images/tf-cornerstone/print%20advertising/CP-Refer-A-Friend-Card-Revised-08-28-23-1.jpg', width: 988, height: 2400, title: 'TFC Refer a Friend Brochure', meta: 'Print' },
             { src: 'images/tf-cornerstone/print%20advertising/CP-Refer-A-Friend-Card-Revised-08-28-23-2.jpg', width: 988, height: 2400, title: 'TFC Refer a Friend Brochure', meta: 'Print' },
             { src: 'images/tf-cornerstone/print%20advertising/Malt-Drive-Welcome-Card.jpg', width: 1500, height: 2100, title: 'Malt Drive Welcome Card', meta: 'Print' }
+          ]
+        },
+        {
+          id: 'floor-plans',
+          title: 'Floor Plans',
+          items: [
+            { src: 'images/tf-cornerstone/floorplans/220MALT_803-TK_GR-Notes_125%25-200%25.jpg', width: 1855, height: 2400, title: '220 Malt Drive', meta: 'Floor plan' }
           ]
         }
       ],
