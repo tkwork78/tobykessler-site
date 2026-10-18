@@ -200,13 +200,24 @@
   // Video cards: name, video (plays inline with controls) and caption. @handles link to Instagram.
   function videoGrid(list) {
     return el('div', { class: 'video-grid' }, list.map(function (v) {
-      var video = el('video', { class: 'video-media', src: v.src, poster: v.poster || '', controls: '', playsinline: '', preload: 'none', width: v.width, height: v.height });
+      // Click the video to play; the player controls appear once it starts.
+      var video = el('video', { class: 'video-media', src: v.src, poster: v.poster || '', playsinline: '', preload: 'none', width: v.width, height: v.height, 'aria-label': 'Play video: ' + v.title });
+      video.addEventListener('click', function () {
+        if (video.controls) return;
+        video.controls = true;
+        var go = video.play(); if (go && go.catch) go.catch(function () {});
+      });
+      video.addEventListener('play', function () {   // one video at a time
+        document.querySelectorAll('.video-media').forEach(function (o) { if (o !== video) o.pause(); });
+      });
+      var play = el('span', { class: 'video-play', 'aria-hidden': 'true' });
+      video.addEventListener('play', function () { play.hidden = true; });
       var text = el('p', { class: 'video-text' }, (v.caption || '').split(/(@[A-Za-z0-9_.]+)/).map(function (part) {
         return /^@/.test(part)
           ? el('a', { href: 'https://www.instagram.com/' + part.slice(1) + '/', target: '_blank', rel: 'noopener', text: part })
           : document.createTextNode(part);
       }));
-      return el('figure', { class: 'video-card' }, [video, el('figcaption', {}, [el('p', { class: 'pf-cap-title', text: v.title }), text])]);
+      return el('figure', { class: 'video-card' }, [el('div', { class: 'video-frame' }, [video, play]), el('figcaption', {}, [el('p', { class: 'pf-cap-title', text: v.title }), text])]);
     }));
   }
 
