@@ -123,6 +123,7 @@
           fitW = (W - gap * (chunk.length - 1) - wholeW) / (opts.ratio ? opts.ratio * chunk.length : restSum);
         }
         else if (opts.ratio) h = (W - gap * (cols - 1)) / cols / opts.ratio;
+        if (opts.scale) h *= opts.scale;   // shrink the whole row (tiles keep their shape, row no longer fills the width)
         else if (chunk.length < cols) h = Math.min(h, count ? total / count : (W - gap * (cols - 1)) / cols / (sum / chunk.length));
         total += h; count++;
         var row = el('div', { class: 'pf-row' }); row.style.columnGap = gap + 'px';
@@ -375,7 +376,7 @@
         if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
           sectionHead(c.tags || null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View project' }, c.page),
-          grid(pickPhotos(itemsOf(c), c.designPreview) || previewOf(c), { maxRows: 1, href: c.page })
+          grid(pickPhotos(itemsOf(c), c.designPreview) || previewOf(c), { maxRows: 1, scale: c.designScale, href: c.page })
         ] : [
           sectionHead(c.tags || null, c.company, c.summary),
           c.links ? noteOf(c) : c.booklet ? booklet(c.booklet) : grid(c.items)
