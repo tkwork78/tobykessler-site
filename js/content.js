@@ -189,7 +189,6 @@ window.SITE = {
     summary: 'Art documentary and personal work.',
     homePhotos: [   // the Photography row on the home page
       'images/photography/birds-in-sky.jpg',
-      'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-1.jpg',
       'images/photography/hand-with-coin.jpg',
       'images/photography/fallen-tree.jpg'
     ],
