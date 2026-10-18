@@ -148,6 +148,10 @@
   function itemsOf(c) {
     return c.items || (c.sections || []).reduce(function (all, s) { return all.concat(s.items || []); }, []);
   }
+  // Preview rows skip sections that must be shown whole (emails), so nothing gets cropped.
+  function previewOf(c) {
+    return c.items || itemsOf({ sections: (c.sections || []).filter(function (s) { return !s.full; }) });
+  }
   function companyHref(c) { return c.page || 'design.html#' + c.id; }
 
   function blogSection(posts) {
@@ -205,11 +209,11 @@
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
           sectionHead('Design', c.company, c.summary, { href: companyHref(c), text: 'View all →' }),
-          grid(itemsOf(c), { maxRows: 1 })
+          grid(previewOf(c), { maxRows: 1 })
         ]));
       });
       if (S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
-        sectionHead('Personal', 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all →' }),
+        sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all →' }),
         grid(S.photography.items, { maxRows: 1 })
       ]));
     },
@@ -219,7 +223,7 @@
         if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
           sectionHead(null, c.company, c.summary, { href: c.page, text: 'View project →' }),
-          grid(itemsOf(c), { maxRows: 1 })
+          grid(previewOf(c), { maxRows: 1 })
         ] : [
           sectionHead(null, c.company, c.summary),
           grid(c.items)
@@ -227,14 +231,15 @@
       });
     },
     company: function (mount) {
-      var c = (S.design || []).filter(function (d) { return d.id === mount.getAttribute('data-company'); })[0];
+      var all = (S.design || []).concat(((S.photography || {}).projects || []).filter(function (p) { return typeof p === 'object'; }));
+      var c = all.filter(function (d) { return d.id === mount.getAttribute('data-company'); })[0];
       if (!c) return;
       document.querySelectorAll('[data-company-name]').forEach(function (n) { n.textContent = c.company; });
       document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = c.summary; });
       var sub = document.querySelector('[data-subnav]');
       (c.sections || []).forEach(function (s) {
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
-        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead('Design Samples', s.title), grid(s.items, s.full ? { full: true } : { ratio: 0.75 })]));
+        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead(s.label || 'Design Samples', s.title), grid(s.items, s.natural ? {} : s.full ? { full: true } : { ratio: 0.75 })]));
       });
       if (c.blog) {
         if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog Posts' }));
@@ -246,7 +251,21 @@
       }
     },
     photography: function (mount) {
-      if (S.photography) mount.appendChild(el('section', { class: 'section' }, [grid(S.photography.items)]));
+      if (!S.photography) return;
+      (S.photography.projects || []).forEach(function (p) {
+        var c = typeof p === 'string' ? (S.design || []).filter(function (d) { return d.id === p; })[0] : p;
+        if (!c) return;
+        var photos = c.sections ? c.sections.filter(function (s) { return s.natural; }) : [];
+        var items = photos.length ? photos.reduce(function (all, s) { return all.concat(s.items); }, []) : itemsOf(c);
+        mount.appendChild(el('section', { class: 'section', id: c.id }, [
+          sectionHead('Project', c.company, c.summary, { href: companyHref(c), text: 'View project →' }),
+          grid(items, { maxRows: 1 })
+        ]));
+      });
+      mount.appendChild(el('section', { class: 'section', id: 'personal' }, [
+        S.photography.projects && S.photography.projects.length ? sectionHead(null, 'Personal Work') : null,
+        grid(S.photography.items)
+      ]));
     },
     about: function (mount) {
       var A = S.about || {};
@@ -254,7 +273,7 @@
         el('div', { class: 'about-bio' }, (A.bio || []).map(function (t) { return el('p', { class: 'lead', text: t }); })),
         el('div', { class: 'about-side' }, [
           el('p', { class: 'label', text: 'Selected work' }),
-          el('ul', { class: 'about-list' }, (S.design || []).map(function (c) {
+          el('ul', { class: 'about-list' }, (S.design || []).filter(function (c) { return !c.collection; }).map(function (c) {
             return el('li', {}, [el('a', { class: 'about-co', href: companyHref(c), text: c.company })]);
           })),
           A.skills && A.skills.length ? el('p', { class: 'label', text: 'Focus' }) : null,

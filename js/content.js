@@ -24,13 +24,12 @@ window.SITE = {
   intro: 'Designer and photographer in New York. Marketing, proposals, social content and personal photography.',
   email: 'tobykessler.work@gmail.com',
   links: [
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/' }
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/tobykessler/' }
   ],
 
   about: {
     bio: [
-      'I\'m a designer and photographer based in New York. I work in-house on marketing, proposal, web and social design, and I shoot personal photography on the side.',
-      'My work spans websites, tradeshow booths, proposals and print for Triton Construction, and social campaigns, launch content and photography for TF Cornerstone.'
+      'Marketing and proposal strategist specializing in construction and real estate. Experienced in content development and optimization. Formally trained in photography and design. I bring a creative, solution-driven approach that consistently helps win clients and delivers results.'
     ],
     skills: ['Brand & marketing design', 'Proposals & RFP packages', 'Web design', 'Tradeshow & environmental', 'Social content', 'Photography']
   },
@@ -97,11 +96,96 @@ window.SITE = {
         { title: 'Chelsea Piers Fitness Prospect Heights Welcomes 595 Dean St', meta: 'News & events', url: 'https://tfc.com/blog/news-events/special-offer-50-off-chelsea-piers-fitness-prospect-heights', image: 'images/tf-cornerstone/blog%20previews/Chelsea%20Piers%20Fitness%20Prospect%20Heights%20Welcomes%20595%20Dean%20St.jpeg' },
         { title: 'Sculpture Garden At Hunter’s Point South', meta: 'News & events', url: 'https://tfc.com/blog/news-events/sculpture-garden-at-hunters-point-south', image: 'images/tf-cornerstone/blog%20previews/culpture%20Garden%20at%20Hunter%27s%20Point%20South.jpeg' }
       ]
+    },
+    {
+      id: 'car-community',
+      company: 'Car Community',
+      summary: 'Event posters, illustration and photography from the car scene.',
+      page: 'design-car-community.html',
+      sections: [
+        {
+          id: 'car-design',
+          title: 'Design',
+          items: [
+            { src: 'images/car%20community/design/PTS-LAUGINGMAN-DRAFT.jpg', width: 1920, height: 2400, title: 'Cars & Coffee Poster', meta: 'Print' },
+            { src: 'images/car%20community/design/e30m3vector.jpg', width: 2400, height: 1600, title: 'E30 M3 Illustration', meta: 'Illustration' }
+          ]
+        },
+        {
+          id: 'car-photography',
+          label: 'Photography',
+          title: 'Photography',
+          natural: true,   // photos keep their own shape
+          items: [
+            { src: 'images/car%20community/photography/lightingfinalmiata2KESSLER.jpg', width: 2400, height: 1714, alt: 'Red Miata at night under lit fencing' },
+            { src: 'images/car%20community/photography/_K8A1249.jpg', width: 2400, height: 1600, alt: 'Teal coupe parked by a green fence' },
+            { src: 'images/car%20community/photography/_MG_0695-Edit2.jpg', width: 2400, height: 1600, alt: 'Orange supercar with doors open in a showroom' },
+            { src: 'images/car%20community/photography/Untitled-1.jpg', width: 1500, height: 1500, alt: 'Black and white collage of a car meet' },
+            { src: 'images/car%20community/photography/_MG_8849-Edit-Edit%20copy.jpg', width: 2400, height: 1530, alt: 'Race car on track under grey sky' },
+            { src: 'images/car%20community/photography/16152583722_afbd046ca7_o.jpg', width: 2172, height: 1448, alt: 'Silver sports car rear detail' },
+            { src: 'images/car%20community/photography/_C0A0282-Edit1.jpg', width: 2400, height: 1350, alt: 'Close-up of a silver car body' }
+          ]
+        }
+      ]
+    },
+    {
+      id: 'logos',
+      company: 'Logos',
+      collection: true,   // a set of work, not a client; left out of the About list
+      summary: 'Logo and identity work.',
+      items: [
+        { src: 'images/logos/Rebel_Talent_Cirlce_Final_SMALL_WARP.png', width: 1440, height: 1440, title: 'Rebel Talent Circle', meta: 'Logo' },
+        { src: 'images/logos/elaphant-db-2-elmer_text.png', width: 1440, height: 1440, title: 'Rebel Talent Wordmark', meta: 'Logo' },
+        { src: 'images/logos/Screen%20Shot%202020-08-24%20at%202.27.10%20PM.png', width: 1600, height: 1527, title: 'Type!', meta: 'Logo' }
+      ]
     }
   ],
 
   photography: {
-    summary: 'Personal work.',
+    summary: 'Art documentation, cars and personal work.',
+    // Photography projects: each gets its own page. A name in quotes (like 'car-community')
+    // points at a Design project so it shows here too.
+    projects: [
+      {
+        id: 'logan-roach',
+        company: 'Logan Roach',
+        summary: 'Art documentation of paintings by Logan Roach.',
+        page: 'photography-logan-roach.html',
+        sections: [
+          {
+            id: 'august-2024',
+            label: 'Art Documentation',
+            title: 'August 2024',
+            natural: true,
+            items: [
+            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-6.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-7.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-8.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-9.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' }
+            ]
+          },
+          {
+            id: 'may',
+            label: 'Art Documentation',
+            title: 'May',
+            natural: true,
+            items: [
+            { src: 'images/art%20documentary/LR_May/LR_May-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+            { src: 'images/art%20documentary/LR_May/LR_May-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+            { src: 'images/art%20documentary/LR_May/LR_May-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+            { src: 'images/art%20documentary/LR_May/LR_May-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+            { src: 'images/art%20documentary/LR_May/LR_May-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' }
+            ]
+          }
+        ]
+      },
+      'car-community'
+    ],
     items: [
       { src: 'images/photography/blue-and-red-wall.jpg', width: 2400, height: 1500, alt: 'Blue and red painted walls' },
       { src: 'images/photography/jump-start.jpg', width: 1500, height: 1001, alt: 'Two cars being jump-started on a street' },
