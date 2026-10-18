@@ -176,7 +176,7 @@
       var all = itemsOf(c), vids = (c.sections || []).reduce(function (v, s) { return v.concat(s.videos || []); }, []);
       return c.homePreview.reduce(function (out, p) {
         if (p.video) vids.filter(function (v) { return v.title === p.video; }).forEach(function (v) {
-          out.push({ src: v.poster, width: v.width, height: v.height, title: v.title, meta: 'Video' });
+          out.push({ src: p.image || v.poster, width: p.width || v.width, height: p.height || v.height, title: v.title, meta: 'Video' });
         });
         if (p.src) out = out.concat(pickPhotos(all, [p.src]));
         if (p.blog) (c.blog || []).filter(function (b) { return b.image; }).slice(0, p.blog).forEach(function (b) {
@@ -266,7 +266,7 @@
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
           sectionHead(c.homeLabel || c.tags || 'Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all' }, c.links ? null : companyHref(c)),
-          c.links ? noteOf(c) : grid(homePreviewOf(c), { maxRows: 1, columns: c.homePhotos || c.homePreview ? 4 : 3, href: companyHref(c) })
+          c.links ? noteOf(c) : (function (row) { return grid(row, { maxRows: 1, columns: Math.min(4, Math.max(3, row.length)), href: companyHref(c) }); })(homePreviewOf(c))
         ]));
         // Photography sits right after TF Cornerstone
         if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [

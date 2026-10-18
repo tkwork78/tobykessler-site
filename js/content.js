@@ -43,9 +43,9 @@ window.SITE = {
       page: 'design-tf-cornerstone.html',   // has its own page, set up below
       summaryOnPageOnly: true,
       homePreview: [   // home page row, left to right; blog: n adds the first n blog post photos last
-        { video: 'Matthew Shlian' },
+        { video: 'Christine Galvez', image: 'images/tf-cornerstone/artists%20in%20focus/christine-home-preview.jpg', width: 906, height: 1208 },
         { src: 'images/tf-cornerstone/email%20templates/Malt_Dr_2024-9-06-2024-OLR-1.jpg' },
-        { blog: 2 }
+        { blog: 1 }
       ],   // the description shows only on its own page
       sections: [
         {
