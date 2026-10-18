@@ -22,6 +22,8 @@
 window.SITE = {
   name: 'Toby Kessler',
   intro: 'Designer and photographer in New York.',
+  introPlace: 'New York',   // spins through introSpin on the home page, then lands here
+  introSpin: ['Paris', 'Tokyo', 'London', 'Lisbon', 'Berlin', 'Seoul', 'Milan', 'Oslo', 'Sydney', 'Rome', 'Madrid', 'Kyoto'],
   email: 'tobykessler.work@gmail.com',
   links: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/tobykessler/' }

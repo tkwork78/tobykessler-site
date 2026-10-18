@@ -153,10 +153,9 @@
     ]);
   }
 
-  // Text-only entries: an optional line of disciplines, then links with the ↗ arrow.
+  // Text-only entries: links with the ↗ arrow instead of images.
   function noteOf(c) {
     return el('div', { class: 'work-note' }, [
-      c.tags ? el('p', { class: 'caption work-tags', text: c.tags }) : null,
       el('ul', { class: 'work-links' }, (c.links || []).map(function (l) {
         var ext = /^https?:/.test(l.href);
         return el('li', {}, [el('a', ext ? { href: l.href, target: '_blank', rel: 'noopener' } : { href: l.href },
@@ -246,7 +245,7 @@
     home: function (mount) {
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
-          sectionHead('Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all →' }, c.links ? null : companyHref(c)),
+          sectionHead(c.tags || 'Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all →' }, c.links ? null : companyHref(c)),
           c.links ? noteOf(c) : grid(previewOf(c), { maxRows: 1, href: companyHref(c) })
         ]));
         // Photography sits right after TF Cornerstone
@@ -264,7 +263,7 @@
           sectionHead(null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View project →' }, c.page),
           grid(previewOf(c), { maxRows: 1, href: c.page })
         ] : [
-          sectionHead(null, c.company, c.summary),
+          sectionHead(c.tags || null, c.company, c.summary),
           c.links ? noteOf(c) : grid(c.items)
         ]));
       });
@@ -334,7 +333,28 @@
   document.querySelectorAll('[data-render]').forEach(function (m) {
     var r = renderers[m.getAttribute('data-render')]; if (r) r(m);
   });
-  document.querySelectorAll('[data-site-intro]').forEach(function (n) { if (S.intro) n.textContent = S.intro; });
+  document.querySelectorAll('[data-site-intro]').forEach(function (n) {
+    if (!S.intro) return;
+    var place = S.introPlace, at = place ? S.intro.lastIndexOf(place) : -1;
+    if (at < 0) { n.textContent = S.intro; return; }
+    // The place spins through other cities like a slot reel and lands on the real one.
+    var words = (S.introSpin || []).concat(place);
+    var strip = el('span', { class: 'spin-strip' }, words.map(function (w) { return el('span', { text: w }); }));
+    var reel = el('span', { class: 'spin-reel', 'aria-hidden': 'true' }, [strip]);
+    n.textContent = '';
+    n.appendChild(document.createTextNode(S.intro.slice(0, at)));
+    n.appendChild(el('span', { class: 'spin-sr', text: place }));
+    n.appendChild(reel);
+    n.appendChild(document.createTextNode(S.intro.slice(at + place.length)));
+    var lh = parseFloat(getComputedStyle(n).lineHeight) || 24;
+    reel.style.setProperty('--lh', lh + 'px');
+    var end = 'translateY(-' + (words.length - 1) * lh + 'px)';
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { strip.style.transform = end; return; }
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      reel.classList.add('is-spinning');
+      strip.style.transform = end;
+    }); });
+  });
   document.querySelectorAll('[data-year]').forEach(function (n) { n.textContent = new Date().getFullYear(); });
   // Last updated: the date GitHub Pages last published this page
   var mod = new Date(document.lastModified);
