@@ -74,6 +74,10 @@ window.SITE = {
           ]
         }
       ],
+      // Blog posts: add one line per post, e.g.
+      //   { title: 'Inside the new rooftop lounge', url: 'https://...' },
+      blog: [
+      ],
       // Instagram: paste post links (https://www.instagram.com/p/...) into posts to embed them.
       // With no posts, the page shows a link to the account instead.
       instagram: {

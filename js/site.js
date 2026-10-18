@@ -143,6 +143,22 @@
   }
   function companyHref(c) { return c.page || 'design.html#' + c.id; }
 
+  function blogSection(posts) {
+    var kids = [sectionHead(null, 'Blog posts')];
+    if (posts.length) {
+      kids.push(el('ul', { class: 'link-list' }, posts.map(function (b) {
+        var host = ''; try { host = new URL(b.url).hostname.replace(/^www\./, ''); } catch (e) {}
+        return el('li', {}, [el('a', { href: b.url, target: '_blank', rel: 'noopener' }, [
+          el('span', { class: 'link-title', text: b.title || b.url }),
+          el('span', { class: 'caption', text: b.meta || host })
+        ])]);
+      })));
+    } else {
+      kids.push(el('p', { class: 'caption', text: 'Links coming soon.' }));
+    }
+    return el('section', { class: 'section', id: 'blog' }, kids);
+  }
+
   function instagramSection(ig) {
     var url = 'https://www.instagram.com/' + ig.handle + '/';
     var kids = [sectionHead(null, 'Instagram', '@' + ig.handle, { href: url, text: 'View on Instagram →' })];
@@ -197,6 +213,10 @@
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
         mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead('Design samples', s.title), grid(s.items)]));
       });
+      if (c.blog) {
+        if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog posts' }));
+        mount.appendChild(blogSection(c.blog));
+      }
       if (c.instagram) {
         if (sub) sub.appendChild(el('a', { href: '#instagram', text: 'Instagram' }));
         mount.appendChild(instagramSection(c.instagram));
