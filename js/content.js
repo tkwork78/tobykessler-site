@@ -45,10 +45,10 @@ window.SITE = {
       page: 'design-tf-cornerstone.html',   // has its own page, set up below
       summaryOnPageOnly: true,
       tags: 'Copywriting, Social Media, Video, Design, Photography',
-      designPreview: [   // Design page row, left to right
-        'images/tf-cornerstone/email%20templates/Weekly-Listings-Midtown-4-Template_2024-10-24-1.jpg',
-        'images/tf-cornerstone/print%20advertising/CP-Refer-A-Friend-Card-Revised-08-28-23-1.jpg',
-        'images/tf-cornerstone/print%20advertising/CP-Refer-A-Friend-Card-Revised-08-28-23-2.jpg'
+      designPreview: [   // Design page row: the three emails
+        'images/tf-cornerstone/email%20templates/2023-10-13_OLR_595-Dean-St-Final-(1)-1.jpg',
+        'images/tf-cornerstone/email%20templates/Malt_Dr_2024-9-06-2024-OLR-1.jpg',
+        'images/tf-cornerstone/email%20templates/Weekly-Listings-Midtown-4-Template_2024-10-24-1.jpg'
       ],
       homeRatio: 0.75,   // home row: equal 3:4 boxes, so the email and blog photo are cropped to fit
       homePreview: [   // home page row, left to right; blog: n adds the first n blog post photos last
@@ -122,7 +122,7 @@ window.SITE = {
       page: 'design-car-community.html',
       homeLabel: 'Design And Photography',
       homePreview: [   // home page row, left to right
-        { src: 'images/car%20community/design/PTS-LAUGINGMAN-DRAFT.jpg', whole: true },   // poster is never trimmed; the photos give way
+        { src: 'images/car%20community/design/PTS-LAUGINGMAN-4.jpg', whole: true },   // poster is never trimmed; the photos give way
         { src: 'images/car%20community/photography/_MG_8849-Edit-Edit%20copy.jpg', title: 'Porsche 996 GT3 Motion', meta: 'Photography' },   // captions show on Home only
         { src: 'images/car%20community/photography/_K8A1249.jpg', title: 'BMW M2 in Red Hook', meta: 'Photography' }
       ],
@@ -146,7 +146,7 @@ window.SITE = {
           id: 'car-design',
           title: 'Design',
           items: [
-            { src: 'images/car%20community/design/PTS-LAUGINGMAN-DRAFT.jpg', width: 1920, height: 2400, title: 'Cars & Coffee Poster', meta: 'Print' },
+            { src: 'images/car%20community/design/PTS-LAUGINGMAN-4.jpg', width: 1920, height: 2400, title: 'Cars & Coffee Poster', meta: 'Print' },
             { src: 'images/car%20community/design/e30m3vector.jpg', width: 2400, height: 1600, title: 'E30 M3 Illustration', meta: 'Illustration' }
           ]
         }
