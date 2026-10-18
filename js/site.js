@@ -187,6 +187,16 @@
     return el('section', { class: 'section', id: 'blog' }, [head2, el('div', { class: 'carousel' }, [track])]);
   }
 
+  function igEmbeds(urls) {
+    var box = el('div', { class: 'ig-posts' }, urls.map(function (p) {
+      return el('blockquote', { class: 'instagram-media', 'data-instgrm-permalink': p, 'data-instgrm-version': '14' }, [el('a', { href: p, target: '_blank', rel: 'noopener', text: 'View on Instagram' })]);
+    }));
+    if (!document.querySelector('script[src*="instagram.com/embed.js"]')) {
+      var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.instagram.com/embed.js'; document.body.appendChild(sc);
+    }
+    return box;
+  }
+
   function instagramSection(ig) {
     var url = 'https://www.instagram.com/' + ig.handle + '/';
     var kids = [sectionHead(null, 'Instagram', '@' + ig.handle, { href: url, text: 'View on Instagram →' })];
@@ -240,7 +250,7 @@
       var sub = document.querySelector('[data-subnav]');
       (c.sections || []).forEach(function (s) {
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
-        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead(s.label || 'Design Samples', s.title), grid(s.items)]));
+        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead(s.label || 'Design Samples', s.title), s.embeds ? igEmbeds(s.embeds) : grid(s.items)]));
       });
       if (c.blog) {
         if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog Posts' }));

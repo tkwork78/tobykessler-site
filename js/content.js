@@ -43,6 +43,18 @@ window.SITE = {
       summaryOnPageOnly: true,   // the description shows only on its own page
       sections: [
         {
+          id: 'artists-in-focus',
+          label: 'Video',
+          title: 'Artists In Focus',
+          // Instagram posts or reels, embedded in this order
+          embeds: [
+            'https://www.instagram.com/reel/DAtixUCvobZ/',
+            'https://www.instagram.com/reel/DHogvY6PNME/',
+            'https://www.instagram.com/p/DGWJ4exvEJF/',
+            'https://www.instagram.com/p/DF6A6xQPGS1/'
+          ]
+        },
+        {
           id: 'floor-plans',
           title: 'Floor Plans',
           items: [
