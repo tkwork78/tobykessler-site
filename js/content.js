@@ -21,7 +21,7 @@
 */
 window.SITE = {
   name: 'Toby Kessler',
-  intro: 'Designer and photographer in New York. Marketing, proposals, social content and personal photography.',
+  intro: 'Designer and photographer in New York.',
   email: 'tobykessler.work@gmail.com',
   links: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/tobykessler/' }
