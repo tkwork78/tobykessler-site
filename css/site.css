@@ -259,7 +259,7 @@ body * { cursor: inherit; }
 /* Booklet (Artillery media kit): pages turn like a book; round arrows outside the pages */
 .booklet { outline: none; }
 .booklet-stage { display: flex; align-items: center; gap: var(--space-4, 16px); background: var(--grey-100); padding: var(--space-6) var(--space-4, 16px); user-select: none; }
-.book { position: relative; flex: 1; min-width: 0; display: grid; grid-template-columns: 1fr 1fr; perspective: 2400px; }
+.book { position: relative; flex: 1; min-width: 0; display: grid; grid-template-columns: 1fr 1fr; perspective: 2400px; transition: transform .7s cubic-bezier(.35, .1, .25, 1); }
 .book.is-single { grid-template-columns: 1fr; }
 .book-slot { position: relative; min-width: 0; }
 .book-page { display: block; width: 100%; height: 100%; object-fit: contain; }
@@ -276,7 +276,7 @@ body * { cursor: inherit; }
 .leaf-face .book-page { box-shadow: 0 1px 10px rgba(0, 0, 0, .18); }
 .leaf-back { transform: rotateY(180deg); }
 .book-leaf.is-whole .leaf-back { visibility: hidden; }
-.booklet-arrow { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--ink); background: var(--white, #fff); color: var(--ink); font: inherit; font-size: 18px; line-height: 1; display: flex; align-items: center; justify-content: center; cursor: inherit; transition: background .2s ease, color .2s ease; }
+.booklet-arrow { position: relative; z-index: 3; flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--ink); background: var(--white, #fff); color: var(--ink); font: inherit; font-size: 18px; line-height: 1; display: flex; align-items: center; justify-content: center; cursor: inherit; transition: background .2s ease, color .2s ease; }
 .booklet-arrow:not(:disabled):hover { background: var(--ink); color: #fff; }
 .booklet-arrow:disabled { opacity: .25; }
 .booklet-count { margin: var(--space-3, 12px) 0 0; text-align: center; font-size: 14px; line-height: 20px; color: var(--grey-600); }

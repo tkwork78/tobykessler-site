@@ -225,6 +225,11 @@
       return i === null || i === undefined ? el('div', { class: 'book-page is-blank' })
         : el('img', { class: 'book-page', src: pages[i], alt: (b.title || 'Page') + ', page ' + (i + 1), draggable: 'false' });
     }
+    // A closed book (cover only) sits centered; it slides over as it opens so the spread fits.
+    function center(view) {
+      var x = view.length === 2 && view[0] === null ? -25 : view.length === 2 && view[1] === null ? 25 : 0;
+      book.style.transform = x ? 'translateX(' + x + '%)' : '';
+    }
     function slots(view) {
       book.innerHTML = '';
       book.classList.toggle('is-single', view.length === 1);
@@ -236,7 +241,7 @@
       prev.disabled = k === 0; next.disabled = k === v.length - 1;
       var n = v[k + 1]; if (n) n.forEach(function (i) { if (i !== null) new Image().src = pages[i]; });   // preload the next spread
     }
-    function show() { book.style.aspectRatio = String(single() ? ratio : ratio * 2); slots(views()[viewOf(at)]); label(); }
+    function show() { book.style.aspectRatio = String(single() ? ratio : ratio * 2); var v = views()[viewOf(at)]; slots(v); center(v); label(); }
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function go(d) {
       var v = views(), k = viewOf(at), to = v[k + d];
@@ -255,7 +260,7 @@
       ]);
       book.appendChild(leaf);
       label();
-      requestAnimationFrame(function () { requestAnimationFrame(function () { leaf.classList.add('is-turned'); }); });
+      requestAnimationFrame(function () { requestAnimationFrame(function () { leaf.classList.add('is-turned'); center(to); }); });
       setTimeout(function () { busy = false; show(); }, 700);
     }
     prev.onclick = function () { go(-1); }; next.onclick = function () { go(1); };
