@@ -199,12 +199,6 @@ main { padding-bottom: var(--space-12); }
 .work-note { max-width: 640px; }
 .work-note a { white-space: nowrap; }
 
-/* Headings tilt slightly on hover */
-.display, .headline, .site-title { width: fit-content; transform-origin: left center; }
-@media (prefers-reduced-motion: no-preference) {
-  .display, .headline, .site-title { transition: transform .3s cubic-bezier(.3, 1.6, .5, 1); }
-  .display:hover, .headline:hover, .site-title:hover { transform: translateX(4px) rotate(-1.5deg); }
-}
 
 /* Ball on the About page: starts on the line under the title, can drop to the footer line */
 body[data-ball] { position: relative; }

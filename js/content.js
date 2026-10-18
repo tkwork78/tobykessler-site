@@ -76,7 +76,7 @@ window.SITE = {
         },
         {
           id: 'print-advertising',
-          title: 'Print Advertising',
+          title: 'Print Advertising And Assets',
           items: [
             { src: 'images/tf-cornerstone/print%20advertising/2024_myTFC_ReferAFriend-1.jpg', width: 1934, height: 2400, title: 'MyTFC Refer-A-Friend', meta: 'Print' },
             { src: 'images/tf-cornerstone/print%20advertising/CP-Refer-A-Friend-Card-Revised-08-28-23-1.jpg', width: 988, height: 2400, title: 'Refer-A-Friend Card, Front', meta: 'Print' },
