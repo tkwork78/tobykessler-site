@@ -20,7 +20,6 @@
     ['Twelve Apostles, Australia', -38.6650, 143.1049, 110],
     ['Milford Sound, New Zealand', -44.6719, 167.9256, 300],
     ['Lake Tekapo, New Zealand', -44.0048, 170.4775, 330],
-    ['Monument Valley, Utah', 37.1010, -110.0110, 180],
     ['Grand Canyon, Arizona', 36.0617, -112.1077, 0],
     ['Chefchaouen, Morocco', 35.1688, -5.2636, 90],
     ['Gásadalur, Faroe Islands', 62.1104, -7.4352, 270],
