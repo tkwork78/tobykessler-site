@@ -46,7 +46,7 @@ window.SITE = {
           id: 'artists-in-focus',
           label: 'Video',
           title: 'Artists In Focus',
-          credits: 'Production Team: Robbie Noble',   // shown under the videos
+          credits: 'Production Team: Toby Kessler, Robbie Noble',   // shown under the videos
           // Videos with captions (caption text from images/text/Artists in Focus Captions.rtf).
           // An @handle in a caption becomes an Instagram link.
           videos: [
