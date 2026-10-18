@@ -132,11 +132,11 @@
   }
 
   /* ---------- Page rendering ---------- */
-  function sectionHead(label, title, summary, link) {
+  function sectionHead(label, title, summary, link, titleHref) {
     return el('div', { class: 'section-head' }, [
       el('div', { class: 'text' }, [
         label ? el('p', { class: 'label', text: label }) : null,
-        el('h2', { class: 'headline', text: title }),
+        titleHref ? el('h2', { class: 'headline' }, [el('a', { href: titleHref, text: title })]) : el('h2', { class: 'headline', text: title }),
         summary ? el('p', { class: 'summary', text: summary }) : null
       ]),
       link ? el('a', { class: 'more', href: link.href, text: link.text }) : null
@@ -209,12 +209,12 @@
     home: function (mount) {
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
-          sectionHead('Design', c.company, c.summary, c.note ? null : { href: companyHref(c), text: 'View all →' }),
+          sectionHead('Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.note ? null : { href: companyHref(c), text: 'View all →' }, c.note ? null : companyHref(c)),
           c.note ? noteOf(c) : grid(previewOf(c), { maxRows: 1, href: companyHref(c) })
         ]));
         // Photography sits right after TF Cornerstone
         if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
-          sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all →' }),
+          sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all →' }, 'photography.html'),
           grid(itemsOf(S.photography), { maxRows: 1, href: 'photography.html' })
         ]));
       });
@@ -224,7 +224,7 @@
       (S.design || []).forEach(function (c) {
         if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
-          sectionHead(null, c.company, c.summary, { href: c.page, text: 'View project →' }),
+          sectionHead(null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View project →' }),
           grid(previewOf(c), { maxRows: 1, href: c.page })
         ] : [
           sectionHead(null, c.company, c.summary),
