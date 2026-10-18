@@ -361,8 +361,13 @@
       });
     },
     design: function (mount) {
-      var sub = document.querySelector('[data-subnav]');
-      (S.design || []).forEach(function (c) {
+      var sub = document.querySelector('[data-subnav]'), list = (S.design || []).slice();
+      // The Design page can list projects in its own order (designOrder ids first, the rest after).
+      if (S.designOrder) list.sort(function (a, b) {
+        var i = S.designOrder.indexOf(a.id), j = S.designOrder.indexOf(b.id);
+        return (i < 0 ? 99 : i) - (j < 0 ? 99 : j);
+      });
+      list.forEach(function (c) {
         if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
           sectionHead(c.tags || null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View project' }, c.page),

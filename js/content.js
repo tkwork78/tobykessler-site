@@ -35,6 +35,7 @@ window.SITE = {
     skills: ['Brand & marketing design', 'Proposals & RFP packages', 'Web design', 'Tradeshow & environmental', 'Social content', 'Photography']
   },
 
+  designOrder: ['tf-cornerstone', 'triton', 'artillery', 'car-community', 'logos'],   // order on the Design page; Home uses the list below
   design: [
     {
       id: 'tf-cornerstone',
