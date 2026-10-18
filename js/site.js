@@ -139,6 +139,7 @@
           var fig = el('figure', { class: 'pf-tile' }, [b, caption(it)]);
           fig.style.width = (fitW && !(wholeW && it.whole) ? (opts.ratio || tileRatio(it)) * fitW : (opts.ratio || tileRatio(it)) * h) + 'px';
           if ((opts.ratio || fitW) && it.anchor) b.querySelector('img').style.objectPosition = it.anchor;
+          if (opts.contain) b.querySelector('img').style.objectFit = 'contain';   // shrink to fit the box, never trim
           row.appendChild(fig);
         });
         host.appendChild(row);
@@ -275,7 +276,7 @@
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
           sectionHead(c.homeLabel || c.tags || 'Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all' }, c.links ? null : companyHref(c)),
-          c.links ? noteOf(c) : (function (row) { return grid(row, { maxRows: 1, columns: Math.min(4, Math.max(3, row.length)), ratio: c.homeRatio, sameHeight: true, href: companyHref(c) }); })(homePreviewOf(c))
+          c.links ? noteOf(c) : (function (row) { return grid(row, { maxRows: 1, columns: Math.min(4, Math.max(3, row.length)), ratio: c.homeRatio, sameHeight: true, contain: c.homeContain, href: companyHref(c) }); })(homePreviewOf(c))
         ]));
         // Photography sits right after TF Cornerstone
         if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [

@@ -149,6 +149,7 @@ window.SITE = {
       id: 'logos',
       company: 'Logos',
       collection: true,   // a set of work, not a client; left out of the About list
+      homeContain: true,  // on Home, logos shrink to fit their boxes instead of being trimmed
       summary: 'Logo and identity work.',
       items: [
         { src: 'images/logos/Rebel_Talent_Cirlce_Final_SMALL_WARP.png', width: 1440, height: 1440, title: 'Rebel Talent Circle', meta: 'Logo' },
