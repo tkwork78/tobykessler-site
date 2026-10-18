@@ -116,7 +116,12 @@
         var h = (W - gap * (chunk.length - 1)) / sum;
         // Home rows: one shared height for every row; tiles share the width by shape and are trimmed to fit
         var fitW = 0;
-        if (opts.sameHeight) { h = cols === 1 ? W * 0.75 : Math.round(W * 0.28); fitW = (W - gap * (chunk.length - 1)) / (opts.ratio ? opts.ratio * chunk.length : sum); }
+        var wholeW = 0, restSum = sum;   // items marked whole keep their full shape; the others share what is left
+        if (opts.sameHeight) {
+          h = cols === 1 ? W * 0.75 : Math.round(W * 0.28);
+          if (!opts.ratio && cols > 1) chunk.forEach(function (it) { if (it.whole) { wholeW += tileRatio(it) * h; restSum -= tileRatio(it); } });
+          fitW = (W - gap * (chunk.length - 1) - wholeW) / (opts.ratio ? opts.ratio * chunk.length : restSum);
+        }
         else if (opts.ratio) h = (W - gap * (cols - 1)) / cols / opts.ratio;
         else if (chunk.length < cols) h = Math.min(h, count ? total / count : (W - gap * (cols - 1)) / cols / (sum / chunk.length));
         total += h; count++;
@@ -132,7 +137,7 @@
           b.querySelector('img').style.height = h + 'px';
           if (!opts.href) b.onclick = function () { LB.open(items, idx, b); };
           var fig = el('figure', { class: 'pf-tile' }, [b, caption(it)]);
-          fig.style.width = (fitW ? (opts.ratio || tileRatio(it)) * fitW : (opts.ratio || tileRatio(it)) * h) + 'px';
+          fig.style.width = (fitW && !(wholeW && it.whole) ? (opts.ratio || tileRatio(it)) * fitW : (opts.ratio || tileRatio(it)) * h) + 'px';
           if ((opts.ratio || fitW) && it.anchor) b.querySelector('img').style.objectPosition = it.anchor;
           row.appendChild(fig);
         });
@@ -182,7 +187,7 @@
         if (p.video) vids.filter(function (v) { return v.title === p.video; }).forEach(function (v) {
           out.push({ src: p.image || v.poster, width: p.width || v.width, height: p.height || v.height, title: v.title, meta: 'Video', anchor: p.anchor });
         });
-        if (p.src) out = out.concat(pickPhotos(all, [p.src]).map(function (it) { return p.anchor ? Object.assign({}, it, { anchor: p.anchor }) : it; }));
+        if (p.src) out = out.concat(pickPhotos(all, [p.src]).map(function (it) { return Object.assign({}, it, { anchor: p.anchor, whole: p.whole }); }));
         if (p.blog) (c.blog || []).filter(function (b) { return b.image; }).slice(0, p.blog).forEach(function (b) {
           out.push({ src: b.image, width: 3, height: 2, title: b.title, meta: 'Blog Post' });   // blog covers are 3:2
         });

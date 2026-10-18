@@ -114,9 +114,10 @@ window.SITE = {
       summary: 'Event posters, illustration and photography from the car scene.',
       page: 'design-car-community.html',
       homeLabel: 'Design And Photography',
-      homePhotos: [   // photos added to the home page preview, after the design work
-        'images/car%20community/photography/_MG_8849-Edit-Edit%20copy.jpg',
-        'images/car%20community/photography/_K8A1249.jpg'
+      homePreview: [   // home page row, left to right
+        { src: 'images/car%20community/design/PTS-LAUGINGMAN-DRAFT.jpg', whole: true },   // poster is never trimmed; the photos give way
+        { src: 'images/car%20community/photography/_MG_8849-Edit-Edit%20copy.jpg' },
+        { src: 'images/car%20community/photography/_K8A1249.jpg' }
       ],
       sections: [
         {
@@ -126,10 +127,10 @@ window.SITE = {
           preview: false,  // Design page and home show the design work instead
           items: [
             { src: 'images/car%20community/photography/lightingfinalmiata2KESSLER.jpg', width: 2400, height: 1714, alt: 'Red Miata at night under lit fencing' },
-            { src: 'images/car%20community/photography/_K8A1249.jpg', width: 2400, height: 1600, alt: 'Teal coupe parked by a green fence' },
+            { src: 'images/car%20community/photography/_K8A1249.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 parked by a green fence', title: 'BMW M2 in Red Hook', meta: 'Photography' },
             { src: 'images/car%20community/photography/_MG_0695-Edit2.jpg', width: 2400, height: 1600, alt: 'Orange supercar with doors open in a showroom' },
             { src: 'images/car%20community/photography/Untitled-1.jpg', width: 1500, height: 1500, alt: 'Black and white collage of a car meet' },
-            { src: 'images/car%20community/photography/_MG_8849-Edit-Edit%20copy.jpg', width: 2400, height: 1530, alt: 'Race car on track under grey sky' },
+            { src: 'images/car%20community/photography/_MG_8849-Edit-Edit%20copy.jpg', width: 2400, height: 1530, alt: 'Black Porsche 996 GT3 in motion on a track', title: 'Porsche 996 GT3 Motion', meta: 'Photography' },
             { src: 'images/car%20community/photography/16152583722_afbd046ca7_o.jpg', width: 2172, height: 1448, alt: 'Silver sports car rear detail' },
             { src: 'images/car%20community/photography/_C0A0282-Edit1.jpg', width: 2400, height: 1350, alt: 'Close-up of a silver car body' }
           ]
