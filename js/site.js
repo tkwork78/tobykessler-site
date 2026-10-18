@@ -14,9 +14,9 @@
     return n;
   }
   function ratioOf(it) { return it.width > 0 && it.height > 0 ? it.width / it.height : 1.5; }
-  // Very tall images (emails) show the top of the image in the grid and scroll in the viewer.
+  // Very tall images (emails) scroll in the viewer.
   function isTall(it) { return ratioOf(it) < 0.45; }
-  function tileRatio(it, fixed, full) { return fixed || (isTall(it) && !full ? 0.6 : ratioOf(it)); }
+  function tileRatio(it) { return ratioOf(it); }   // images are never cropped
   function arrow(dir) {
     var d = dir === 'left' ? 'M15 5 L8 12 L15 19 M8 12 H21' : 'M9 5 L16 12 L9 19 M16 12 H3';
     var w = document.createElement('span');
@@ -106,22 +106,21 @@
       var total = 0, count = 0;
       for (var i = 0; i < list.length; i += cols) {
         var chunk = list.slice(i, i + cols), sum = 0;
-        chunk.forEach(function (it) { sum += tileRatio(it, opts.ratio, opts.full); });
+        chunk.forEach(function (it) { sum += tileRatio(it); });
         var h = (W - gap * (chunk.length - 1)) / sum;
         if (opts.ratio) h = (W - gap * (cols - 1)) / cols / opts.ratio;
-        else if (chunk.length < cols) h = Math.min(h, count ? total / count : (W - gap * (cols - 1)) / (cols * 1.5));
+        else if (chunk.length < cols) h = Math.min(h, count ? total / count : (W - gap * (cols - 1)) / cols / (sum / chunk.length));
         total += h; count++;
         var row = el('div', { class: 'pf-row' }); row.style.columnGap = gap + 'px';
         chunk.forEach(function (it, j) {
           var idx = i + j;
           var b = el('button', { type: 'button', class: 'pf-tile-btn', 'aria-label': 'Open ' + (it.title || 'image ' + (idx + 1)) }, [
-            el('img', { class: 'pf-tile-img', src: it.src, alt: it.alt || it.title || '', loading: 'lazy', width: Math.round(tileRatio(it, opts.ratio, opts.full) * h), height: Math.round(h) })
+            el('img', { class: 'pf-tile-img', src: it.src, alt: it.alt || it.title || '', loading: 'lazy', width: Math.round(tileRatio(it) * h), height: Math.round(h) })
           ]);
           b.querySelector('img').style.height = h + 'px';
-          if (opts.ratio || (isTall(it) && !opts.full)) b.querySelector('img').style.objectPosition = 'top';
           b.onclick = function () { LB.open(items, idx, b); };
           var fig = el('figure', { class: 'pf-tile' }, [b, caption(it)]);
-          fig.style.width = tileRatio(it, opts.ratio, opts.full) * h + 'px';
+          fig.style.width = tileRatio(it) * h + 'px';
           row.appendChild(fig);
         });
         host.appendChild(row);
@@ -145,6 +144,9 @@
     ]);
   }
 
+  function noteOf(c) {
+    return el('p', { class: 'lead work-note' }, [document.createTextNode(c.note + ' '), el('a', { href: 'contact.html', text: 'Get in touch →' })]);
+  }
   function itemsOf(c) {
     return c.items || (c.sections || []).reduce(function (all, s) { return all.concat(s.items || []); }, []);
   }
@@ -208,13 +210,13 @@
     home: function (mount) {
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
-          sectionHead('Design', c.company, c.summary, { href: companyHref(c), text: 'View all →' }),
-          grid(previewOf(c), { maxRows: 1 })
+          sectionHead('Design', c.company, c.summary, c.note ? null : { href: companyHref(c), text: 'View all →' }),
+          c.note ? noteOf(c) : grid(previewOf(c), { maxRows: 1 })
         ]));
       });
       if (S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
         sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all →' }),
-        grid(S.photography.items, { maxRows: 1 })
+        grid(itemsOf(S.photography), { maxRows: 1 })
       ]));
     },
     design: function (mount) {
@@ -226,20 +228,19 @@
           grid(previewOf(c), { maxRows: 1 })
         ] : [
           sectionHead(null, c.company, c.summary),
-          grid(c.items)
+          c.note ? noteOf(c) : grid(c.items)
         ]));
       });
     },
     company: function (mount) {
-      var all = (S.design || []).concat(((S.photography || {}).projects || []).filter(function (p) { return typeof p === 'object'; }));
-      var c = all.filter(function (d) { return d.id === mount.getAttribute('data-company'); })[0];
+      var c = (S.design || []).filter(function (d) { return d.id === mount.getAttribute('data-company'); })[0];
       if (!c) return;
       document.querySelectorAll('[data-company-name]').forEach(function (n) { n.textContent = c.company; });
       document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = c.summary; });
       var sub = document.querySelector('[data-subnav]');
       (c.sections || []).forEach(function (s) {
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
-        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead(s.label || 'Design Samples', s.title), grid(s.items, s.natural ? {} : s.full ? { full: true } : { ratio: 0.75 })]));
+        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead(s.label || 'Design Samples', s.title), grid(s.items)]));
       });
       if (c.blog) {
         if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog Posts' }));
@@ -251,21 +252,11 @@
       }
     },
     photography: function (mount) {
-      if (!S.photography) return;
-      (S.photography.projects || []).forEach(function (p) {
-        var c = typeof p === 'string' ? (S.design || []).filter(function (d) { return d.id === p; })[0] : p;
-        if (!c) return;
-        var photos = c.sections ? c.sections.filter(function (s) { return s.natural; }) : [];
-        var items = photos.length ? photos.reduce(function (all, s) { return all.concat(s.items); }, []) : itemsOf(c);
-        mount.appendChild(el('section', { class: 'section', id: c.id }, [
-          sectionHead('Project', c.company, c.summary, { href: companyHref(c), text: 'View project →' }),
-          grid(items, { maxRows: 1 })
-        ]));
+      var sub = document.querySelector('[data-subnav]');
+      ((S.photography || {}).sections || []).forEach(function (sec) {
+        if (sub) sub.appendChild(el('a', { href: '#' + sec.id, text: sec.title }));
+        mount.appendChild(el('section', { class: 'section', id: sec.id }, [sectionHead(null, sec.title, sec.summary), grid(sec.items)]));
       });
-      mount.appendChild(el('section', { class: 'section', id: 'personal' }, [
-        S.photography.projects && S.photography.projects.length ? sectionHead(null, 'Personal Work') : null,
-        grid(S.photography.items)
-      ]));
     },
     about: function (mount) {
       var A = S.about || {};

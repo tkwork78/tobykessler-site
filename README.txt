@@ -4,11 +4,10 @@ TOBY KESSLER — PORTFOLIO SITE
 Pages
   index.html        Temporary "Site under construction" page (what tobykessler.com shows)
   home.html         Home: intro + a row of work from each section
-  design.html       Design: Triton, TF Cornerstone, Car Community, Logos
+  design.html       Design: TF Cornerstone, Car Community, Logos, Triton (text only)
   design-tf-cornerstone.html  TF Cornerstone: floor plans, emails, print, blog posts
   design-car-community.html   Car Community: posters, illustration, photography
-  photography.html  Photography projects plus personal work
-  photography-logan-roach.html  Art documentation for Logan Roach
+  photography.html  Photography: Art Documentary and Personal Work
   about.html        Short bio, experience and focus areas
   contact.html      Email and links
 

@@ -196,3 +196,5 @@ main { padding-bottom: var(--space-12); }
 .link-list a:hover .link-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 @media (max-width: 900px) { .ig-posts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .ig-posts { grid-template-columns: minmax(0, 1fr); } }
+.work-note { max-width: 640px; }
+.work-note a { white-space: nowrap; }

@@ -36,19 +36,6 @@ window.SITE = {
 
   design: [
     {
-      id: 'triton',
-      company: 'Triton Construction',
-      summary: 'Website, tradeshow, proposal and project documentation design for a construction company with offices in New York City, Upstate New York and Florida.',
-      items: [
-        { src: 'images/triton/website-redesign.svg', width: 1600, height: 1000, title: 'Website Redesign', meta: 'Web' },
-        { src: 'images/triton/nyssba-booth.svg', width: 1600, height: 1067, title: 'NYSSBA Tradeshow Booth', meta: 'Environmental' },
-        { src: 'images/triton/proposal-cover.svg', width: 1080, height: 1400, title: 'Proposal Design', meta: 'Print' },
-        { src: 'images/triton/project-sheet.svg', width: 1200, height: 1200, title: 'Project Sheets', meta: 'Print' },
-        { src: 'images/triton/rfp-package.svg', width: 1600, height: 1000, title: 'RFP Response Package', meta: 'Print' },
-        { src: 'images/triton/tradeshow-banner.svg', width: 900, height: 1600, title: 'Tradeshow Banner', meta: 'Print' }
-      ]
-    },
-    {
       id: 'tf-cornerstone',
       company: 'TF Cornerstone',
       summary: 'Floor plans, email templates and print advertising for a New York real estate developer.',
@@ -104,14 +91,6 @@ window.SITE = {
       page: 'design-car-community.html',
       sections: [
         {
-          id: 'car-design',
-          title: 'Design',
-          items: [
-            { src: 'images/car%20community/design/PTS-LAUGINGMAN-DRAFT.jpg', width: 1920, height: 2400, title: 'Cars & Coffee Poster', meta: 'Print' },
-            { src: 'images/car%20community/design/e30m3vector.jpg', width: 2400, height: 1600, title: 'E30 M3 Illustration', meta: 'Illustration' }
-          ]
-        },
-        {
           id: 'car-photography',
           label: 'Photography',
           title: 'Photography',
@@ -124,6 +103,14 @@ window.SITE = {
             { src: 'images/car%20community/photography/_MG_8849-Edit-Edit%20copy.jpg', width: 2400, height: 1530, alt: 'Race car on track under grey sky' },
             { src: 'images/car%20community/photography/16152583722_afbd046ca7_o.jpg', width: 2172, height: 1448, alt: 'Silver sports car rear detail' },
             { src: 'images/car%20community/photography/_C0A0282-Edit1.jpg', width: 2400, height: 1350, alt: 'Close-up of a silver car body' }
+          ]
+        },
+        {
+          id: 'car-design',
+          title: 'Design',
+          items: [
+            { src: 'images/car%20community/design/PTS-LAUGINGMAN-DRAFT.jpg', width: 1920, height: 2400, title: 'Cars & Coffee Poster', meta: 'Print' },
+            { src: 'images/car%20community/design/e30m3vector.jpg', width: 2400, height: 1600, title: 'E30 M3 Illustration', meta: 'Illustration' }
           ]
         }
       ]
@@ -138,71 +125,63 @@ window.SITE = {
         { src: 'images/logos/elaphant-db-2-elmer_text.png', width: 1440, height: 1440, title: 'Rebel Talent Wordmark', meta: 'Logo' },
         { src: 'images/logos/Screen%20Shot%202020-08-24%20at%202.27.10%20PM.png', width: 1600, height: 1527, title: 'Type!', meta: 'Logo' }
       ]
+    },
+    {
+      id: 'triton',
+      company: 'Triton Construction',
+      summary: 'Website, tradeshow, proposal and project documentation design for a construction company with offices in New York City, Upstate New York and Florida.',
+      note: 'This is current work, please reach out for info.',   // shown instead of images
+      items: []
     }
   ],
 
   photography: {
-    summary: 'Art documentation, cars and personal work.',
-    // Photography projects: each gets its own page. A name in quotes (like 'car-community')
-    // points at a Design project so it shows here too.
-    projects: [
+    summary: 'Art documentary and personal work.',
+    // Each section is a part of the Photography page.
+    sections: [
       {
-        id: 'logan-roach',
-        company: 'Logan Roach',
-        summary: 'Art documentation of paintings by Logan Roach.',
-        page: 'photography-logan-roach.html',
-        sections: [
-          {
-            id: 'august-2024',
-            label: 'Art Documentation',
-            title: 'August 2024',
-            natural: true,
-            items: [
-            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
-            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
-            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
-            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
-            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
-            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-6.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
-            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-7.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
-            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-8.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
-            { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-9.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' }
-            ]
-          },
-          {
-            id: 'may',
-            label: 'Art Documentation',
-            title: 'May',
-            natural: true,
-            items: [
-            { src: 'images/art%20documentary/LR_May/LR_May-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
-            { src: 'images/art%20documentary/LR_May/LR_May-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
-            { src: 'images/art%20documentary/LR_May/LR_May-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
-            { src: 'images/art%20documentary/LR_May/LR_May-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
-            { src: 'images/art%20documentary/LR_May/LR_May-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' }
-            ]
-          }
+        id: 'art-documentary',
+        title: 'Art Documentary',
+        summary: 'Paintings by Logan Roach.',
+        items: [
+          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-6.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-7.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-8.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-9.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/LR_May/LR_May-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/LR_May/LR_May-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/LR_May/LR_May-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/LR_May/LR_May-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' },
+          { src: 'images/art%20documentary/LR_May/LR_May-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach' }
         ]
       },
-      'car-community'
-    ],
-    items: [
-      { src: 'images/photography/blue-and-red-wall.jpg', width: 2400, height: 1500, alt: 'Blue and red painted walls' },
-      { src: 'images/photography/jump-start.jpg', width: 1500, height: 1001, alt: 'Two cars being jump-started on a street' },
-      { src: 'images/photography/stop-signs.jpg', width: 1500, height: 1001, alt: 'Stop and do-not-enter signs at a street corner' },
-      { src: 'images/photography/sunflower-mural.jpg', width: 1001, height: 1500, alt: 'Sunflower mural behind a chain-link fence' },
-      { src: 'images/photography/red-trees.jpg', width: 1200, height: 1500, alt: 'Red trees in front of a house' },
-      { src: 'images/photography/desert-yucca.jpg', width: 1000, height: 1500, alt: 'Yucca plants outside a desert building' },
-      { src: 'images/photography/fallen-tree.jpg', width: 1000, height: 1500, alt: 'Fallen tree across a green bench' },
-      { src: 'images/photography/birds-in-sky.jpg', width: 1500, height: 1000, alt: 'Flock of birds against a blue sky' },
-      { src: 'images/photography/u-do-it-at-night.jpg', width: 1000, height: 1500, alt: 'U-Do-It sign at night behind a fence' },
-      { src: 'images/photography/plastic-bag.jpg', width: 2400, height: 1600, alt: 'Person carrying a large plastic bag on a city sidewalk' },
-      { src: 'images/photography/green-house-at-dusk.jpg', width: 1000, height: 1500, alt: 'Green house at dusk' },
-      { src: 'images/photography/seagulls.jpg', width: 1200, height: 800, alt: 'Seagulls taking off in a parking lot' },
-      { src: 'images/photography/dark-workshop.jpg', width: 1500, height: 1000, alt: 'Dim cluttered workshop' },
-      { src: 'images/photography/smoky-park.jpg', width: 2400, height: 1600, alt: 'Tree in a park under smoky orange sky' },
-      { src: 'images/photography/overgrown-garden.jpg', width: 2400, height: 1600, alt: 'Overgrown garden in the woods' },
-      { src: 'images/photography/hand-with-coin.jpg', width: 1500, height: 1000, alt: 'Open hand holding a coin in window light' }
+      {
+        id: 'personal-work',
+        title: 'Personal Work',
+        items: [
+          { src: 'images/photography/blue-and-red-wall.jpg', width: 2400, height: 1500, alt: 'Blue and red painted walls' },
+          { src: 'images/photography/jump-start.jpg', width: 1500, height: 1001, alt: 'Two cars being jump-started on a street' },
+          { src: 'images/photography/stop-signs.jpg', width: 1500, height: 1001, alt: 'Stop and do-not-enter signs at a street corner' },
+          { src: 'images/photography/sunflower-mural.jpg', width: 1001, height: 1500, alt: 'Sunflower mural behind a chain-link fence' },
+          { src: 'images/photography/red-trees.jpg', width: 1200, height: 1500, alt: 'Red trees in front of a house' },
+          { src: 'images/photography/desert-yucca.jpg', width: 1000, height: 1500, alt: 'Yucca plants outside a desert building' },
+          { src: 'images/photography/fallen-tree.jpg', width: 1000, height: 1500, alt: 'Fallen tree across a green bench' },
+          { src: 'images/photography/birds-in-sky.jpg', width: 1500, height: 1000, alt: 'Flock of birds against a blue sky' },
+          { src: 'images/photography/u-do-it-at-night.jpg', width: 1000, height: 1500, alt: 'U-Do-It sign at night behind a fence' },
+          { src: 'images/photography/plastic-bag.jpg', width: 2400, height: 1600, alt: 'Person carrying a large plastic bag on a city sidewalk' },
+          { src: 'images/photography/green-house-at-dusk.jpg', width: 1000, height: 1500, alt: 'Green house at dusk' },
+          { src: 'images/photography/seagulls.jpg', width: 1200, height: 800, alt: 'Seagulls taking off in a parking lot' },
+          { src: 'images/photography/dark-workshop.jpg', width: 1500, height: 1000, alt: 'Dim cluttered workshop' },
+          { src: 'images/photography/smoky-park.jpg', width: 2400, height: 1600, alt: 'Tree in a park under smoky orange sky' },
+          { src: 'images/photography/overgrown-garden.jpg', width: 2400, height: 1600, alt: 'Overgrown garden in the woods' },
+          { src: 'images/photography/hand-with-coin.jpg', width: 1500, height: 1000, alt: 'Open hand holding a coin in window light' }
+        ]
+      }
     ]
   }
 };
