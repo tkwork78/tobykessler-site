@@ -14,6 +14,9 @@
     return n;
   }
   function ratioOf(it) { return it.width > 0 && it.height > 0 ? it.width / it.height : 1.5; }
+  // Very tall images (emails) show the top of the image in the grid and scroll in the viewer.
+  function isTall(it) { return ratioOf(it) < 0.45; }
+  function tileRatio(it, fixed) { return fixed || (isTall(it) ? 0.6 : ratioOf(it)); }
   function arrow(dir) {
     var d = dir === 'left' ? 'M15 5 L8 12 L15 19 M8 12 H21' : 'M9 5 L16 12 L9 19 M16 12 H3';
     var w = document.createElement('span');
@@ -64,6 +67,8 @@
     function render() {
       var it = items[index];
       figure.innerHTML = '';
+      figure.className = 'pf-lb-figure' + (isTall(it) ? ' is-tall' : '');
+      figure.scrollTop = 0;
       img = el('img', { class: 'pf-lb-img', src: it.full || it.src, alt: it.alt || it.title || '' });
       figure.appendChild(img);
       var c = caption(it, 'pf-lb-cap'); if (c) { c.setAttribute('aria-live', 'polite'); figure.appendChild(c); }
@@ -101,20 +106,22 @@
       var total = 0, count = 0;
       for (var i = 0; i < list.length; i += cols) {
         var chunk = list.slice(i, i + cols), sum = 0;
-        chunk.forEach(function (it) { sum += ratioOf(it); });
+        chunk.forEach(function (it) { sum += tileRatio(it, opts.ratio); });
         var h = (W - gap * (chunk.length - 1)) / sum;
-        if (chunk.length < cols) h = Math.min(h, count ? total / count : (W - gap * (cols - 1)) / (cols * 1.5));
+        if (opts.ratio) h = (W - gap * (cols - 1)) / cols / opts.ratio;
+        else if (chunk.length < cols) h = Math.min(h, count ? total / count : (W - gap * (cols - 1)) / (cols * 1.5));
         total += h; count++;
         var row = el('div', { class: 'pf-row' }); row.style.columnGap = gap + 'px';
         chunk.forEach(function (it, j) {
           var idx = i + j;
           var b = el('button', { type: 'button', class: 'pf-tile-btn', 'aria-label': 'Open ' + (it.title || 'image ' + (idx + 1)) }, [
-            el('img', { class: 'pf-tile-img', src: it.src, alt: it.alt || it.title || '', loading: 'lazy', width: Math.round(ratioOf(it) * h), height: Math.round(h) })
+            el('img', { class: 'pf-tile-img', src: it.src, alt: it.alt || it.title || '', loading: 'lazy', width: Math.round(tileRatio(it, opts.ratio) * h), height: Math.round(h) })
           ]);
           b.querySelector('img').style.height = h + 'px';
+          if (opts.ratio || isTall(it)) b.querySelector('img').style.objectPosition = 'top';
           b.onclick = function () { LB.open(items, idx, b); };
           var fig = el('figure', { class: 'pf-tile' }, [b, caption(it)]);
-          fig.style.width = ratioOf(it) * h + 'px';
+          fig.style.width = tileRatio(it, opts.ratio) * h + 'px';
           row.appendChild(fig);
         });
         host.appendChild(row);
@@ -227,7 +234,7 @@
       var sub = document.querySelector('[data-subnav]');
       (c.sections || []).forEach(function (s) {
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
-        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead('Design samples', s.title), grid(s.items)]));
+        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead('Design samples', s.title), grid(s.items, { ratio: 0.75 })]));
       });
       if (c.blog) {
         if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog posts' }));
