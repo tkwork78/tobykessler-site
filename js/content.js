@@ -43,9 +43,10 @@ window.SITE = {
       page: 'design-tf-cornerstone.html',   // has its own page, set up below
       summaryOnPageOnly: true,
       tags: 'Copywriting, Social Media, Video, Design, Photography',
+      homeRatio: 0.75,   // home row: equal 3:4 boxes, so the email and blog photo are cropped to fit
       homePreview: [   // home page row, left to right; blog: n adds the first n blog post photos last
         { video: 'Christine Galvez', image: 'images/tf-cornerstone/artists%20in%20focus/christine-home-preview.jpg', width: 906, height: 1208 },
-        { src: 'images/tf-cornerstone/email%20templates/Malt_Dr_2024-9-06-2024-OLR-1.jpg' },
+        { src: 'images/tf-cornerstone/email%20templates/Malt_Dr_2024-9-06-2024-OLR-1.jpg', anchor: 'top' },   // zoomed in from the top
         { blog: 1 }
       ],   // the description shows only on its own page
       sections: [
