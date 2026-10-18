@@ -206,17 +206,7 @@ main { padding-bottom: var(--space-12); }
   .display:hover, .headline:hover, .site-title:hover { transform: translateX(4px) rotate(-1.5deg); }
 }
 
-/* Nesting dolls game (About) */
-.dolls-stage { display: block; width: 100%; height: auto; touch-action: none; user-select: none; -webkit-user-select: none; }
-.dolls-stage .doll { transition: transform .6s cubic-bezier(.2, .8, .2, 1), opacity .4s ease; }
-.dolls-stage .top { transition: transform .45s cubic-bezier(.2, .8, .2, 1); }
-.dolls-stage .is-dragging .top, .dolls-stage .is-dragging { transition: none; }
-.dolls-stage .is-current .top { cursor: grab; }
-.dolls-stage .is-dragging .top { cursor: grabbing; }
-.dolls-stage .line { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
-.dolls-stage .fill { fill: var(--paper); stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
-.dolls-stage .solid { fill: var(--ink); }
-.dolls-stage .blank { fill: var(--paper); }
-.dolls-bar { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); margin-top: var(--space-4); }
-.dolls-reset { font: inherit; font-size: 14px; line-height: 20px; color: var(--ink); background: none; border: 0; border-bottom: 1px solid var(--ink); padding: 0 0 2px; cursor: pointer; }
-.dolls-reset[hidden] { display: none; }
+/* Ball on the About page floor */
+.ball-floor { position: relative; height: 320px; margin-top: var(--space-6); margin-bottom: calc(-1 * (var(--space-12) + var(--space-6))); }   /* sits right on the footer line */
+.ball { position: absolute; left: 0; top: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--ink); cursor: grab; touch-action: none; will-change: transform; z-index: 5; }
+.ball.is-held { cursor: grabbing; }
