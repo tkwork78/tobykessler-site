@@ -88,12 +88,17 @@
   ball.addEventListener('pointerup', release);
   ball.addEventListener('pointercancel', release);
 
-  function start() {
-    var s = surfaces()[0];
-    x = Math.max(s.x1 + R, s.x2 - 80); y = s.y - R;   // near the right end of the line
-    draw();
+  // Drops in from the top of the page and lands on the line just right of the About heading.
+  function homeX() {
+    var h = document.querySelector('.page-intro .display'), s = surfaces()[0];
+    var hx = h ? h.getBoundingClientRect().right + window.scrollX + 24 + R : s.x1 + R;
+    return Math.min(hx, s.x2 - R);
   }
-  window.addEventListener('resize', function () { start(); wake(); });
-  window.addEventListener('load', start);   // fonts can shift the line slightly
-  start();
+  function drop() {
+    x = homeX(); y = R; vx = 0; vy = 0;
+    draw(); wake();
+  }
+  window.addEventListener('resize', function () { if (!held) { x = Math.min(x, layer.clientWidth - R); wake(); } });
+  if (document.readyState === 'complete') drop();
+  else { y = -2 * R; draw(); window.addEventListener('load', drop); }   // wait for fonts so the heading width is right
 })();
