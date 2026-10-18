@@ -97,9 +97,6 @@
     return { open: open };
   })();
 
-  // Grids load a small copy from images/_small (made by tools/make-previews.py); the lightbox uses the original.
-  function small(src) { return /^images\//.test(src) ? 'images/_small/' + src.slice(7) : src; }
-
   /* ---------- Justified image grid ---------- */
   function grid(items, opts) {
     opts = opts || {};
@@ -135,10 +132,9 @@
           var b = el(opts.href ? 'a' : 'button', opts.href
             ? { class: 'pf-tile-btn is-link', href: opts.href }
             : { type: 'button', class: 'pf-tile-btn', 'aria-label': 'Open ' + (it.title || 'image ' + (idx + 1)) }, [
-            el('img', { class: 'pf-tile-img', src: small(it.src), alt: it.alt || it.title || '', loading: 'lazy', width: Math.round((opts.ratio || tileRatio(it)) * h), height: Math.round(h) })
+            el('img', { class: 'pf-tile-img', src: it.src, alt: it.alt || it.title || '', loading: 'lazy', width: Math.round((opts.ratio || tileRatio(it)) * h), height: Math.round(h) })
           ]);
           b.querySelector('img').style.height = h + 'px';
-          b.querySelector('img').onerror = function () { if (this.src.indexOf('/_small/') >= 0) { this.onerror = null; this.src = it.src; } };   // no small copy yet
           if (!opts.href) b.onclick = function () { LB.open(items, idx, b); };
           var fig = el('figure', { class: 'pf-tile' }, [b, caption(it)]);
           fig.style.width = (fitW && !(wholeW && it.whole) ? (opts.ratio || tileRatio(it)) * fitW : (opts.ratio || tileRatio(it)) * h) + 'px';
@@ -296,7 +292,7 @@
     var list = el('ul', { class: 'blog-grid' }, posts.map(function (b) {
       var host = ''; try { host = new URL(b.url).hostname.replace(/^www\./, ''); } catch (e) {}
       var thumb = b.image
-        ? el('img', { class: 'card-img', src: small(b.image), alt: '', loading: 'lazy', onerror: "if(this.src.indexOf('/_small/')>=0){this.onerror=null;this.src=this.src.replace('/_small/','/')}" })
+        ? el('img', { class: 'card-img', src: b.image, alt: '', loading: 'lazy' })
         : el('span', { class: 'card-img card-blank', 'aria-hidden': 'true' });
       return el('li', {}, [el('a', { class: 'card', href: b.url, target: '_blank', rel: 'noopener' }, [
         thumb,
