@@ -87,6 +87,7 @@ main { padding-bottom: var(--space-12); }
 .pf-row { display: flex; align-items: flex-start; }
 .pf-tile { margin: 0; flex: none; min-width: 0; }
 .pf-tile-btn { display: block; width: 100%; padding: 0; border: 0; border-radius: var(--radius-none); background: var(--grey-200); cursor: zoom-in; }
+.pf-tile-btn.is-link { cursor: pointer; }
 .pf-tile-img { display: block; width: 100%; object-fit: cover; border-radius: var(--radius-none); }
 
 /* Lightbox */
@@ -210,3 +211,7 @@ main { padding-bottom: var(--space-12); }
 .ball-floor { position: relative; height: 320px; margin-top: var(--space-6); margin-bottom: calc(-1 * (var(--space-12) + var(--space-6))); }   /* sits right on the footer line */
 .ball { position: absolute; left: 0; top: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--ink); cursor: grab; touch-action: none; will-change: transform; z-index: 5; }
 .ball.is-held { cursor: grabbing; }
+
+/* Contact: page is exactly the window height, footer on the bottom edge */
+body.fit-window { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+body.fit-window main { flex: 1 0 auto; padding-bottom: var(--space-6); }

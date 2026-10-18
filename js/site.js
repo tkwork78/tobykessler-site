@@ -114,11 +114,14 @@
         var row = el('div', { class: 'pf-row' }); row.style.columnGap = gap + 'px';
         chunk.forEach(function (it, j) {
           var idx = i + j;
-          var b = el('button', { type: 'button', class: 'pf-tile-btn', 'aria-label': 'Open ' + (it.title || 'image ' + (idx + 1)) }, [
+          // Previews link into their project; full grids open the lightbox.
+          var b = el(opts.href ? 'a' : 'button', opts.href
+            ? { class: 'pf-tile-btn is-link', href: opts.href }
+            : { type: 'button', class: 'pf-tile-btn', 'aria-label': 'Open ' + (it.title || 'image ' + (idx + 1)) }, [
             el('img', { class: 'pf-tile-img', src: it.src, alt: it.alt || it.title || '', loading: 'lazy', width: Math.round(tileRatio(it) * h), height: Math.round(h) })
           ]);
           b.querySelector('img').style.height = h + 'px';
-          b.onclick = function () { LB.open(items, idx, b); };
+          if (!opts.href) b.onclick = function () { LB.open(items, idx, b); };
           var fig = el('figure', { class: 'pf-tile' }, [b, caption(it)]);
           fig.style.width = tileRatio(it) * h + 'px';
           row.appendChild(fig);
@@ -211,12 +214,12 @@
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
           sectionHead('Design', c.company, c.summary, c.note ? null : { href: companyHref(c), text: 'View all →' }),
-          c.note ? noteOf(c) : grid(previewOf(c), { maxRows: 1 })
+          c.note ? noteOf(c) : grid(previewOf(c), { maxRows: 1, href: companyHref(c) })
         ]));
       });
       if (S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
         sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all →' }),
-        grid(itemsOf(S.photography), { maxRows: 1 })
+        grid(itemsOf(S.photography), { maxRows: 1, href: 'photography.html' })
       ]));
     },
     design: function (mount) {
@@ -225,7 +228,7 @@
         if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
           sectionHead(null, c.company, c.summary, { href: c.page, text: 'View project →' }),
-          grid(previewOf(c), { maxRows: 1 })
+          grid(previewOf(c), { maxRows: 1, href: c.page })
         ] : [
           sectionHead(null, c.company, c.summary),
           c.note ? noteOf(c) : grid(c.items)
@@ -257,7 +260,7 @@
         if (sub) sub.appendChild(el('a', { href: sec.page || '#' + sec.id, text: sec.title }));
         mount.appendChild(el('section', { class: 'section', id: sec.id }, [
           sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View project →' } : null),
-          grid(sec.page ? sec.items.slice(0, 6) : sec.items)
+          sec.page ? grid(sec.items.slice(0, 6), { href: sec.page }) : grid(sec.items)
         ]));
       });
     },
