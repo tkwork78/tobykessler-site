@@ -197,6 +197,19 @@
     return box;
   }
 
+  // Video cards: name, video (plays inline with controls) and caption. @handles link to Instagram.
+  function videoGrid(list) {
+    return el('div', { class: 'video-grid' }, list.map(function (v) {
+      var video = el('video', { class: 'video-media', src: v.src, poster: v.poster || '', controls: '', playsinline: '', preload: 'none', width: v.width, height: v.height });
+      var text = el('p', { class: 'video-text' }, (v.caption || '').split(/(@[A-Za-z0-9_.]+)/).map(function (part) {
+        return /^@/.test(part)
+          ? el('a', { href: 'https://www.instagram.com/' + part.slice(1) + '/', target: '_blank', rel: 'noopener', text: part })
+          : document.createTextNode(part);
+      }));
+      return el('figure', { class: 'video-card' }, [video, el('figcaption', {}, [el('p', { class: 'pf-cap-title', text: v.title }), text])]);
+    }));
+  }
+
   function instagramSection(ig) {
     var url = 'https://www.instagram.com/' + ig.handle + '/';
     var kids = [sectionHead(null, 'Instagram', '@' + ig.handle, { href: url, text: 'View on Instagram →' })];
@@ -250,7 +263,7 @@
       var sub = document.querySelector('[data-subnav]');
       (c.sections || []).forEach(function (s) {
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
-        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead(s.label || 'Design Samples', s.title), s.embeds ? igEmbeds(s.embeds) : grid(s.items)]));
+        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead(s.label || 'Design Samples', s.title), s.videos ? videoGrid(s.videos) : s.embeds ? igEmbeds(s.embeds) : grid(s.items)]));
       });
       if (c.blog) {
         if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog Posts' }));
