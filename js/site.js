@@ -306,7 +306,8 @@
   // Last updated: the date GitHub Pages last published this page
   var mod = new Date(document.lastModified);
   if (!isNaN(mod)) document.querySelectorAll('[data-updated]').forEach(function (n) {
-    n.textContent = ' Last updated ' + mod.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + '.';
+    function pad(v) { return (v < 10 ? '0' : '') + v; }
+    n.textContent = ' Last updated ' + pad(mod.getMonth() + 1) + '.' + pad(mod.getDate()) + '.' + mod.getFullYear() + '.';
   });
   if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(function () { t.scrollIntoView(); }, 50); }
 })();
