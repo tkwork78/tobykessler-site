@@ -203,41 +203,69 @@
   function pickPhotos(all, srcs) {
     return srcs && srcs.map(function (src) { return all.filter(function (it) { return it.src === src; })[0]; }).filter(Boolean);
   }
-  // Booklet: the cover on its own, then two-page spreads; one page at a time on narrow screens.
+  // Booklet: the cover on the right on its own, then two-page spreads whose pages turn like a book.
+  // Narrow screens show one page at a time. Round ← → buttons sit outside the pages.
   function booklet(b) {
-    var pages = b.pages, ratio = b.width / b.height, at = 0;
-    var stage = el('div', { class: 'booklet-stage' });
-    var count = el('span', { class: 'booklet-count' });
-    var prev = el('button', { type: 'button', class: 'booklet-btn', 'aria-label': 'Previous page' }, [el('span', { class: 'go-arrow back-arrow', 'aria-hidden': 'true', text: '↖' }), document.createTextNode(' Previous')]);
-    var next = el('button', { type: 'button', class: 'booklet-btn', 'aria-label': 'Next page' }, [document.createTextNode('Next '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })]);
-    var host = el('div', { class: 'booklet', tabindex: '0', 'aria-label': (b.title || 'Booklet') + ', use the arrow keys to turn pages' }, [stage, el('div', { class: 'booklet-bar' }, [prev, count, next])]);
+    var pages = b.pages, ratio = b.width / b.height, at = 0, busy = false;
+    var book = el('div', { class: 'book' });
+    var count = el('p', { class: 'booklet-count' });
+    var prev = el('button', { type: 'button', class: 'booklet-arrow is-prev', 'aria-label': 'Previous page', text: '←' });
+    var next = el('button', { type: 'button', class: 'booklet-arrow is-next', 'aria-label': 'Next page', text: '→' });
+    var host = el('div', { class: 'booklet', tabindex: '0', 'aria-label': (b.title || 'Booklet') + ', use the arrow keys to turn pages' }, [
+      el('div', { class: 'booklet-stage' }, [prev, book, next]), count
+    ]);
     function single() { return host.clientWidth < 700; }
-    // Views: [0], [1,2], [3,4], ... when spreads; [0], [1], [2], ... when single
+    // Views: [cover], [1,2], [3,4], ... as spreads; [0], [1], [2], ... one page at a time
     function views() {
       if (single()) return pages.map(function (p, i) { return [i]; });
-      var v = [[0]]; for (var i = 1; i < pages.length; i += 2) v.push(pages[i + 1] ? [i, i + 1] : [i]); return v;
+      var v = [[null, 0]]; for (var i = 1; i < pages.length; i += 2) v.push([i, i + 1 < pages.length ? i + 1 : null]); return v;
     }
     function viewOf(page) { var v = views(); for (var i = 0; i < v.length; i++) if (v[i].indexOf(page) >= 0) return i; return 0; }
-    function show() {
-      var v = views(), cur = v[viewOf(at)];
-      stage.innerHTML = '';
-      stage.classList.toggle('is-spread', cur.length === 2);
-      cur.forEach(function (i) {
-        stage.appendChild(el('img', { class: 'booklet-page', src: pages[i], alt: (b.title || 'Page') + ', page ' + (i + 1), style: 'aspect-ratio:' + ratio }));
-      });
-      var nxt = v[viewOf(at) + 1]; if (nxt) nxt.forEach(function (i) { new Image().src = pages[i]; });   // preload the next spread
-      count.textContent = (cur.length === 2 ? 'Pages ' + (cur[0] + 1) + '–' + (cur[1] + 1) : 'Page ' + (cur[0] + 1)) + ' of ' + pages.length;
-      prev.disabled = viewOf(at) === 0; next.disabled = viewOf(at) === v.length - 1;
+    function page(i) {
+      return i === null || i === undefined ? el('div', { class: 'book-page is-blank' })
+        : el('img', { class: 'book-page', src: pages[i], alt: (b.title || 'Page') + ', page ' + (i + 1), draggable: 'false' });
     }
-    function go(d) { var v = views(), k = viewOf(at) + d; if (k < 0 || k >= v.length) return; at = v[k][0]; show(); }
+    function slots(view) {
+      book.innerHTML = '';
+      book.classList.toggle('is-single', view.length === 1);
+      view.forEach(function (i) { book.appendChild(el('div', { class: 'book-slot' }, [page(i)])); });
+    }
+    function label() {
+      var v = views(), k = viewOf(at), cur = v[k].filter(function (i) { return i !== null; });
+      count.textContent = (cur.length === 2 ? 'Pages ' + (cur[0] + 1) + '–' + (cur[1] + 1) : 'Page ' + (cur[0] + 1)) + ' of ' + pages.length;
+      prev.disabled = k === 0; next.disabled = k === v.length - 1;
+      var n = v[k + 1]; if (n) n.forEach(function (i) { if (i !== null) new Image().src = pages[i]; });   // preload the next spread
+    }
+    function show() { book.style.aspectRatio = String(single() ? ratio : ratio * 2); slots(views()[viewOf(at)]); label(); }
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function go(d) {
+      var v = views(), k = viewOf(at), to = v[k + d];
+      if (!to || busy) return;
+      var from = v[k];
+      at = to.filter(function (i) { return i !== null; })[0];
+      if (reduce) { show(); return; }
+      busy = true;
+      // Underneath: the half that stays plus the half being revealed. On top: a leaf that turns over the spine.
+      var spread = from.length === 2, fwd = d > 0;
+      var under = spread ? (fwd ? [from[0], to[1]] : [to[0], from[1]]) : to;
+      slots(under);
+      var leaf = el('div', { class: 'book-leaf' + (spread ? (fwd ? ' from-right' : ' from-left') : ' is-whole') + (fwd ? ' is-fwd' : ' is-back') }, [
+        el('div', { class: 'leaf-face leaf-front' }, [page(spread ? (fwd ? from[1] : from[0]) : from[0])]),
+        el('div', { class: 'leaf-face leaf-back' }, [page(spread ? (fwd ? to[0] : to[1]) : to[0])])
+      ]);
+      book.appendChild(leaf);
+      label();
+      requestAnimationFrame(function () { requestAnimationFrame(function () { leaf.classList.add('is-turned'); }); });
+      setTimeout(function () { busy = false; show(); }, 700);
+    }
     prev.onclick = function () { go(-1); }; next.onclick = function () { go(1); };
-    stage.onclick = function (e) { var r = stage.getBoundingClientRect(); go(e.clientX - r.left < r.width / 2 ? -1 : 1); };
+    book.onclick = function (e) { var r = book.getBoundingClientRect(); go(e.clientX - r.left < r.width / 2 ? -1 : 1); };
     host.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { go(1); e.preventDefault(); } if (e.key === 'ArrowLeft') { go(-1); e.preventDefault(); } });
     var sx = null;
-    stage.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
-    stage.addEventListener('touchend', function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); sx = null; });
+    book.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    book.addEventListener('touchend', function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); sx = null; });
     var lastSingle = null;
-    function relayout() { var sg = single(); if (sg !== lastSingle) { lastSingle = sg; show(); } }
+    function relayout() { var sg = single(); if (sg !== lastSingle) { lastSingle = sg; if (!busy) show(); } }
     if (typeof ResizeObserver !== 'undefined') new ResizeObserver(relayout).observe(host); else window.addEventListener('resize', relayout);
     requestAnimationFrame(relayout);
     return host;
