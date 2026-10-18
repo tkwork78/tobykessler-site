@@ -254,9 +254,18 @@
     photography: function (mount) {
       var sub = document.querySelector('[data-subnav]');
       ((S.photography || {}).sections || []).forEach(function (sec) {
-        if (sub) sub.appendChild(el('a', { href: '#' + sec.id, text: sec.title }));
-        mount.appendChild(el('section', { class: 'section', id: sec.id }, [sectionHead(null, sec.title, sec.summary), grid(sec.items)]));
+        if (sub) sub.appendChild(el('a', { href: sec.page || '#' + sec.id, text: sec.title }));
+        mount.appendChild(el('section', { class: 'section', id: sec.id }, [
+          sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View project →' } : null),
+          grid(sec.page ? sec.items.slice(0, 6) : sec.items)
+        ]));
       });
+    },
+    'photo-project': function (mount) {
+      var sec = ((S.photography || {}).sections || []).filter(function (s) { return s.id === mount.getAttribute('data-project'); })[0];
+      if (!sec) return;
+      document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = sec.summary || ''; });
+      mount.appendChild(el('section', { class: 'section' }, [grid(sec.items)]));
     },
     about: function (mount) {
       var A = S.about || {};

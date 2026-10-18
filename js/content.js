@@ -137,11 +137,12 @@ window.SITE = {
 
   photography: {
     summary: 'Art documentary and personal work.',
-    // Each section is a part of the Photography page.
+    // Each section shows 6 photos on the Photography page and everything on its own page.
     sections: [
       {
         id: 'personal-work',
         title: 'Personal Work',
+        page: 'photography-personal-work.html',
         items: [
           { src: 'images/photography/blue-and-red-wall.jpg', width: 2400, height: 1500, alt: 'Blue and red painted walls' },
           { src: 'images/photography/jump-start.jpg', width: 1500, height: 1001, alt: 'Two cars being jump-started on a street' },
@@ -164,6 +165,7 @@ window.SITE = {
       {
         id: 'art-documentary',
         title: 'Art Documentary',
+        page: 'photography-art-documentary.html',
         summary: 'Paintings by Logan Roach.',
         items: [
           // Full paintings first, then details
