@@ -136,7 +136,7 @@
     return el('div', { class: 'section-head' }, [
       el('div', { class: 'text' }, [
         label ? el('p', { class: 'label', text: label }) : null,
-        titleHref ? el('h2', { class: 'headline' }, [el('a', { href: titleHref, text: title })]) : el('h2', { class: 'headline', text: title }),
+        titleHref ? el('h2', { class: 'headline' }, [el('a', { href: titleHref }, [document.createTextNode(title + ' '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : el('h2', { class: 'headline', text: title }),
         summary ? el('p', { class: 'summary', text: summary }) : null
       ]),
       link ? el('a', { class: 'more', href: link.href, text: link.text }) : null
@@ -234,7 +234,7 @@
       (S.design || []).forEach(function (c) {
         if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
-          sectionHead(null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View project →' }),
+          sectionHead(null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View project →' }, c.page),
           grid(previewOf(c), { maxRows: 1, href: c.page })
         ] : [
           sectionHead(null, c.company, c.summary),
@@ -266,7 +266,7 @@
       ((S.photography || {}).sections || []).forEach(function (sec) {
         if (sub) sub.appendChild(el('a', { href: sec.page || '#' + sec.id, text: sec.title }));
         mount.appendChild(el('section', { class: 'section', id: sec.id }, [
-          sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View project →' } : null),
+          sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View project →' } : null, sec.page),
           sec.page ? grid(sec.items.slice(0, 6), { href: sec.page }) : grid(sec.items)
         ]));
       });
