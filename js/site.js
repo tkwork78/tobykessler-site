@@ -158,33 +158,18 @@
   function blogSection(posts) {
     var head = sectionHead(null, 'Blog Posts');
     if (!posts.length) return el('section', { class: 'section', id: 'blog' }, [head, el('p', { class: 'caption', text: 'Links coming soon.' })]);
-    var track = el('ul', { class: 'carousel-track' }, posts.map(function (b) {
+    var list = el('ul', { class: 'blog-grid' }, posts.map(function (b) {
       var host = ''; try { host = new URL(b.url).hostname.replace(/^www\./, ''); } catch (e) {}
       var thumb = b.image
         ? el('img', { class: 'card-img', src: b.image, alt: '', loading: 'lazy' })
         : el('span', { class: 'card-img card-blank', 'aria-hidden': 'true' });
-      return el('li', { class: 'carousel-item' }, [el('a', { class: 'card', href: b.url, target: '_blank', rel: 'noopener' }, [
+      return el('li', {}, [el('a', { class: 'card', href: b.url, target: '_blank', rel: 'noopener' }, [
         thumb,
         el('span', { class: 'card-title', text: b.title || b.url }),
         el('span', { class: 'caption', text: b.meta || host })
       ])]);
     }));
-    var prev = el('button', { type: 'button', class: 'carousel-btn', 'aria-label': 'Previous posts' }, [arrow('left')]);
-    var next = el('button', { type: 'button', class: 'carousel-btn', 'aria-label': 'Next posts' }, [arrow('right')]);
-    function page(d) { track.scrollBy({ left: d * track.clientWidth * 0.9, behavior: 'smooth' }); }
-    function sync() {
-      prev.disabled = track.scrollLeft < 4;
-      next.disabled = track.scrollLeft + track.clientWidth > track.scrollWidth - 4;
-    }
-    prev.onclick = function () { page(-1); }; next.onclick = function () { page(1); };
-    track.addEventListener('scroll', sync, { passive: true });
-    window.addEventListener('resize', sync);
-    requestAnimationFrame(sync);
-    var head2 = el('div', { class: 'section-head' }, [
-      el('div', { class: 'text' }, [el('h2', { class: 'headline', text: 'Blog Posts' })]),
-      el('div', { class: 'carousel-nav' }, [prev, next])
-    ]);
-    return el('section', { class: 'section', id: 'blog' }, [head2, el('div', { class: 'carousel' }, [track])]);
+    return el('section', { class: 'section', id: 'blog' }, [head, list]);
   }
 
   function igEmbeds(urls) {
