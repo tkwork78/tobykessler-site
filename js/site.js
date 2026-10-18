@@ -14,8 +14,6 @@
     return n;
   }
   function ratioOf(it) { return it.width > 0 && it.height > 0 ? it.width / it.height : 1.5; }
-  // Very tall images (emails) scroll in the viewer.
-  function isTall(it) { return ratioOf(it) < 0.45; }
   function tileRatio(it) { return ratioOf(it); }   // images are never cropped
   function arrow(dir) {
     var d = dir === 'left' ? 'M15 5 L8 12 L15 19 M8 12 H21' : 'M9 5 L16 12 L9 19 M16 12 H3';
@@ -67,8 +65,6 @@
     function render() {
       var it = items[index];
       figure.innerHTML = '';
-      figure.className = 'pf-lb-figure' + (isTall(it) ? ' is-tall' : '');
-      figure.scrollTop = 0;
       img = el('img', { class: 'pf-lb-img', src: it.full || it.src, alt: it.alt || it.title || '' });
       figure.appendChild(img);
       var c = caption(it, 'pf-lb-cap'); if (c) { c.setAttribute('aria-live', 'polite'); figure.appendChild(c); }
