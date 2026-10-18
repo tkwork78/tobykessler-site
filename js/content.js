@@ -80,9 +80,9 @@ window.SITE = {
           id: 'print-advertising',
           title: 'Print Advertising And Assets',
           items: [
-            { src: 'images/tf-cornerstone/print%20advertising/2024_myTFC_ReferAFriend-1.jpg', width: 1934, height: 2400, title: 'MyTFC Refer-A-Friend', meta: 'Print' },
-            { src: 'images/tf-cornerstone/print%20advertising/CP-Refer-A-Friend-Card-Revised-08-28-23-1.jpg', width: 988, height: 2400, title: 'Refer-A-Friend Card, Front', meta: 'Print' },
-            { src: 'images/tf-cornerstone/print%20advertising/CP-Refer-A-Friend-Card-Revised-08-28-23-2.jpg', width: 988, height: 2400, title: 'Refer-A-Friend Card, Back', meta: 'Print' },
+            { src: 'images/tf-cornerstone/print%20advertising/2024_myTFC_ReferAFriend-1.jpg', width: 1934, height: 2400, title: 'TFC Refer a Friend Flyer', meta: 'Print' },
+            { src: 'images/tf-cornerstone/print%20advertising/CP-Refer-A-Friend-Card-Revised-08-28-23-1.jpg', width: 988, height: 2400, title: 'TFC Refer a Friend Brochure', meta: 'Print' },
+            { src: 'images/tf-cornerstone/print%20advertising/CP-Refer-A-Friend-Card-Revised-08-28-23-2.jpg', width: 988, height: 2400, title: 'TFC Refer a Friend Brochure', meta: 'Print' },
             { src: 'images/tf-cornerstone/print%20advertising/Malt-Drive-Welcome-Card.jpg', width: 1500, height: 2100, title: 'Malt Drive Welcome Card', meta: 'Print' }
           ]
         }
