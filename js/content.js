@@ -75,7 +75,8 @@ window.SITE = {
         }
       ],
       // Blog posts: add one line per post, e.g.
-      //   { title: 'Post title', meta: 'Category', url: 'https://...' },
+      //   { title: 'Post title', meta: 'Category', url: 'https://...', image: 'images/tf-cornerstone/blog/post.jpg' },
+      // image is optional; without it the card shows a plain panel.
       blog: [
         { title: 'How to Take the NYC Ferry: Long Island City, Queens', meta: 'Living in NYC', url: 'https://tfc.com/blog/living-in-nyc/how-to-take-the-nyc-ferry-long-island-city-queens' },
         { title: 'Explore the Amenities at Malt Drive', meta: 'Apartment hunt guide', url: 'https://tfc.com/blog/nyc-apartment-hunt-guide/explore-the-amenities-at-malt-drive' },

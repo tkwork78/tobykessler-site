@@ -144,19 +144,35 @@
   function companyHref(c) { return c.page || 'design.html#' + c.id; }
 
   function blogSection(posts) {
-    var kids = [sectionHead(null, 'Blog posts')];
-    if (posts.length) {
-      kids.push(el('ul', { class: 'link-list' }, posts.map(function (b) {
-        var host = ''; try { host = new URL(b.url).hostname.replace(/^www\./, ''); } catch (e) {}
-        return el('li', {}, [el('a', { href: b.url, target: '_blank', rel: 'noopener' }, [
-          el('span', { class: 'link-title', text: b.title || b.url }),
-          el('span', { class: 'caption', text: b.meta || host })
-        ])]);
-      })));
-    } else {
-      kids.push(el('p', { class: 'caption', text: 'Links coming soon.' }));
+    var head = sectionHead(null, 'Blog posts');
+    if (!posts.length) return el('section', { class: 'section', id: 'blog' }, [head, el('p', { class: 'caption', text: 'Links coming soon.' })]);
+    var track = el('ul', { class: 'carousel-track' }, posts.map(function (b) {
+      var host = ''; try { host = new URL(b.url).hostname.replace(/^www\./, ''); } catch (e) {}
+      var thumb = b.image
+        ? el('img', { class: 'card-img', src: b.image, alt: '', loading: 'lazy' })
+        : el('span', { class: 'card-img card-blank', 'aria-hidden': 'true' });
+      return el('li', { class: 'carousel-item' }, [el('a', { class: 'card', href: b.url, target: '_blank', rel: 'noopener' }, [
+        thumb,
+        el('span', { class: 'card-title', text: b.title || b.url }),
+        el('span', { class: 'caption', text: b.meta || host })
+      ])]);
+    }));
+    var prev = el('button', { type: 'button', class: 'carousel-btn', 'aria-label': 'Previous posts' }, [arrow('left')]);
+    var next = el('button', { type: 'button', class: 'carousel-btn', 'aria-label': 'Next posts' }, [arrow('right')]);
+    function page(d) { track.scrollBy({ left: d * track.clientWidth * 0.9, behavior: 'smooth' }); }
+    function sync() {
+      prev.disabled = track.scrollLeft < 4;
+      next.disabled = track.scrollLeft + track.clientWidth > track.scrollWidth - 4;
     }
-    return el('section', { class: 'section', id: 'blog' }, kids);
+    prev.onclick = function () { page(-1); }; next.onclick = function () { page(1); };
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    requestAnimationFrame(sync);
+    var head2 = el('div', { class: 'section-head' }, [
+      el('div', { class: 'text' }, [el('h2', { class: 'headline', text: 'Blog posts' })]),
+      el('div', { class: 'carousel-nav' }, [prev, next])
+    ]);
+    return el('section', { class: 'section', id: 'blog' }, [head2, el('div', { class: 'carousel' }, [track])]);
   }
 
   function instagramSection(ig) {
