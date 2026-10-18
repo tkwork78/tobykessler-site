@@ -172,9 +172,19 @@
   }
   // Home preview: the usual preview plus any photos picked in homePhotos.
   function homePreviewOf(c) {
-    if (c.homeFromBlog) return (c.blog || []).filter(function (b) { return b.image; }).map(function (b) {
-      return { src: b.image, width: 3, height: 2, title: b.title, meta: 'Blog Post' };   // blog covers are 3:2
-    });
+    if (c.homePreview) {
+      var all = itemsOf(c), vids = (c.sections || []).reduce(function (v, s) { return v.concat(s.videos || []); }, []);
+      return c.homePreview.reduce(function (out, p) {
+        if (p.video) vids.filter(function (v) { return v.title === p.video; }).forEach(function (v) {
+          out.push({ src: v.poster, width: v.width, height: v.height, title: v.title, meta: 'Video' });
+        });
+        if (p.src) out = out.concat(pickPhotos(all, [p.src]));
+        if (p.blog) (c.blog || []).filter(function (b) { return b.image; }).slice(0, p.blog).forEach(function (b) {
+          out.push({ src: b.image, width: 3, height: 2, title: b.title, meta: 'Blog Post' });   // blog covers are 3:2
+        });
+        return out;
+      }, []);
+    }
     return previewOf(c).concat(pickPhotos(itemsOf(c), c.homePhotos) || []);
   }
   function pickPhotos(all, srcs) {
@@ -256,7 +266,7 @@
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
           sectionHead(c.homeLabel || c.tags || 'Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all →' }, c.links ? null : companyHref(c)),
-          c.links ? noteOf(c) : grid(homePreviewOf(c), { maxRows: 1, columns: c.homePhotos ? 4 : 3, href: companyHref(c) })
+          c.links ? noteOf(c) : grid(homePreviewOf(c), { maxRows: 1, columns: c.homePhotos || c.homePreview ? 4 : 3, href: companyHref(c) })
         ]));
         // Photography sits right after TF Cornerstone
         if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [

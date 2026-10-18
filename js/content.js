@@ -43,7 +43,11 @@ window.SITE = {
       summary: 'At TF Cornerstone, I helped shape the marketing strategy for one of New York City’s largest real estate developers, with over 10,000 units across the city. I produced short-form social videos, wrote blog posts to engage current and prospective tenants, and led production of the Artists in Focus program, featuring local artists whose work is showcased in TF Cornerstone buildings through written spotlights, interviews, and video features. I was also involved in the launch and lease-up efforts for 595 Dean Street, as well as 2-20 and 2-21 Malt Drive, two significant residential developments in Brooklyn and Long Island City.',
       page: 'design-tf-cornerstone.html',   // has its own page, set up below
       summaryOnPageOnly: true,
-      homeFromBlog: true,   // home page preview uses the blog post photos   // the description shows only on its own page
+      homePreview: [   // home page row, left to right; blog: n adds the first n blog post photos last
+        { video: 'Matthew Shlian' },
+        { src: 'images/tf-cornerstone/email%20templates/Malt_Dr_2024-9-06-2024-OLR-1.jpg' },
+        { blog: 2 }
+      ],   // the description shows only on its own page
       sections: [
         {
           id: 'artists-in-focus',
