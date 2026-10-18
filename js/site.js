@@ -365,7 +365,7 @@
         // Photography sits right after TF Cornerstone
         if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
           sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all' }, 'photography.html'),
-          grid(pickPhotos(itemsOf(S.photography), S.photography.homePhotos) || itemsOf(S.photography), { maxRows: 1, sameHeight: true, href: 'photography.html' })
+          grid(pickPhotos(itemsOf(S.photography), S.photography.homePhotos) || itemsOf(S.photography), { maxRows: 1, columns: Math.min(4, Math.max(3, (S.photography.homePhotos || []).length)), sameHeight: true, href: 'photography.html' })
         ]));
       });
     },

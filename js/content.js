@@ -190,7 +190,8 @@ window.SITE = {
     homePhotos: [   // the Photography row on the home page
       'images/photography/birds-in-sky.jpg',
       'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-1.jpg',
-      'images/photography/hand-with-coin.jpg'
+      'images/photography/hand-with-coin.jpg',
+      'images/photography/fallen-tree.jpg'
     ],
     // Each section shows 6 photos on the Photography page and everything on its own page.
     sections: [
@@ -204,7 +205,7 @@ window.SITE = {
           { src: 'images/photography/sunflower-mural.jpg', width: 1001, height: 1500, alt: 'Sunflower mural behind a chain-link fence' },
           { src: 'images/photography/red-trees.jpg', width: 1200, height: 1500, alt: 'Red trees in front of a house' },
           { src: 'images/photography/desert-yucca.jpg', width: 1000, height: 1500, alt: 'Yucca plants outside a desert building' },
-          { src: 'images/photography/fallen-tree.jpg', width: 1000, height: 1500, alt: 'Fallen tree across a green bench' },
+          { src: 'images/photography/fallen-tree.jpg', width: 1000, height: 1500, alt: 'Fallen tree across a green bench', whole: true },
           { src: 'images/photography/birds-in-sky.jpg', width: 1500, height: 1000, alt: 'Flock of birds against a blue sky' },
           { src: 'images/photography/u-do-it-at-night.jpg', width: 1000, height: 1500, alt: 'U-Do-It sign at night behind a fence' },
           { src: 'images/photography/plastic-bag.jpg', width: 2400, height: 1600, alt: 'Person carrying a large plastic bag on a city sidewalk' },
