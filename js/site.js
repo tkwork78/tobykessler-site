@@ -170,6 +170,13 @@
   function previewOf(c) {
     return c.items || itemsOf({ sections: (c.sections || []).filter(function (s) { return !s.full && s.preview !== false; }) });
   }
+  // Home preview: the usual preview plus any photos picked in homePhotos.
+  function homePreviewOf(c) {
+    var all = itemsOf(c);
+    return previewOf(c).concat((c.homePhotos || []).map(function (src) {
+      return all.filter(function (it) { return it.src === src; })[0];
+    }).filter(Boolean));
+  }
   function companyHref(c) { return c.page || 'design.html#' + c.id; }
 
   function blogSection(posts) {
@@ -245,8 +252,8 @@
     home: function (mount) {
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
-          sectionHead(c.tags || 'Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all →' }, c.links ? null : companyHref(c)),
-          c.links ? noteOf(c) : grid(previewOf(c), { maxRows: 1, href: companyHref(c) })
+          sectionHead(c.homeLabel || c.tags || 'Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all →' }, c.links ? null : companyHref(c)),
+          c.links ? noteOf(c) : grid(homePreviewOf(c), { maxRows: 1, columns: c.homePhotos ? 4 : 3, href: companyHref(c) })
         ]));
         // Photography sits right after TF Cornerstone
         if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [

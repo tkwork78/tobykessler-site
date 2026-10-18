@@ -107,6 +107,11 @@ window.SITE = {
       company: 'Car Community',
       summary: 'Event posters, illustration and photography from the car scene.',
       page: 'design-car-community.html',
+      homeLabel: 'Design And Photography',
+      homePhotos: [   // photos added to the home page preview, after the design work
+        'images/car%20community/photography/_MG_8849-Edit-Edit%20copy.jpg',
+        'images/car%20community/photography/_K8A1249.jpg'
+      ],
       sections: [
         {
           id: 'car-photography',
