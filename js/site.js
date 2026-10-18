@@ -14,9 +14,7 @@
     return n;
   }
   function ratioOf(it) { return it.width > 0 && it.height > 0 ? it.width / it.height : 1.5; }
-  // Very tall images (emails) show the top of the image in the grid and scroll in the viewer.
-  function isTall(it) { return ratioOf(it) < 0.45; }
-  function tileRatio(it, fixed) { return fixed || (isTall(it) ? 0.6 : ratioOf(it)); }
+  function tileRatio(it) { return ratioOf(it); }   // images are never cropped
   function arrow(dir) {
     var d = dir === 'left' ? 'M15 5 L8 12 L15 19 M8 12 H21' : 'M9 5 L16 12 L9 19 M16 12 H3';
     var w = document.createElement('span');
@@ -67,8 +65,6 @@
     function render() {
       var it = items[index];
       figure.innerHTML = '';
-      figure.className = 'pf-lb-figure' + (isTall(it) ? ' is-tall' : '');
-      figure.scrollTop = 0;
       img = el('img', { class: 'pf-lb-img', src: it.full || it.src, alt: it.alt || it.title || '' });
       figure.appendChild(img);
       var c = caption(it, 'pf-lb-cap'); if (c) { c.setAttribute('aria-live', 'polite'); figure.appendChild(c); }
@@ -106,22 +102,24 @@
       var total = 0, count = 0;
       for (var i = 0; i < list.length; i += cols) {
         var chunk = list.slice(i, i + cols), sum = 0;
-        chunk.forEach(function (it) { sum += tileRatio(it, opts.ratio); });
+        chunk.forEach(function (it) { sum += tileRatio(it); });
         var h = (W - gap * (chunk.length - 1)) / sum;
         if (opts.ratio) h = (W - gap * (cols - 1)) / cols / opts.ratio;
-        else if (chunk.length < cols) h = Math.min(h, count ? total / count : (W - gap * (cols - 1)) / (cols * 1.5));
+        else if (chunk.length < cols) h = Math.min(h, count ? total / count : (W - gap * (cols - 1)) / cols / (sum / chunk.length));
         total += h; count++;
         var row = el('div', { class: 'pf-row' }); row.style.columnGap = gap + 'px';
         chunk.forEach(function (it, j) {
           var idx = i + j;
-          var b = el('button', { type: 'button', class: 'pf-tile-btn', 'aria-label': 'Open ' + (it.title || 'image ' + (idx + 1)) }, [
-            el('img', { class: 'pf-tile-img', src: it.src, alt: it.alt || it.title || '', loading: 'lazy', width: Math.round(tileRatio(it, opts.ratio) * h), height: Math.round(h) })
+          // Previews link into their project; full grids open the lightbox.
+          var b = el(opts.href ? 'a' : 'button', opts.href
+            ? { class: 'pf-tile-btn is-link', href: opts.href }
+            : { type: 'button', class: 'pf-tile-btn', 'aria-label': 'Open ' + (it.title || 'image ' + (idx + 1)) }, [
+            el('img', { class: 'pf-tile-img', src: it.src, alt: it.alt || it.title || '', loading: 'lazy', width: Math.round(tileRatio(it) * h), height: Math.round(h) })
           ]);
           b.querySelector('img').style.height = h + 'px';
-          if (opts.ratio || isTall(it)) b.querySelector('img').style.objectPosition = 'top';
-          b.onclick = function () { LB.open(items, idx, b); };
+          if (!opts.href) b.onclick = function () { LB.open(items, idx, b); };
           var fig = el('figure', { class: 'pf-tile' }, [b, caption(it)]);
-          fig.style.width = tileRatio(it, opts.ratio) * h + 'px';
+          fig.style.width = tileRatio(it) * h + 'px';
           row.appendChild(fig);
         });
         host.appendChild(row);
@@ -134,24 +132,31 @@
   }
 
   /* ---------- Page rendering ---------- */
-  function sectionHead(label, title, summary, link) {
+  function sectionHead(label, title, summary, link, titleHref) {
     return el('div', { class: 'section-head' }, [
       el('div', { class: 'text' }, [
         label ? el('p', { class: 'label', text: label }) : null,
-        el('h2', { class: 'headline', text: title }),
+        titleHref ? el('h2', { class: 'headline' }, [el('a', { href: titleHref }, [document.createTextNode(title + ' '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : el('h2', { class: 'headline', text: title }),
         summary ? el('p', { class: 'summary', text: summary }) : null
       ]),
       link ? el('a', { class: 'more', href: link.href, text: link.text }) : null
     ]);
   }
 
+  function noteOf(c) {
+    return el('p', { class: 'lead work-note' }, [document.createTextNode(c.note + ' '), el('a', { href: 'contact.html', text: 'Get in touch →' })]);
+  }
   function itemsOf(c) {
     return c.items || (c.sections || []).reduce(function (all, s) { return all.concat(s.items || []); }, []);
+  }
+  // Preview rows skip email sections (too tall for a row) and any section marked preview: false.
+  function previewOf(c) {
+    return c.items || itemsOf({ sections: (c.sections || []).filter(function (s) { return !s.full && s.preview !== false; }) });
   }
   function companyHref(c) { return c.page || 'design.html#' + c.id; }
 
   function blogSection(posts) {
-    var head = sectionHead(null, 'Blog posts');
+    var head = sectionHead(null, 'Blog Posts');
     if (!posts.length) return el('section', { class: 'section', id: 'blog' }, [head, el('p', { class: 'caption', text: 'Links coming soon.' })]);
     var track = el('ul', { class: 'carousel-track' }, posts.map(function (b) {
       var host = ''; try { host = new URL(b.url).hostname.replace(/^www\./, ''); } catch (e) {}
@@ -176,10 +181,20 @@
     window.addEventListener('resize', sync);
     requestAnimationFrame(sync);
     var head2 = el('div', { class: 'section-head' }, [
-      el('div', { class: 'text' }, [el('h2', { class: 'headline', text: 'Blog posts' })]),
+      el('div', { class: 'text' }, [el('h2', { class: 'headline', text: 'Blog Posts' })]),
       el('div', { class: 'carousel-nav' }, [prev, next])
     ]);
     return el('section', { class: 'section', id: 'blog' }, [head2, el('div', { class: 'carousel' }, [track])]);
+  }
+
+  function igEmbeds(urls) {
+    var box = el('div', { class: 'ig-posts' }, urls.map(function (p) {
+      return el('blockquote', { class: 'instagram-media', 'data-instgrm-permalink': p, 'data-instgrm-version': '14' }, [el('a', { href: p, target: '_blank', rel: 'noopener', text: 'View on Instagram' })]);
+    }));
+    if (!document.querySelector('script[src*="instagram.com/embed.js"]')) {
+      var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.instagram.com/embed.js'; document.body.appendChild(sc);
+    }
+    return box;
   }
 
   function instagramSection(ig) {
@@ -204,25 +219,26 @@
     home: function (mount) {
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
-          sectionHead('Design', c.company, c.summary, { href: companyHref(c), text: 'View all →' }),
-          grid(itemsOf(c), { maxRows: 1 })
+          sectionHead('Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.note ? null : { href: companyHref(c), text: 'View all →' }, c.note ? null : companyHref(c)),
+          c.note ? noteOf(c) : grid(previewOf(c), { maxRows: 1, href: companyHref(c) })
+        ]));
+        // Photography sits right after TF Cornerstone
+        if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
+          sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all →' }, 'photography.html'),
+          grid(itemsOf(S.photography), { maxRows: 1, href: 'photography.html' })
         ]));
       });
-      if (S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
-        sectionHead('Personal', 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all →' }),
-        grid(S.photography.items, { maxRows: 1 })
-      ]));
     },
     design: function (mount) {
       var sub = document.querySelector('[data-subnav]');
       (S.design || []).forEach(function (c) {
         if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
-          sectionHead(null, c.company, c.summary, { href: c.page, text: 'View project →' }),
-          grid(itemsOf(c), { maxRows: 1 })
+          sectionHead(null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View project →' }, c.page),
+          grid(previewOf(c), { maxRows: 1, href: c.page })
         ] : [
           sectionHead(null, c.company, c.summary),
-          grid(c.items)
+          c.note ? noteOf(c) : grid(c.items)
         ]));
       });
     },
@@ -234,10 +250,10 @@
       var sub = document.querySelector('[data-subnav]');
       (c.sections || []).forEach(function (s) {
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
-        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead('Design samples', s.title), grid(s.items, { ratio: 0.75 })]));
+        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead(s.label || 'Design Samples', s.title), s.embeds ? igEmbeds(s.embeds) : grid(s.items)]));
       });
       if (c.blog) {
-        if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog posts' }));
+        if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog Posts' }));
         mount.appendChild(blogSection(c.blog));
       }
       if (c.instagram) {
@@ -246,7 +262,20 @@
       }
     },
     photography: function (mount) {
-      if (S.photography) mount.appendChild(el('section', { class: 'section' }, [grid(S.photography.items)]));
+      var sub = document.querySelector('[data-subnav]');
+      ((S.photography || {}).sections || []).forEach(function (sec) {
+        if (sub) sub.appendChild(el('a', { href: sec.page || '#' + sec.id, text: sec.title }));
+        mount.appendChild(el('section', { class: 'section', id: sec.id }, [
+          sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View project →' } : null, sec.page),
+          sec.page ? grid(sec.items.slice(0, 6), { href: sec.page }) : grid(sec.items)
+        ]));
+      });
+    },
+    'photo-project': function (mount) {
+      var sec = ((S.photography || {}).sections || []).filter(function (s) { return s.id === mount.getAttribute('data-project'); })[0];
+      if (!sec) return;
+      document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = sec.summary || ''; });
+      mount.appendChild(el('section', { class: 'section' }, [grid(sec.items)]));
     },
     about: function (mount) {
       var A = S.about || {};
@@ -254,7 +283,7 @@
         el('div', { class: 'about-bio' }, (A.bio || []).map(function (t) { return el('p', { class: 'lead', text: t }); })),
         el('div', { class: 'about-side' }, [
           el('p', { class: 'label', text: 'Selected work' }),
-          el('ul', { class: 'about-list' }, (S.design || []).map(function (c) {
+          el('ul', { class: 'about-list' }, (S.design || []).filter(function (c) { return !c.collection; }).map(function (c) {
             return el('li', {}, [el('a', { class: 'about-co', href: companyHref(c), text: c.company })]);
           })),
           A.skills && A.skills.length ? el('p', { class: 'label', text: 'Focus' }) : null,
@@ -280,5 +309,11 @@
   });
   document.querySelectorAll('[data-site-intro]').forEach(function (n) { if (S.intro) n.textContent = S.intro; });
   document.querySelectorAll('[data-year]').forEach(function (n) { n.textContent = new Date().getFullYear(); });
+  // Last updated: the date GitHub Pages last published this page
+  var mod = new Date(document.lastModified);
+  if (!isNaN(mod)) document.querySelectorAll('[data-updated]').forEach(function (n) {
+    function pad(v) { return (v < 10 ? '0' : '') + v; }
+    n.textContent = ' Last updated ' + pad(mod.getMonth() + 1) + '.' + pad(mod.getDate()) + '.' + mod.getFullYear() + '.';
+  });
   if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(function () { t.scrollIntoView(); }, 50); }
 })();

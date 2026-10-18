@@ -4,9 +4,11 @@ TOBY KESSLER — PORTFOLIO SITE
 Pages
   index.html        Temporary "Site under construction" page (what tobykessler.com shows)
   home.html         Home: intro + a row of work from each section
-  design.html       Design, split into Triton Construction and TF Cornerstone
-  design-tf-cornerstone.html  TF Cornerstone: floor plans, email templates, Instagram
-  photography.html  Personal photography
+  design.html       Design: TF Cornerstone, Car Community, Logos, Triton (text only)
+  design-tf-cornerstone.html  TF Cornerstone: floor plans, emails, print, blog posts
+  design-car-community.html   Car Community: posters, illustration, photography
+  photography.html  Photography: 6-photo previews of each project
+  photography-personal-work.html, photography-art-documentary.html  Full projects
   about.html        Short bio, experience and focus areas
   contact.html      Email and links
 
@@ -15,7 +17,7 @@ To change text or images, edit ONE file: js/content.js
 
 Adding your images
   1. Export JPGs about 2400px on the long side (keeps quality, loads fast).
-  2. Put them in images/triton, images/tf-cornerstone or images/photography.
+  2. Put them in a folder under images (e.g. images/photography).
   3. In js/content.js change the src, width and height for that item.
   4. Delete the old .svg placeholders when you're done.
 

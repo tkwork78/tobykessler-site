@@ -2,6 +2,7 @@
 :root {
   --paper: #ffffff;
   --grey-50: #f5f5f5;
+  --grey-100: #f2f2f2;
   --grey-200: #e4e4e4;
   --grey-400: #a3a3a3;
   --grey-600: #666666;
@@ -11,6 +12,7 @@
   --space-2: 8px;
   --space-4: 16px;
   --space-6: 24px;
+  --space-8: 32px;
   --space-12: 48px;
   --radius-none: 0px;
   --font-sans: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
@@ -87,18 +89,20 @@ main { padding-bottom: var(--space-12); }
 .pf-row { display: flex; align-items: flex-start; }
 .pf-tile { margin: 0; flex: none; min-width: 0; }
 .pf-tile-btn { display: block; width: 100%; padding: 0; border: 0; border-radius: var(--radius-none); background: var(--grey-200); cursor: zoom-in; }
+.pf-tile-btn.is-link { cursor: pointer; overflow: hidden; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .pf-tile-btn.is-link .pf-tile-img { transition: transform .5s cubic-bezier(.2, .8, .2, 1); }
+  .pf-tile-btn.is-link:hover .pf-tile-img, .pf-tile-btn.is-link:focus-visible .pf-tile-img { transform: scale(1.06); }
+}
 .pf-tile-img { display: block; width: 100%; object-fit: cover; border-radius: var(--radius-none); }
 
 /* Lightbox */
-.pf-lb { position: fixed; inset: 0; z-index: 1000; background: var(--paper); display: grid; grid-template-rows: auto minmax(0, 1fr); font-family: var(--font-sans); }
+.pf-lb { position: fixed; inset: 0; z-index: 1000; background: var(--grey-100); display: grid; grid-template-rows: auto minmax(0, 1fr); font-family: var(--font-sans); }
 .pf-lb[hidden] { display: none; }
 .pf-lb-bar { display: flex; justify-content: flex-end; padding: var(--space-4) var(--space-6); }
 .pf-lb-stage { position: relative; display: grid; grid-template-columns: 64px minmax(0, 1fr) 64px; align-items: center; min-height: 0; padding: 0 var(--space-4) var(--space-6); }
 .pf-lb-figure { grid-column: 2; grid-row: 1; margin: 0; height: 100%; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .pf-lb-img { display: block; flex: 0 1 auto; min-height: 0; max-width: 100%; max-height: 100%; object-fit: contain; border-radius: var(--radius-none); }
-.pf-lb-figure.is-tall { display: block; overflow-y: auto; text-align: center; }
-.pf-lb-figure.is-tall .pf-lb-img { width: 100%; max-width: 640px; max-height: none; margin: 0 auto; }
-.pf-lb-figure.is-tall .pf-lb-cap { margin-top: var(--space-4); }
 .pf-lb-cap { flex: none; text-align: center; max-width: 100%; }
 .pf-lb-btn { font: inherit; font-size: 14px; line-height: 20px; font-weight: 400; color: var(--ink); background: none; border: 0; border-radius: var(--radius-none); padding: var(--space-2); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
 .pf-lb-btn:hover { color: var(--grey-600); }
@@ -174,7 +178,7 @@ main { padding-bottom: var(--space-12); }
 .ig-card { display: flex; flex-direction: column; gap: var(--space-2); max-width: 480px; padding: var(--space-6); border: 1px solid var(--grey-200); text-decoration: none; }
 .ig-card:hover { border-color: var(--ink); }
 .ig-handle { font-size: 20px; line-height: 26px; font-weight: 300; }
-.ig-posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); align-items: start; }
+.ig-posts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-6); align-items: start; }
 .ig-posts .instagram-media { margin: 0 !important; min-width: 0 !important; width: 100% !important; }
 /* Blog post carousel */
 .carousel-track { list-style: none; margin: 0; padding: 0 0 var(--space-4); display: grid; grid-auto-flow: column; grid-auto-columns: minmax(260px, calc((100% - 2 * var(--space-6)) / 3)); gap: var(--space-6); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; }
@@ -194,5 +198,40 @@ main { padding-bottom: var(--space-12); }
 .link-list a { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--space-2) var(--space-6); padding: var(--space-4) 0; border-bottom: 1px solid var(--grey-200); text-decoration: none; }
 .link-title { font-size: 18px; line-height: 26px; font-weight: 300; }
 .link-list a:hover .link-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
-@media (max-width: 900px) { .ig-posts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1200px) { .ig-posts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .ig-posts { grid-template-columns: minmax(0, 1fr); } }
+.work-note { max-width: 640px; }
+.work-note a { white-space: nowrap; }
+
+/* Headings tilt slightly on hover */
+.display, .headline, .site-title { width: fit-content; transform-origin: left center; }
+@media (prefers-reduced-motion: no-preference) {
+  .display, .headline, .site-title { transition: transform .3s cubic-bezier(.3, 1.6, .5, 1); }
+  .display:hover, .headline:hover, .site-title:hover { transform: translateX(4px) rotate(-1.5deg); }
+}
+
+/* Ball on the About page: starts on the line under the title, can drop to the footer line */
+body[data-ball] { position: relative; }
+.ball-layer { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: 5; }
+.ball { position: absolute; left: 0; top: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--ink); cursor: grab; touch-action: none; will-change: transform; pointer-events: auto; }
+.ball.is-held { cursor: grabbing; }
+
+/* Contact: page is exactly the window height, footer on the bottom edge */
+body.fit-window { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+body.fit-window main { flex: 1 0 auto; padding-bottom: var(--space-6); }
+
+.footer-links { display: flex; gap: var(--space-4); }
+.site-title a { color: inherit; text-decoration: none; }
+/* About fits in one window: tighter spacing */
+body[data-ball] .page-intro { padding: var(--space-8) 0 var(--space-6); }
+body[data-ball] main .section { padding: var(--space-6) 0; }
+body[data-ball] .about-list { margin-bottom: var(--space-6); }
+body[data-ball] .about-list li { padding: 6px 0; }
+body[data-ball] .site-footer { padding-bottom: var(--space-6); }
+.headline a { color: inherit; text-decoration: none; }
+.go-arrow { display: inline-block; font-weight: 300; transition: transform .25s ease; }
+.headline a:hover .go-arrow { transform: translate(3px, -3px); }
+.back { margin: 0 0 var(--space-6); }
+.back-bottom { margin: var(--space-6) 0 0; }
+.back-btn { display: inline-block; font-size: 14px; line-height: 20px; text-decoration: none; color: var(--ink); border: 1px solid var(--ink); padding: 8px 14px; }
+.back-btn:hover { background: var(--ink); color: var(--paper); }
