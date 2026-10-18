@@ -172,10 +172,10 @@
   }
   // Home preview: the usual preview plus any photos picked in homePhotos.
   function homePreviewOf(c) {
-    var all = itemsOf(c);
-    return previewOf(c).concat((c.homePhotos || []).map(function (src) {
-      return all.filter(function (it) { return it.src === src; })[0];
-    }).filter(Boolean));
+    return previewOf(c).concat(pickPhotos(itemsOf(c), c.homePhotos) || []);
+  }
+  function pickPhotos(all, srcs) {
+    return srcs && srcs.map(function (src) { return all.filter(function (it) { return it.src === src; })[0]; }).filter(Boolean);
   }
   function companyHref(c) { return c.page || 'design.html#' + c.id; }
 
@@ -258,7 +258,7 @@
         // Photography sits right after TF Cornerstone
         if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
           sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all →' }, 'photography.html'),
-          grid(itemsOf(S.photography), { maxRows: 1, href: 'photography.html' })
+          grid(pickPhotos(itemsOf(S.photography), S.photography.homePhotos) || itemsOf(S.photography), { maxRows: 1, href: 'photography.html' })
         ]));
       });
     },
