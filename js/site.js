@@ -172,6 +172,9 @@
   }
   // Home preview: the usual preview plus any photos picked in homePhotos.
   function homePreviewOf(c) {
+    if (c.homeFromBlog) return (c.blog || []).filter(function (b) { return b.image; }).map(function (b) {
+      return { src: b.image, width: 3, height: 2, title: b.title, meta: 'Blog Post' };   // blog covers are 3:2
+    });
     return previewOf(c).concat(pickPhotos(itemsOf(c), c.homePhotos) || []);
   }
   function pickPhotos(all, srcs) {
