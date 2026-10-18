@@ -66,6 +66,7 @@ window.SITE = {
         {
           id: 'email-templates',
           full: true,   // show whole emails, no cropping
+          zoom: true,   // click in the lightbox to zoom in and scroll
           title: 'Email Templates',
           items: [
             { src: 'images/tf-cornerstone/email%20templates/2023-10-13_OLR_595-Dean-St-Final-(1)-1.jpg', width: 1200, height: 4200, title: '595 Dean St', meta: 'Email' },

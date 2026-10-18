@@ -65,12 +65,22 @@
     function render() {
       var it = items[index];
       figure.innerHTML = '';
-      img = el('img', { class: 'pf-lb-img', src: it.full || it.src, alt: it.alt || it.title || '' });
+      figure.className = 'pf-lb-figure';
+      figure.scrollTop = 0;
+      img = el('img', { class: 'pf-lb-img' + (it.zoom ? ' is-zoomable' : ''), src: it.full || it.src, alt: it.alt || it.title || '' });
+      if (it.zoom) img.addEventListener('click', function (e) { toggleZoom(e); });
       figure.appendChild(img);
       var c = caption(it, 'pf-lb-cap'); if (c) { c.setAttribute('aria-live', 'polite'); figure.appendChild(c); }
       root.setAttribute('aria-label', it.title || 'Image viewer');
       prevBtn.hidden = nextBtn.hidden = items.length < 2;
       [index - 1, index + 1].forEach(function (k) { var n = items[(k + items.length) % items.length]; if (n) { var p = new Image(); p.src = n.full || n.src; } });
+    }
+    // Zoomable images (emails): click to see full width and scroll; click again to fit.
+    function toggleZoom(e) {
+      var r = img.getBoundingClientRect(), fy = (e.clientY - r.top) / r.height;
+      var zoomed = figure.classList.toggle('is-zoomed');
+      if (zoomed) figure.scrollTop = Math.max(0, fy * img.offsetHeight - (e.clientY - figure.getBoundingClientRect().top));
+      else figure.scrollTop = 0;
     }
     function go(d) { if (items.length < 2) return; index = (index + d + items.length) % items.length; render(); }
     function open(list, i, from) {
@@ -259,7 +269,7 @@
       var sub = document.querySelector('[data-subnav]');
       (c.sections || []).forEach(function (s) {
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
-        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead(s.label || 'Design Samples', s.title), s.videos ? videoGrid(s.videos) : s.embeds ? igEmbeds(s.embeds) : grid(s.items), s.credits ? el('p', { class: 'credits', text: s.credits }) : null]));
+        mount.appendChild(el('section', { class: 'section', id: s.id }, [(s.zoom && s.items ? s.items.forEach(function (it) { it.zoom = true; }) : null, sectionHead(s.label || 'Design Samples', s.title)), s.videos ? videoGrid(s.videos) : s.embeds ? igEmbeds(s.embeds) : grid(s.items), s.credits ? el('p', { class: 'credits', text: s.credits }) : null]));
       });
       if (c.blog) {
         if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog Posts' }));
