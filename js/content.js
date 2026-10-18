@@ -94,7 +94,7 @@ window.SITE = {
           id: 'car-photography',
           label: 'Photography',
           title: 'Photography',
-          natural: true,   // photos keep their own shape
+          preview: false,  // Design page and home show the design work instead
           items: [
             { src: 'images/car%20community/photography/lightingfinalmiata2KESSLER.jpg', width: 2400, height: 1714, alt: 'Red Miata at night under lit fencing' },
             { src: 'images/car%20community/photography/_K8A1249.jpg', width: 2400, height: 1600, alt: 'Teal coupe parked by a green fence' },

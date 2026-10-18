@@ -150,9 +150,9 @@
   function itemsOf(c) {
     return c.items || (c.sections || []).reduce(function (all, s) { return all.concat(s.items || []); }, []);
   }
-  // Preview rows skip sections that must be shown whole (emails), so nothing gets cropped.
+  // Preview rows skip email sections (too tall for a row) and any section marked preview: false.
   function previewOf(c) {
-    return c.items || itemsOf({ sections: (c.sections || []).filter(function (s) { return !s.full; }) });
+    return c.items || itemsOf({ sections: (c.sections || []).filter(function (s) { return !s.full && s.preview !== false; }) });
   }
   function companyHref(c) { return c.page || 'design.html#' + c.id; }
 
