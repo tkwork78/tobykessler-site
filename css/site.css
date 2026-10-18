@@ -252,6 +252,6 @@ body * { cursor: inherit; }
 .spin-reel { display: inline-block; height: var(--lh, 1.5em); overflow: hidden; vertical-align: top; }
 .spin-strip { display: flex; flex-direction: column; }
 .spin-strip span { display: block; height: var(--lh, 1.5em); white-space: nowrap; }
-.spin-reel.is-spinning .spin-strip { transition: transform 2.4s cubic-bezier(.15, .7, .2, 1) .3s; animation: spin-blur 2.4s ease-in .3s both; }
-@keyframes spin-blur { 0% { filter: blur(0); } 8% { filter: blur(5px); } 70% { filter: blur(4px); } 100% { filter: blur(0); } }
+.spin-reel.is-spinning .spin-strip { transition: transform 2.4s cubic-bezier(.15, .7, .2, 1) .3s; animation: spin-blur 2.7s ease-in both; }
+@keyframes spin-blur { 0%, 75% { filter: blur(6px); } 100% { filter: blur(0); } }
 .spin-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

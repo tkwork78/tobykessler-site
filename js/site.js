@@ -359,9 +359,8 @@
     var place = S.introPlace, at = place ? S.intro.lastIndexOf(place) : -1;
     if (at < 0) { n.textContent = S.intro; return; }
     // The place spins through other cities like a slot reel and lands on the real one.
-    var words = [];   // blurred filler: random letters, so no real word shows while spinning
-    for (var i = 0; i < 14; i++) words.push(place.replace(/\S/g, function () { return 'abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random() * 26)]; }));
-    words.push(place);
+    var words = [];   // the reel is copies of the place itself, blurred while it moves, so nothing else can ever be read
+    for (var i = 0; i < 15; i++) words.push(place);
     var strip = el('span', { class: 'spin-strip' }, words.map(function (w) { return el('span', { text: w }); }));
     var reel = el('span', { class: 'spin-reel', 'aria-hidden': 'true' }, [strip]);
     n.textContent = '';
@@ -379,6 +378,12 @@
       reel.classList.add('is-spinning');
       strip.style.transform = end;
     }); });
+    window.addEventListener('resize', function () {   // keep it lined up if the text size changes
+      lh = parseFloat(getComputedStyle(n).lineHeight) || lh;
+      reel.style.setProperty('--lh', lh + 'px');
+      strip.style.transition = 'none';
+      strip.style.transform = 'translateY(-' + (words.length - 1) * lh + 'px)';
+    });
   });
   document.querySelectorAll('[data-year]').forEach(function (n) { n.textContent = new Date().getFullYear(); });
   // Last updated: the date GitHub Pages last published this page
