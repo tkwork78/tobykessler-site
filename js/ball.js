@@ -90,7 +90,7 @@
 
   function start() {
     var s = surfaces()[0];
-    x = s.x1 + (s.x2 - s.x1) * 0.62; y = s.y - R;
+    x = Math.max(s.x1 + R, s.x2 - 80); y = s.y - R;   // near the right end of the line
     draw();
   }
   window.addEventListener('resize', function () { start(); wake(); });
