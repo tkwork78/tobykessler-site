@@ -75,8 +75,17 @@ window.SITE = {
         }
       ],
       // Blog posts: add one line per post, e.g.
-      //   { title: 'Inside the new rooftop lounge', url: 'https://...' },
+      //   { title: 'Post title', meta: 'Category', url: 'https://...' },
       blog: [
+        { title: 'How to Take the NYC Ferry: Long Island City, Queens', meta: 'Living in NYC', url: 'https://tfc.com/blog/living-in-nyc/how-to-take-the-nyc-ferry-long-island-city-queens' },
+        { title: 'Explore the Amenities at Malt Drive', meta: 'Apartment hunt guide', url: 'https://tfc.com/blog/nyc-apartment-hunt-guide/explore-the-amenities-at-malt-drive' },
+        { title: 'Weekend Getaway Ideas from TFC Buildings', meta: 'Community', url: 'https://tfc.com/blog/tfc-nyc-community/weekend-getaway-ideas-from-tfc-buildings' },
+        { title: 'Introducing 220 & 221 Malt Drive, Hunters Point South', meta: 'News & events', url: 'https://tfc.com/blog/news-events/introducing-220-221-malt-drive-hunters-point-south-queens' },
+        { title: 'Matt Shlian at 220 Malt Drive', meta: 'News & events', url: 'https://tfc.com/blog/news-events/matt-shlian-220-malt-drive' },
+        { title: 'Decorating with Limited Space: A Functional Living Room', meta: 'Living in NYC', url: 'https://tfc.com/blog/living-in-nyc/decorating-with-limited-space-establishing-a-functional-living-room' },
+        { title: '595 Dean St Amenities: Luxury Apartments in Brooklyn', meta: 'Apartment hunt guide', url: 'https://tfc.com/blog/nyc-apartment-hunt-guide/595-dean-st-amenities-luxury-apartments-brooklyn' },
+        { title: 'Special Offer: 50% Off Chelsea Piers Fitness, Prospect Heights', meta: 'News & events', url: 'https://tfc.com/blog/news-events/special-offer-50-off-chelsea-piers-fitness-prospect-heights' },
+        { title: 'Sculpture Garden at Hunters Point South', meta: 'News & events', url: 'https://tfc.com/blog/news-events/sculpture-garden-at-hunters-point-south' }
       ],
       // Instagram: paste post links (https://www.instagram.com/p/...) into posts to embed them.
       // With no posts, the page shows a link to the account instead.
