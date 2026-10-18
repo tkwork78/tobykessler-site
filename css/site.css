@@ -198,7 +198,7 @@ main { padding-bottom: var(--space-12); }
 .work-note { max-width: 640px; }
 .work-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .work-links a { white-space: nowrap; }
-.contact-list a:hover .go-arrow, .work-links a:hover .go-arrow, a.more:hover .go-arrow, .back-btn:hover .go-arrow { transform: translate(3px, -3px); }
+.contact-list a:hover .go-arrow, .work-links a:hover .go-arrow, a.more:hover .go-arrow { transform: translate(3px, -3px); }
 
 
 /* Ball on the About page: starts on the line under the title, can drop to the footer line */
@@ -255,3 +255,4 @@ body * { cursor: inherit; }
 .spin-reel.is-spinning .spin-strip { transition: transform 2.4s cubic-bezier(.15, .7, .2, 1) .3s; animation: spin-blur 2.7s ease-in both; }
 @keyframes spin-blur { 0%, 75% { filter: blur(6px); } 100% { filter: blur(0); } }
 .spin-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.back-btn:hover .back-arrow { transform: translate(-3px, -3px); }
