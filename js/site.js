@@ -186,7 +186,7 @@
       var all = itemsOf(c), vids = (c.sections || []).reduce(function (v, s) { return v.concat(s.videos || []); }, []);
       return c.homePreview.reduce(function (out, p) {
         if (p.video) vids.filter(function (v) { return v.title === p.video; }).forEach(function (v) {
-          out.push({ src: p.image || v.poster, width: p.width || v.width, height: p.height || v.height, title: v.title, meta: 'Video', anchor: p.anchor });
+          out.push({ src: p.image || v.poster, width: p.width || v.width, height: p.height || v.height, title: p.title || v.title, meta: 'Video', anchor: p.anchor });
         });
         if (p.src) out = out.concat(pickPhotos(all, [p.src]).map(function (it) { return Object.assign({}, it, { anchor: p.anchor, whole: p.whole }); }));
         if (p.blog) (c.blog || []).filter(function (b) { return b.image; }).slice(0, p.blog).forEach(function (b) {
