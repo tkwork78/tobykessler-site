@@ -43,6 +43,11 @@ window.SITE = {
       page: 'design-tf-cornerstone.html',   // has its own page, set up below
       summaryOnPageOnly: true,
       tags: 'Copywriting, Social Media, Video, Design, Photography',
+      designPreview: [   // Design page row, left to right
+        'images/tf-cornerstone/email%20templates/Weekly-Listings-Midtown-4-Template_2024-10-24-1.jpg',
+        'images/tf-cornerstone/print%20advertising/CP-Refer-A-Friend-Card-Revised-08-28-23-1.jpg',
+        'images/tf-cornerstone/print%20advertising/CP-Refer-A-Friend-Card-Revised-08-28-23-2.jpg'
+      ],
       homeRatio: 0.75,   // home row: equal 3:4 boxes, so the email and blog photo are cropped to fit
       homePreview: [   // home page row, left to right; blog: n adds the first n blog post photos last
         { video: 'Christine Galvez', title: 'Christine Galvez - Artists in Focus', image: 'images/tf-cornerstone/artists%20in%20focus/christine-home-preview.jpg', width: 906, height: 1208, anchor: 'top' },
