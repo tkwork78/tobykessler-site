@@ -88,7 +88,11 @@ main { padding-bottom: var(--space-12); }
 .pf-row { display: flex; align-items: flex-start; }
 .pf-tile { margin: 0; flex: none; min-width: 0; }
 .pf-tile-btn { display: block; width: 100%; padding: 0; border: 0; border-radius: var(--radius-none); background: var(--grey-200); cursor: zoom-in; }
-.pf-tile-btn.is-link { cursor: pointer; }
+.pf-tile-btn.is-link { cursor: pointer; overflow: hidden; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .pf-tile-btn.is-link .pf-tile-img { transition: transform .5s cubic-bezier(.2, .8, .2, 1); }
+  .pf-tile-btn.is-link:hover .pf-tile-img, .pf-tile-btn.is-link:focus-visible .pf-tile-img { transform: scale(1.06); }
+}
 .pf-tile-img { display: block; width: 100%; object-fit: cover; border-radius: var(--radius-none); }
 
 /* Lightbox */
