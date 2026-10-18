@@ -255,3 +255,16 @@ body * { cursor: inherit; }
 .spin-reel.is-spinning .spin-strip { transition: transform 2.4s cubic-bezier(.15, .7, .2, 1) .3s; }
 .spin-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .back-btn:hover .back-arrow { transform: translate(-3px, -3px); }
+
+/* Booklet (Artillery media kit): cover alone, then spreads */
+.booklet { outline: none; }
+.booklet-stage { display: flex; justify-content: center; background: var(--grey-100); padding: var(--space-6, 24px); cursor: inherit; user-select: none; }
+.booklet-page { display: block; height: auto; width: 50%; max-width: 50%; box-shadow: 0 1px 6px rgba(0, 0, 0, .12); }
+.booklet-stage:not(.is-spread) .booklet-page { width: 50%; }
+.booklet-stage.is-spread .booklet-page + .booklet-page { box-shadow: 1px 1px 6px rgba(0, 0, 0, .12); }
+@media (max-width: 700px) { .booklet-stage { padding: var(--space-3, 12px); } .booklet-page, .booklet-stage:not(.is-spread) .booklet-page { width: 100%; max-width: 100%; } }
+.booklet-bar { display: flex; align-items: center; justify-content: space-between; margin-top: var(--space-3, 12px); font-size: 14px; line-height: 20px; color: var(--grey-600); }
+.booklet-btn { background: none; border: 0; padding: 4px 0; font: inherit; color: var(--ink); cursor: inherit; }
+.booklet-btn:disabled { opacity: .3; }
+.booklet-btn:not(:disabled):hover .go-arrow { transform: translate(3px, -3px); }
+.booklet-btn:not(:disabled):hover .back-arrow { transform: translate(-3px, -3px); }

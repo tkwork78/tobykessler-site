@@ -172,6 +172,14 @@ window.SITE = {
         { text: 'Contact Me', href: 'contact.html' }
       ],
       items: []
+    },
+    {
+      id: 'artillery',
+      company: 'Artillery Magazine',
+      summary: 'Media kit for Artillery, a contemporary art magazine based in Los Angeles.',
+      // Pages are read as a booklet on the Design page: cover alone, then two-page spreads.
+      booklet: { title: 'Media Kit', width: 1254, height: 1500, pages: ['images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_01.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_02.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_03.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_04.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_05.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_06.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_07.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_08.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_09.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_10.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_11.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_12.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_13.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_14.jpg', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_15.jpg'] },
+      items: []
     }
   ],
 

@@ -182,6 +182,9 @@
   }
   // Home preview: the usual preview plus any photos picked in homePhotos.
   function homePreviewOf(c) {
+    if (c.booklet) return c.booklet.pages.slice(0, 4).map(function (src, i) {
+      return { src: src, width: c.booklet.width, height: c.booklet.height, alt: (c.booklet.title || c.company) + ', page ' + (i + 1) };
+    });
     if (c.homePreview) {
       var all = itemsOf(c), vids = (c.sections || []).reduce(function (v, s) { return v.concat(s.videos || []); }, []);
       return c.homePreview.reduce(function (out, p) {
@@ -199,6 +202,45 @@
   }
   function pickPhotos(all, srcs) {
     return srcs && srcs.map(function (src) { return all.filter(function (it) { return it.src === src; })[0]; }).filter(Boolean);
+  }
+  // Booklet: the cover on its own, then two-page spreads; one page at a time on narrow screens.
+  function booklet(b) {
+    var pages = b.pages, ratio = b.width / b.height, at = 0;
+    var stage = el('div', { class: 'booklet-stage' });
+    var count = el('span', { class: 'booklet-count' });
+    var prev = el('button', { type: 'button', class: 'booklet-btn', 'aria-label': 'Previous page' }, [el('span', { class: 'go-arrow back-arrow', 'aria-hidden': 'true', text: '↖' }), document.createTextNode(' Previous')]);
+    var next = el('button', { type: 'button', class: 'booklet-btn', 'aria-label': 'Next page' }, [document.createTextNode('Next '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })]);
+    var host = el('div', { class: 'booklet', tabindex: '0', 'aria-label': (b.title || 'Booklet') + ', use the arrow keys to turn pages' }, [stage, el('div', { class: 'booklet-bar' }, [prev, count, next])]);
+    function single() { return host.clientWidth < 700; }
+    // Views: [0], [1,2], [3,4], ... when spreads; [0], [1], [2], ... when single
+    function views() {
+      if (single()) return pages.map(function (p, i) { return [i]; });
+      var v = [[0]]; for (var i = 1; i < pages.length; i += 2) v.push(pages[i + 1] ? [i, i + 1] : [i]); return v;
+    }
+    function viewOf(page) { var v = views(); for (var i = 0; i < v.length; i++) if (v[i].indexOf(page) >= 0) return i; return 0; }
+    function show() {
+      var v = views(), cur = v[viewOf(at)];
+      stage.innerHTML = '';
+      stage.classList.toggle('is-spread', cur.length === 2);
+      cur.forEach(function (i) {
+        stage.appendChild(el('img', { class: 'booklet-page', src: pages[i], alt: (b.title || 'Page') + ', page ' + (i + 1), style: 'aspect-ratio:' + ratio }));
+      });
+      var nxt = v[viewOf(at) + 1]; if (nxt) nxt.forEach(function (i) { new Image().src = pages[i]; });   // preload the next spread
+      count.textContent = (cur.length === 2 ? 'Pages ' + (cur[0] + 1) + '–' + (cur[1] + 1) : 'Page ' + (cur[0] + 1)) + ' of ' + pages.length;
+      prev.disabled = viewOf(at) === 0; next.disabled = viewOf(at) === v.length - 1;
+    }
+    function go(d) { var v = views(), k = viewOf(at) + d; if (k < 0 || k >= v.length) return; at = v[k][0]; show(); }
+    prev.onclick = function () { go(-1); }; next.onclick = function () { go(1); };
+    stage.onclick = function (e) { var r = stage.getBoundingClientRect(); go(e.clientX - r.left < r.width / 2 ? -1 : 1); };
+    host.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { go(1); e.preventDefault(); } if (e.key === 'ArrowLeft') { go(-1); e.preventDefault(); } });
+    var sx = null;
+    stage.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); sx = null; });
+    var lastSingle = null;
+    function relayout() { var sg = single(); if (sg !== lastSingle) { lastSingle = sg; show(); } }
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(relayout).observe(host); else window.addEventListener('resize', relayout);
+    requestAnimationFrame(relayout);
+    return host;
   }
   function companyHref(c) { return c.page || 'design.html#' + c.id; }
 
@@ -294,7 +336,7 @@
           grid(pickPhotos(itemsOf(c), c.designPreview) || previewOf(c), { maxRows: 1, href: c.page })
         ] : [
           sectionHead(c.tags || null, c.company, c.summary),
-          c.links ? noteOf(c) : grid(c.items)
+          c.links ? noteOf(c) : c.booklet ? booklet(c.booklet) : grid(c.items)
         ]));
       });
     },
