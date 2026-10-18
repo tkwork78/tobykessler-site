@@ -215,3 +215,6 @@ main { padding-bottom: var(--space-12); }
 /* Contact: page is exactly the window height, footer on the bottom edge */
 body.fit-window { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
 body.fit-window main { flex: 1 0 auto; padding-bottom: var(--space-6); }
+
+.footer-links { display: flex; gap: var(--space-4); }
+.site-title a { color: inherit; text-decoration: none; }

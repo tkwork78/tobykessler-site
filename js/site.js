@@ -302,5 +302,10 @@
   });
   document.querySelectorAll('[data-site-intro]').forEach(function (n) { if (S.intro) n.textContent = S.intro; });
   document.querySelectorAll('[data-year]').forEach(function (n) { n.textContent = new Date().getFullYear(); });
+  // Last updated: the date GitHub Pages last published this page
+  var mod = new Date(document.lastModified);
+  if (!isNaN(mod)) document.querySelectorAll('[data-updated]').forEach(function (n) {
+    n.textContent = ' Last updated ' + mod.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + '.';
+  });
   if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(function () { t.scrollIntoView(); }, 50); }
 })();
