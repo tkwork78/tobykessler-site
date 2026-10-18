@@ -5,6 +5,7 @@ Pages
   index.html        Temporary "Site under construction" page (what tobykessler.com shows)
   home.html         Home: intro + a row of work from each section
   design.html       Design, split into Triton Construction and TF Cornerstone
+  design-tf-cornerstone.html  TF Cornerstone: floor plans, email templates, Instagram
   photography.html  Personal photography
   about.html        Short bio, experience and focus areas
   contact.html      Email and links

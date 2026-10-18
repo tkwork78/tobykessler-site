@@ -162,3 +162,14 @@ main { padding-bottom: var(--space-12); }
   .landing-note { font-size: 16px; line-height: 22px; text-wrap: balance; }
   .roam-roll { justify-content: center; gap: var(--space-2); padding: var(--space-4); }
 }
+
+/* Company sub-pages (e.g. design-tf-cornerstone.html) */
+.crumb { margin: 0 0 var(--space-4); font-size: 14px; line-height: 20px; color: var(--grey-600); }
+.crumb a { text-decoration: none; border-bottom: 1px solid var(--grey-200); }
+.crumb a::before { content: "← "; }
+.crumb a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+.ig-card { display: flex; flex-direction: column; gap: var(--space-2); max-width: 480px; padding: var(--space-6); border: 1px solid var(--grey-200); text-decoration: none; }
+.ig-card:hover { border-color: var(--ink); }
+.ig-handle { font-size: 20px; line-height: 26px; font-weight: 300; }
+.ig-posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--space-6); align-items: start; }
+.ig-posts .instagram-media { margin: 0 !important; min-width: 0 !important; width: 100% !important; }

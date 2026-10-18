@@ -14,6 +14,7 @@
   (e.g. images/triton/website.jpg), change src to that name,
   and update width and height.
   The first 3 images of each section also appear on the home page.
+  A company with "page" and "sections" gets its own page (see TF Cornerstone).
 
   About page: edit the "about" block below. Each line in "bio" is one
   paragraph. "Selected work" is built from the "design" list automatically.
@@ -51,15 +52,34 @@ window.SITE = {
     {
       id: 'tf-cornerstone',
       company: 'TF Cornerstone',
-      summary: 'Social campaigns, launch content and photography for a New York real estate developer.',
-      items: [
-        { src: 'images/tf-cornerstone/social-campaign.svg', width: 1080, height: 1350, title: 'Social campaign', meta: 'Social' },
-        { src: 'images/tf-cornerstone/building-launch.svg', width: 1600, height: 900, title: 'Building launch', meta: 'Video & stills' },
-        { src: 'images/tf-cornerstone/resident-event.svg', width: 1600, height: 1067, title: 'Resident events', meta: 'Photography' },
-        { src: 'images/tf-cornerstone/instagram-grid.svg', width: 1200, height: 1200, title: 'Instagram grid', meta: 'Social' },
-        { src: 'images/tf-cornerstone/content-series.svg', width: 1080, height: 1350, title: 'Content series', meta: 'Social' },
-        { src: 'images/tf-cornerstone/amenity-shoot.svg', width: 1600, height: 1067, title: 'Amenity shoot', meta: 'Photography' }
-      ]
+      summary: 'Floor plans, email templates and social content for a New York real estate developer.',
+      page: 'design-tf-cornerstone.html',   // has its own page, set up below
+      sections: [
+        {
+          id: 'floor-plans',
+          title: 'Floor plans',
+          items: [
+            { src: 'images/tf-cornerstone/floor-plan-01.svg', width: 1600, height: 1200, title: 'Floor plan', meta: 'Placeholder' },
+            { src: 'images/tf-cornerstone/floor-plan-02.svg', width: 1600, height: 1200, title: 'Floor plan', meta: 'Placeholder' },
+            { src: 'images/tf-cornerstone/floor-plan-03.svg', width: 1600, height: 1200, title: 'Floor plan', meta: 'Placeholder' }
+          ]
+        },
+        {
+          id: 'email-templates',
+          title: 'Email templates',
+          items: [
+            { src: 'images/tf-cornerstone/email-01.svg', width: 600, height: 1500, title: 'Email template', meta: 'Placeholder' },
+            { src: 'images/tf-cornerstone/email-02.svg', width: 600, height: 1500, title: 'Email template', meta: 'Placeholder' },
+            { src: 'images/tf-cornerstone/email-03.svg', width: 600, height: 1500, title: 'Email template', meta: 'Placeholder' }
+          ]
+        }
+      ],
+      // Instagram: paste post links (https://www.instagram.com/p/...) into posts to embed them.
+      // With no posts, the page shows a link to the account instead.
+      instagram: {
+        handle: 'tfcornerstone',
+        posts: []
+      }
     }
   ],
 

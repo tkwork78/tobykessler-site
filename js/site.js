@@ -138,12 +138,35 @@
     ]);
   }
 
+  function itemsOf(c) {
+    return c.items || (c.sections || []).reduce(function (all, s) { return all.concat(s.items || []); }, []);
+  }
+  function companyHref(c) { return c.page || 'design.html#' + c.id; }
+
+  function instagramSection(ig) {
+    var url = 'https://www.instagram.com/' + ig.handle + '/';
+    var kids = [sectionHead(null, 'Instagram', '@' + ig.handle, { href: url, text: 'View on Instagram →' })];
+    if (ig.posts && ig.posts.length) {
+      kids.push(el('div', { class: 'ig-posts' }, ig.posts.map(function (p) {
+        return el('blockquote', { class: 'instagram-media', 'data-instgrm-permalink': p, 'data-instgrm-version': '14' }, [el('a', { href: p, text: 'View this post on Instagram' })]);
+      })));
+      var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.instagram.com/embed.js'; document.body.appendChild(sc);
+    } else {
+      var link = el('a', { class: 'ig-card', href: url, target: '_blank', rel: 'noopener' }, [
+        el('span', { class: 'ig-handle', text: '@' + ig.handle }),
+        el('span', { class: 'caption', text: 'See the account on Instagram' })
+      ]);
+      kids.push(link);
+    }
+    return el('section', { class: 'section', id: 'instagram' }, kids);
+  }
+
   var renderers = {
     home: function (mount) {
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
-          sectionHead('Design', c.company, c.summary, { href: 'design.html#' + c.id, text: 'View all →' }),
-          grid(c.items, { maxRows: 1 })
+          sectionHead('Design', c.company, c.summary, { href: companyHref(c), text: 'View all →' }),
+          grid(itemsOf(c), { maxRows: 1 })
         ]));
       });
       if (S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
@@ -154,12 +177,30 @@
     design: function (mount) {
       var sub = document.querySelector('[data-subnav]');
       (S.design || []).forEach(function (c) {
-        if (sub) sub.appendChild(el('a', { href: '#' + c.id, text: c.company }));
-        mount.appendChild(el('section', { class: 'section', id: c.id }, [
+        if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
+        mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
+          sectionHead(null, c.company, c.summary, { href: c.page, text: 'View project →' }),
+          grid(itemsOf(c), { maxRows: 1 })
+        ] : [
           sectionHead(null, c.company, c.summary),
           grid(c.items)
         ]));
       });
+    },
+    company: function (mount) {
+      var c = (S.design || []).filter(function (d) { return d.id === mount.getAttribute('data-company'); })[0];
+      if (!c) return;
+      document.querySelectorAll('[data-company-name]').forEach(function (n) { n.textContent = c.company; });
+      document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = c.summary; });
+      var sub = document.querySelector('[data-subnav]');
+      (c.sections || []).forEach(function (s) {
+        if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
+        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead('Design samples', s.title), grid(s.items)]));
+      });
+      if (c.instagram) {
+        if (sub) sub.appendChild(el('a', { href: '#instagram', text: 'Instagram' }));
+        mount.appendChild(instagramSection(c.instagram));
+      }
     },
     photography: function (mount) {
       if (S.photography) mount.appendChild(el('section', { class: 'section' }, [grid(S.photography.items)]));
@@ -171,7 +212,7 @@
         el('div', { class: 'about-side' }, [
           el('p', { class: 'label', text: 'Selected work' }),
           el('ul', { class: 'about-list' }, (S.design || []).map(function (c) {
-            return el('li', {}, [el('a', { class: 'about-co', href: 'design.html#' + c.id, text: c.company })]);
+            return el('li', {}, [el('a', { class: 'about-co', href: companyHref(c), text: c.company })]);
           })),
           A.skills && A.skills.length ? el('p', { class: 'label', text: 'Focus' }) : null,
           A.skills && A.skills.length ? el('ul', { class: 'about-list' }, A.skills.map(function (k) { return el('li', { text: k }); })) : null,
