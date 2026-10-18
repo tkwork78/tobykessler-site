@@ -114,7 +114,10 @@
         var chunk = list.slice(i, i + cols), sum = 0;
         chunk.forEach(function (it) { sum += tileRatio(it); });
         var h = (W - gap * (chunk.length - 1)) / sum;
-        if (opts.ratio) h = (W - gap * (cols - 1)) / cols / opts.ratio;
+        // Home rows: one shared height for every row; tiles share the width by shape and are trimmed to fit
+        var fitW = 0;
+        if (opts.sameHeight) { h = cols === 1 ? W * 0.75 : Math.round(W * 0.28); fitW = (W - gap * (chunk.length - 1)) / (opts.ratio ? opts.ratio * chunk.length : sum); }
+        else if (opts.ratio) h = (W - gap * (cols - 1)) / cols / opts.ratio;
         else if (chunk.length < cols) h = Math.min(h, count ? total / count : (W - gap * (cols - 1)) / cols / (sum / chunk.length));
         total += h; count++;
         var row = el('div', { class: 'pf-row' }); row.style.columnGap = gap + 'px';
@@ -129,8 +132,8 @@
           b.querySelector('img').style.height = h + 'px';
           if (!opts.href) b.onclick = function () { LB.open(items, idx, b); };
           var fig = el('figure', { class: 'pf-tile' }, [b, caption(it)]);
-          fig.style.width = (opts.ratio || tileRatio(it)) * h + 'px';
-          if (opts.ratio && it.anchor) b.querySelector('img').style.objectPosition = it.anchor;
+          fig.style.width = (fitW ? (opts.ratio || tileRatio(it)) * fitW : (opts.ratio || tileRatio(it)) * h) + 'px';
+          if ((opts.ratio || fitW) && it.anchor) b.querySelector('img').style.objectPosition = it.anchor;
           row.appendChild(fig);
         });
         host.appendChild(row);
@@ -177,7 +180,7 @@
       var all = itemsOf(c), vids = (c.sections || []).reduce(function (v, s) { return v.concat(s.videos || []); }, []);
       return c.homePreview.reduce(function (out, p) {
         if (p.video) vids.filter(function (v) { return v.title === p.video; }).forEach(function (v) {
-          out.push({ src: p.image || v.poster, width: p.width || v.width, height: p.height || v.height, title: v.title, meta: 'Video' });
+          out.push({ src: p.image || v.poster, width: p.width || v.width, height: p.height || v.height, title: v.title, meta: 'Video', anchor: p.anchor });
         });
         if (p.src) out = out.concat(pickPhotos(all, [p.src]).map(function (it) { return p.anchor ? Object.assign({}, it, { anchor: p.anchor }) : it; }));
         if (p.blog) (c.blog || []).filter(function (b) { return b.image; }).slice(0, p.blog).forEach(function (b) {
@@ -267,12 +270,12 @@
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
           sectionHead(c.homeLabel || c.tags || 'Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all' }, c.links ? null : companyHref(c)),
-          c.links ? noteOf(c) : (function (row) { return grid(row, { maxRows: 1, columns: Math.min(4, Math.max(3, row.length)), ratio: c.homeRatio, href: companyHref(c) }); })(homePreviewOf(c))
+          c.links ? noteOf(c) : (function (row) { return grid(row, { maxRows: 1, columns: Math.min(4, Math.max(3, row.length)), ratio: c.homeRatio, sameHeight: true, href: companyHref(c) }); })(homePreviewOf(c))
         ]));
         // Photography sits right after TF Cornerstone
         if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
           sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all' }, 'photography.html'),
-          grid(pickPhotos(itemsOf(S.photography), S.photography.homePhotos) || itemsOf(S.photography), { maxRows: 1, href: 'photography.html' })
+          grid(pickPhotos(itemsOf(S.photography), S.photography.homePhotos) || itemsOf(S.photography), { maxRows: 1, sameHeight: true, href: 'photography.html' })
         ]));
       });
     },
