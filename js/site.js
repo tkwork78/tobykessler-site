@@ -275,6 +275,15 @@
     requestAnimationFrame(relayout);
     return host;
   }
+  // Projects in a page's own order: ids listed first, any others after in their usual order.
+  function ordered(ids) {
+    var list = (S.design || []).slice();
+    if (ids) list.sort(function (a, b) {
+      var i = ids.indexOf(a.id), j = ids.indexOf(b.id);
+      return (i < 0 ? 99 : i) - (j < 0 ? 99 : j);
+    });
+    return list;
+  }
   function companyHref(c) { return c.page || 'design.html#' + c.id; }
 
   function blogSection(posts) {
@@ -348,7 +357,7 @@
 
   var renderers = {
     home: function (mount) {
-      (S.design || []).forEach(function (c) {
+      ordered(S.homeOrder).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
           sectionHead(c.homeLabel || c.tags || 'Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all' }, c.links ? null : companyHref(c)),
           c.links ? noteOf(c) : (function (row) { return grid(row, { maxRows: 1, columns: Math.min(4, Math.max(3, row.length)), ratio: c.homeRatio, sameHeight: true, contain: c.homeContain, href: companyHref(c) }); })(homePreviewOf(c))
@@ -362,7 +371,7 @@
     },
     design: function (mount) {
       var sub = document.querySelector('[data-subnav]');
-      (S.design || []).forEach(function (c) {
+      ordered(S.designOrder).forEach(function (c) {
         if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
           sectionHead(c.tags || null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View project' }, c.page),
