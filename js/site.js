@@ -188,7 +188,7 @@
         if (p.video) vids.filter(function (v) { return v.title === p.video; }).forEach(function (v) {
           out.push({ src: p.image || v.poster, width: p.width || v.width, height: p.height || v.height, title: p.title || v.title, meta: 'Video', anchor: p.anchor });
         });
-        if (p.src) out = out.concat(pickPhotos(all, [p.src]).map(function (it) { return Object.assign({}, it, { anchor: p.anchor, whole: p.whole }); }));
+        if (p.src) out = out.concat(pickPhotos(all, [p.src]).map(function (it) { return Object.assign({}, it, { anchor: p.anchor, whole: p.whole }, p.title ? { title: p.title, meta: p.meta } : {}); }));
         if (p.blog) (c.blog || []).filter(function (b) { return b.image; }).slice(0, p.blog).forEach(function (b) {
           out.push({ src: b.image, width: 3, height: 2, title: b.title, meta: 'Blog Post' });   // blog covers are 3:2
         });
