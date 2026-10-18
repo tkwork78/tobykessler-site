@@ -38,7 +38,7 @@ window.SITE = {
     {
       id: 'tf-cornerstone',
       company: 'TF Cornerstone',
-      summary: 'At TF Cornerstone, I worked on marketing strategy for one of NYC’s largest real estate developers. I created short-form video for social media, developed blog posts, took photos, and led production of the Artists in Focus program, which highlighted local artists around NYC with work in TF Cornerstone buildings. I also helped lead the launch and lease-ups of 595 Dean Street and 2-20 and 2-21 Malt Drive in Prospect Heights and Long Island City.',
+      summary: 'At TF Cornerstone, I helped shape the marketing strategy for one of New York City’s largest real estate developers, with over 10,000 units across the city. I produced short-form social videos, wrote blog posts to engage current and prospective tenants, and led production of the Artists in Focus program, featuring local artists whose work is showcased in TF Cornerstone buildings through written spotlights, interviews, and video features. I was also involved in the launch and lease-up efforts for 595 Dean Street, as well as 2-20 and 2-21 Malt Drive, two significant residential developments in Brooklyn and Long Island City.',
       page: 'design-tf-cornerstone.html',   // has its own page, set up below
       summaryOnPageOnly: true,   // the description shows only on its own page
       sections: [
