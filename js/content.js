@@ -52,7 +52,7 @@ window.SITE = {
     {
       id: 'tf-cornerstone',
       company: 'TF Cornerstone',
-      summary: 'Floor plans, email templates, print advertising and social content for a New York real estate developer.',
+      summary: 'Floor plans, email templates and print advertising for a New York real estate developer.',
       page: 'design-tf-cornerstone.html',   // has its own page, set up below
       sections: [
         {
@@ -95,13 +95,7 @@ window.SITE = {
         { title: 'Explore the Amenities at 595 Dean St', meta: 'Apartment hunt guide', url: 'https://tfc.com/blog/nyc-apartment-hunt-guide/595-dean-st-amenities-luxury-apartments-brooklyn', image: 'images/tf-cornerstone/blog%20previews/Explore%20The%20Amenities%20at%20595%20Dean%20St.jpeg' },
         { title: 'Chelsea Piers Fitness Prospect Heights Welcomes 595 Dean St', meta: 'News & events', url: 'https://tfc.com/blog/news-events/special-offer-50-off-chelsea-piers-fitness-prospect-heights', image: 'images/tf-cornerstone/blog%20previews/Chelsea%20Piers%20Fitness%20Prospect%20Heights%20Welcomes%20595%20Dean%20St.jpeg' },
         { title: 'Sculpture Garden at Hunter’s Point South', meta: 'News & events', url: 'https://tfc.com/blog/news-events/sculpture-garden-at-hunters-point-south', image: 'images/tf-cornerstone/blog%20previews/culpture%20Garden%20at%20Hunter%27s%20Point%20South.jpeg' }
-      ],
-      // Instagram: a grid of post embeds, newest first, from August 2025 on.
-      // Paste post links (https://www.instagram.com/p/...) into posts. With none, the page shows a link to the account.
-      instagram: {
-        handle: 'tfcornerstone',
-        posts: []
-      }
+      ]
     }
   ],
 
