@@ -145,8 +145,12 @@ window.SITE = {
     {
       id: 'triton',
       company: 'Triton Construction',
-      summary: 'I am currently the marketing coordinator at Triton Construction, a full-service construction manager and consulting firm for projects across New York City, the Hudson Valley, Long Island, and Florida.',
-      note: 'For more information on my work, please [contact me].',   // shown instead of images; [text] links to Contact
+      summary: 'I am currently the marketing coordinator at Triton Construction, a full-service construction manager and consulting firm working on projects across New York City, the Hudson Valley, Long Island, and Florida.',
+      tags: 'Design, Proposals, Photography, Events, Web Design',
+      links: [                // shown instead of images
+        { text: 'Triton Construction Website', href: 'https://tritonconstruction.net/' },
+        { text: 'Contact Me', href: 'contact.html' }
+      ],
       items: []
     }
   ],

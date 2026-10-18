@@ -196,7 +196,10 @@ main { padding-bottom: var(--space-12); }
 @media (max-width: 1200px) { .ig-posts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .ig-posts { grid-template-columns: minmax(0, 1fr); } }
 .work-note { max-width: 640px; }
-.work-note a { white-space: nowrap; }
+.work-tags { margin: 0 0 var(--space-3, 12px); }
+.work-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.work-links a { white-space: nowrap; }
+.work-links a:hover .go-arrow { transform: translate(3px, -3px); }
 
 
 /* Ball on the About page: starts on the line under the title, can drop to the footer line */

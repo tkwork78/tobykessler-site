@@ -153,10 +153,16 @@
     ]);
   }
 
+  // Text-only entries: an optional line of disciplines, then links with the ↗ arrow.
   function noteOf(c) {
-    return el('p', { class: 'lead work-note' }, c.note.split(/(\[[^\]]+\])/).map(function (part) {
-      return /^\[/.test(part) ? el('a', { href: 'contact.html', text: part.slice(1, -1) }) : document.createTextNode(part);
-    }));
+    return el('div', { class: 'work-note' }, [
+      c.tags ? el('p', { class: 'caption work-tags', text: c.tags }) : null,
+      el('ul', { class: 'work-links' }, (c.links || []).map(function (l) {
+        var ext = /^https?:/.test(l.href);
+        return el('li', {}, [el('a', ext ? { href: l.href, target: '_blank', rel: 'noopener' } : { href: l.href },
+          [document.createTextNode(l.text + ' '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]);
+      }))
+    ]);
   }
   function itemsOf(c) {
     return c.items || (c.sections || []).reduce(function (all, s) { return all.concat(s.items || []); }, []);
@@ -240,8 +246,8 @@
     home: function (mount) {
       (S.design || []).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
-          sectionHead('Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.note ? null : { href: companyHref(c), text: 'View all →' }, c.note ? null : companyHref(c)),
-          c.note ? noteOf(c) : grid(previewOf(c), { maxRows: 1, href: companyHref(c) })
+          sectionHead('Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all →' }, c.links ? null : companyHref(c)),
+          c.links ? noteOf(c) : grid(previewOf(c), { maxRows: 1, href: companyHref(c) })
         ]));
         // Photography sits right after TF Cornerstone
         if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
@@ -259,7 +265,7 @@
           grid(previewOf(c), { maxRows: 1, href: c.page })
         ] : [
           sectionHead(null, c.company, c.summary),
-          c.note ? noteOf(c) : grid(c.items)
+          c.links ? noteOf(c) : grid(c.items)
         ]));
       });
     },
