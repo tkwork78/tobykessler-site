@@ -198,7 +198,7 @@ main { padding-bottom: var(--space-12); }
 .work-note { max-width: 640px; }
 .work-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .work-links a { white-space: nowrap; }
-.work-links a:hover .go-arrow { transform: translate(3px, -3px); }
+.contact-list a:hover .go-arrow, .work-links a:hover .go-arrow { transform: translate(3px, -3px); }
 
 
 /* Ball on the About page: starts on the line under the title, can drop to the footer line */

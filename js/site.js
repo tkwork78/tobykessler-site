@@ -333,7 +333,7 @@
       if (S.email) rows.push(['Email', 'mailto:' + S.email, S.email]);
       (S.links || []).forEach(function (l) { rows.push([l.label, l.href, l.text || l.label]); });
       mount.appendChild(el('ul', { class: 'contact-list' }, rows.map(function (r) {
-        var a = el('a', { href: r[1], text: r[2] });
+        var a = el('a', { href: r[1] }, [document.createTextNode(r[2] + ' '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })]);
         if (!/^mailto:/.test(r[1])) { a.target = '_blank'; a.rel = 'noopener'; }
         return el('li', {}, [el('span', { class: 'label', text: r[0] }), a]);
       })));
