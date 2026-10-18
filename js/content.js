@@ -161,7 +161,7 @@ window.SITE = {
       items: [
         { src: 'images/logos/Rebel_Talent_Cirlce_Final_SMALL_WARP.png', width: 1440, height: 1440, title: 'Rebel Talent Circle', meta: 'Logo' },
         { src: 'images/logos/elaphant-db-2-elmer_text.png', width: 1440, height: 1440, title: 'Rebel Talent Wordmark', meta: 'Logo' },
-        { src: 'images/logos/Screen%20Shot%202020-08-24%20at%202.27.10%20PM.png', width: 1600, height: 1527, title: 'Type!', meta: 'Logo' }
+        { src: 'images/logos/type-logo.png', width: 1600, height: 1527, title: 'Type!', meta: 'Logo' }
       ]
     },
     {
