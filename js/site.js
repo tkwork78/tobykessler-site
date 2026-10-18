@@ -263,7 +263,7 @@
       var sub = document.querySelector('[data-subnav]');
       (c.sections || []).forEach(function (s) {
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
-        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead(s.label || 'Design Samples', s.title), s.videos ? videoGrid(s.videos) : s.embeds ? igEmbeds(s.embeds) : grid(s.items)]));
+        mount.appendChild(el('section', { class: 'section', id: s.id }, [sectionHead(s.label || 'Design Samples', s.title), s.videos ? videoGrid(s.videos) : s.embeds ? igEmbeds(s.embeds) : grid(s.items), s.credits ? el('p', { class: 'credits', text: s.credits }) : null]));
       });
       if (c.blog) {
         if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog Posts' }));
