@@ -488,11 +488,5 @@
     });
   });
   document.querySelectorAll('[data-year]').forEach(function (n) { n.textContent = new Date().getFullYear(); });
-  // Last updated: the date GitHub Pages last published this page
-  var mod = new Date(document.lastModified);
-  if (!isNaN(mod)) document.querySelectorAll('[data-updated]').forEach(function (n) {
-    function pad(v) { return (v < 10 ? '0' : '') + v; }
-    n.textContent = ' Last updated ' + pad(mod.getMonth() + 1) + '.' + pad(mod.getDate()) + '.' + mod.getFullYear() + '.';
-  });
   if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(function () { t.scrollIntoView(); }, 50); }
 })();
