@@ -290,8 +290,8 @@
   }
   function companyHref(c) { return c.page || 'design.html#' + c.id; }
 
-  function blogSection(posts, summary) {
-    var head = sectionHead(null, 'Blog Posts', summary);
+  function blogSection(posts, summary, label) {
+    var head = sectionHead(label || null, 'Blog Posts', summary);
     if (!posts.length) return el('section', { class: 'section', id: 'blog' }, [head, el('p', { class: 'caption', text: 'Links coming soon.' })]);
     var list = el('ul', { class: 'blog-grid' }, posts.map(function (b) {
       var host = ''; try { host = new URL(b.url).hostname.replace(/^www\./, ''); } catch (e) {}
@@ -398,7 +398,7 @@
       });
       if (c.blog) {
         if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog Posts' }));
-        mount.appendChild(blogSection(c.blog, c.blogSummary));
+        mount.appendChild(blogSection(c.blog, c.blogSummary, c.blogLabel));
       }
       if (c.instagram) {
         if (sub) sub.appendChild(el('a', { href: '#instagram', text: 'Instagram' }));
