@@ -288,7 +288,7 @@
     });
     return list;
   }
-  function companyHref(c) { return c.page || 'design.html#' + c.id; }
+  function companyHref(c) { return c.page || 'projects.html#' + c.id; }
 
   function blogSection(posts, summary, label) {
     var head = sectionHead(label || null, 'Blog Posts', summary);

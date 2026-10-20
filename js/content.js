@@ -46,7 +46,7 @@ window.SITE = {
       id: 'tf-cornerstone',
       company: 'TF Cornerstone',
       summary: 'At TF Cornerstone, I helped shape the marketing strategy for one of New York City’s largest real estate developers, with over 10,000 units across the city. I produced short-form social videos, wrote blog posts to engage current and prospective tenants, and led production of the Artists in Focus program, featuring local artists whose work is showcased in TF Cornerstone buildings through written spotlights, interviews, and video features. I was also involved in the launch and lease-up efforts for 595 Dean Street, as well as 2-20 and 2-21 Malt Drive, two significant residential developments in Brooklyn and Long Island City.',
-      page: 'design-tf-cornerstone.html',   // has its own page, set up below
+      page: 'projects-tf-cornerstone.html',   // has its own page, set up below
       summaryOnPageOnly: true,
       tags: 'Copywriting, Social Media, Video, Design, Web Design, Photography',
       designScale: 0.5,   // Design page row at half height, filling the width; emails trimmed from the top down
@@ -126,7 +126,7 @@ window.SITE = {
       id: 'car-community',
       company: 'Car Community',
       summary: 'Event posters, illustration and photography from the car scene.',
-      page: 'design-car-community.html',
+      page: 'projects-car-community.html',
       homeLabel: 'Design And Photography',
       homePreview: [   // home page row, left to right
         { src: 'images/car%20community/design/PTS-LAUGINGMAN-4.jpg', whole: true },   // poster is never trimmed; the photos give way
