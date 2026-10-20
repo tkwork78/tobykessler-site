@@ -1,4 +1,4 @@
-/* A black ball on the About page. It starts on the line under the title,
+/* A black ball on the About page. It drops out of the dark About pill in the menu onto the line under the title,
    can roll or be tossed off it, and drops to the footer line. */
 (function () {
   if (!document.body.hasAttribute('data-ball')) return;
@@ -14,6 +14,7 @@
   var G = 2600, BOUNCE = 0.62, AIR = 0.999, ROLL = 0.985, MAX = 4000;
   var R = 24, x = 0, y = 0, vx = 0, vy = 0;      // x, y = ball centre, page coordinates
   var held = null, running = false, last = 0;
+  var grow = 1, born = 0;                          // the ball swells to full size as it leaves the pill
 
   // Surfaces the ball can land on from above: the line under the title, and the footer line.
   function surfaces() {
@@ -25,7 +26,10 @@
     list.push({ y: f, x1: -1e4, x2: 1e4 });
     return list;
   }
-  function draw() { ball.style.transform = 'translate(' + (x - R) + 'px,' + (y - R) + 'px)'; }
+  function draw() {
+    if (grow < 1) grow = Math.min(1, 0.5 + (performance.now() - born) / 600);
+    ball.style.transform = 'translate(' + (x - R) + 'px,' + (y - R) + 'px) scale(' + grow + ')';
+  }
   function onSurface(list) {
     return list.some(function (s) { return Math.abs(y + R - s.y) < 0.5 && x >= s.x1 && x <= s.x2; });
   }
@@ -50,7 +54,7 @@
       if (y < R) { y = R; vy = -vy * BOUNCE; }
     }
     draw();
-    if (held || vx || vy || !onSurface(list)) requestAnimationFrame(step);
+    if (held || vx || vy || grow < 1 || !onSurface(list)) requestAnimationFrame(step);
     else running = false;
   }
   function wake() { if (!running) { running = true; last = performance.now(); requestAnimationFrame(step); } }
@@ -88,14 +92,12 @@
   ball.addEventListener('pointerup', release);
   ball.addEventListener('pointercancel', release);
 
-  // Drops in from the top of the page and lands on the line just right of the About heading.
-  function homeX() {
-    var h = document.querySelector('.page-intro .display'), s = surfaces()[0];
-    var hx = h ? h.getBoundingClientRect().right + window.scrollX + 24 + R : s.x1 + R;
-    return Math.min(hx, s.x2 - R);
-  }
+  // Starts hidden behind the dark About pill in the menu (half size, so the pill covers it) and drops out of it.
   function drop() {
-    x = homeX(); y = R; vx = 0; vy = 0;
+    var pill = document.querySelector('.nav-pill') || document.querySelector('.site-nav [aria-current]');
+    var r = pill.getBoundingClientRect();
+    x = r.left + r.width / 2 + window.scrollX; y = r.top + r.height / 2 + window.scrollY; vx = 0; vy = 0;
+    grow = 0.5; born = performance.now();
     draw(); wake();
   }
   window.addEventListener('resize', function () { if (!held) { x = Math.min(x, layer.clientWidth - R); wake(); } });
