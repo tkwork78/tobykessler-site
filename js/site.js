@@ -494,5 +494,25 @@
     });
   });
   document.querySelectorAll('[data-year]').forEach(function (n) { n.textContent = new Date().getFullYear(); });
+  // Menu: a dark grey pill sits behind the current page and slides to the page clicked before it opens.
+  document.querySelectorAll('.site-nav').forEach(function (nav) {
+    var cur = nav.querySelector('[aria-current="page"]'); if (!cur) return;
+    var pill = el('span', { class: 'nav-pill', 'aria-hidden': 'true' }); nav.insertBefore(pill, nav.firstChild);
+    function place(a) { pill.style.width = a.offsetWidth + 'px'; pill.style.transform = 'translateX(' + a.offsetLeft + 'px)'; pill.style.top = a.offsetTop + 'px'; pill.style.height = a.offsetHeight + 'px'; }
+    function settle() { nav.classList.remove('is-moving'); nav.querySelectorAll('a').forEach(function (a) { a.classList.toggle('is-on', a === cur); }); place(cur); }
+    nav.classList.add('has-pill'); settle();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(settle);
+    addEventListener('resize', settle);
+    addEventListener('pageshow', function (e) { if (e.persisted) settle(); });   // coming back with the browser's back button
+    var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    nav.addEventListener('click', function (e) {
+      var a = e.target.closest('a');
+      if (!a || a === cur || still || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+      e.preventDefault();
+      nav.classList.add('is-moving'); place(a);
+      nav.querySelectorAll('a').forEach(function (x) { x.classList.toggle('is-on', x === a); });
+      setTimeout(function () { location.href = a.href; }, 320);
+    });
+  });
   if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(function () { t.scrollIntoView(); }, 50); }
 })();

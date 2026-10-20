@@ -52,6 +52,13 @@ a { color: inherit; }
 .site-nav a { font-size: 14px; line-height: 20px; font-weight: 400; text-decoration: none; color: var(--grey-600); padding: 4px 0; border-bottom: 1px solid transparent; }
 .site-nav a:hover { color: var(--ink); }
 .site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink); }
+.site-nav.has-pill { position: relative; gap: var(--space-2) 2px; }
+.site-nav.has-pill a { position: relative; z-index: 1; padding: 6px 14px; border: 0; border-radius: 999px; transition: color .3s ease; }
+.site-nav.has-pill a:hover { color: var(--ink); background: var(--grey-100); }
+.site-nav.has-pill a.is-on, .site-nav.has-pill a.is-on:hover { color: var(--paper); background: none; }
+.nav-pill { position: absolute; z-index: 0; left: 0; top: 0; border-radius: 999px; background: var(--grey-800); box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.08); pointer-events: none; }
+.site-nav.is-moving .nav-pill { transition: transform .32s cubic-bezier(.4,0,.2,1), width .32s cubic-bezier(.4,0,.2,1); }
+.site-nav.is-moving a.is-on { transition: color .2s ease .14s; }
 
 /* Page sections */
 main { padding-bottom: var(--space-12); }
@@ -143,6 +150,8 @@ main { padding-bottom: var(--space-12); }
   .site-nav a { white-space: nowrap; }
 }
 @media (max-width: 360px) { .site-nav a { font-size: 13px; } }
+@media (max-width: 720px) { .site-nav.has-pill { gap: 0; } .site-nav.has-pill a { padding: 6px 8px; } }
+@media (max-width: 380px) { .site-nav.has-pill a { padding: 6px 6px; } }
 
 /* Under construction landing page (index.html): framed Street View, roll the dice for a new place.
    Nothing overlaps the Street View, so Google's own location box stays visible. */
@@ -290,3 +299,4 @@ body * { cursor: inherit; }
 .view-more { margin: var(--space-6) 0 0; font-size: 14px; line-height: 20px; }
 .view-more a { color: var(--grey-400); text-decoration: none; }
 .view-more a:hover { color: var(--ink); }
+@media (max-width: 340px) { .site-nav.has-pill a { padding: 6px 3px; } }
