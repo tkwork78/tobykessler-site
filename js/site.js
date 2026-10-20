@@ -309,7 +309,7 @@
 
   function igEmbeds(urls) {
     var box = el('div', { class: 'ig-posts' }, urls.map(function (p) {
-      return el('blockquote', { class: 'instagram-media', 'data-instgrm-permalink': p, 'data-instgrm-version': '14' }, [el('a', { href: p, target: '_blank', rel: 'noopener', text: 'View on Instagram' })]);
+      return el('blockquote', { class: 'instagram-media', 'data-instgrm-permalink': p, 'data-instgrm-version': '14' }, [el('a', { href: p, target: '_blank', rel: 'noopener', text: 'View On Instagram' })]);
     }));
     if (!document.querySelector('script[src*="instagram.com/embed.js"]')) {
       var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.instagram.com/embed.js'; document.body.appendChild(sc);
@@ -343,7 +343,7 @@
 
   function instagramSection(ig) {
     var url = 'https://www.instagram.com/' + ig.handle + '/';
-    var kids = [sectionHead(null, 'Instagram', '@' + ig.handle, { href: url, text: 'View on Instagram' })];
+    var kids = [sectionHead(null, 'Instagram', '@' + ig.handle, { href: url, text: 'View On Instagram' })];
     if (ig.posts && ig.posts.length) {
       kids.push(el('div', { class: 'ig-posts' }, ig.posts.map(function (p) {
         return el('blockquote', { class: 'instagram-media', 'data-instgrm-permalink': p, 'data-instgrm-version': '14' }, [el('a', { href: p, text: 'View this post on Instagram' })]);
@@ -363,12 +363,12 @@
     home: function (mount) {
       ordered(S.homeOrder).forEach(function (c) {
         mount.appendChild(el('section', { class: 'section', id: c.id }, [
-          sectionHead(c.homeLabel || c.tags || 'Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View all' }, c.links ? null : companyHref(c)),
+          sectionHead(c.homeLabel || c.tags || 'Design', c.company, c.summaryOnPageOnly ? null : c.summary, c.links ? null : { href: companyHref(c), text: 'View Project' }, c.links ? null : companyHref(c)),
           c.links ? noteOf(c) : (function (row) { return grid(row, { maxRows: 1, columns: Math.min(4, Math.max(3, row.length)), ratio: c.homeRatio, sameHeight: true, contain: c.homeContain, href: companyHref(c) }); })(homePreviewOf(c))
         ]));
         // Photography sits right after TF Cornerstone
         if (c.id === 'tf-cornerstone' && S.photography) mount.appendChild(el('section', { class: 'section', id: 'photography' }, [
-          sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View all' }, 'photography.html'),
+          sectionHead(null, 'Photography', S.photography.summary, { href: 'photography.html', text: 'View Project' }, 'photography.html'),
           grid(pickPhotos(itemsOf(S.photography), S.photography.homePhotos) || itemsOf(S.photography), { maxRows: 1, columns: Math.min(4, Math.max(3, (S.photography.homePhotos || []).length)), sameHeight: true, href: 'photography.html' })
         ]));
       });
@@ -378,7 +378,7 @@
       ordered(S.designOrder).forEach(function (c) {
         if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
-          sectionHead(c.tags || null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View project' }, c.page),
+          sectionHead(c.tags || null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View Project' }, c.page),
           grid(pickPhotos(itemsOf(c), c.designPreview) || previewOf(c), { maxRows: 1, scale: c.designScale, anchor: 'top', href: c.page })
         ] : [
           sectionHead(c.tags || null, c.company, c.summary),
@@ -394,7 +394,7 @@
       var sub = document.querySelector('[data-subnav]');
       (c.sections || []).forEach(function (s) {
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
-        mount.appendChild(el('section', { class: 'section', id: s.id }, [(s.zoom && s.items ? s.items.forEach(function (it) { it.zoom = true; }) : null, sectionHead(s.label || 'Design Samples', s.title)), s.videos ? videoGrid(s.videos) : s.embeds ? igEmbeds(s.embeds) : grid(s.items), s.credits ? el('p', { class: 'credits', text: s.credits }) : null]));
+        mount.appendChild(el('section', { class: 'section', id: s.id }, [(s.zoom && s.items ? s.items.forEach(function (it) { it.zoom = true; }) : null, sectionHead(s.label === null ? null : (s.label || 'Design Samples'), s.title)), s.videos ? videoGrid(s.videos) : s.embeds ? igEmbeds(s.embeds) : grid(s.items), s.credits ? el('p', { class: 'credits', text: s.credits }) : null]));
       });
       if (c.blog) {
         if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog Posts' }));
@@ -410,9 +410,9 @@
       ((S.photography || {}).sections || []).forEach(function (sec) {
         if (sub) sub.appendChild(el('a', { href: sec.page || '#' + sec.id, text: sec.title }));
         mount.appendChild(el('section', { class: 'section', id: sec.id }, [
-          sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View project' } : null, sec.page),
+          sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View Project' } : null, sec.page),
           sec.page ? grid(sec.items.slice(0, 6), { href: sec.page }) : grid(sec.items),
-          sec.page ? el('p', { class: 'view-more' }, [el('a', { href: sec.page }, [document.createTextNode('View more '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : null
+          sec.page ? el('p', { class: 'view-more' }, [el('a', { href: sec.page }, [document.createTextNode('View More '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : null
         ]));
       });
     },
@@ -427,13 +427,13 @@
       mount.appendChild(el('section', { class: 'section about' }, [
         el('div', { class: 'about-bio' }, (A.bio || []).map(function (t) { return el('p', { class: 'lead', text: t }); })),
         el('div', { class: 'about-side' }, [
-          el('p', { class: 'label', text: 'Selected work' }),
+          el('p', { class: 'label', text: 'Selected Work' }),
           el('ul', { class: 'about-list' }, (S.design || []).filter(function (c) { return !c.collection; }).map(function (c) {
             return el('li', {}, [el('a', { class: 'about-co', href: companyHref(c), text: c.company })]);
           })),
           A.skills && A.skills.length ? el('p', { class: 'label', text: 'Focus' }) : null,
           A.skills && A.skills.length ? el('ul', { class: 'about-list' }, A.skills.map(function (k) { return el('li', { text: k }); })) : null,
-          el('a', { class: 'more', href: 'contact.html' }, [document.createTextNode('Get in touch '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])
+          el('a', { class: 'more', href: 'contact.html' }, [document.createTextNode('Get In Touch '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])
         ])
       ]));
     },
@@ -496,7 +496,7 @@
   document.querySelectorAll('[data-year]').forEach(function (n) { n.textContent = new Date().getFullYear(); });
   // Menu: a dark grey pill sits behind the current page and slides to the page clicked before it opens.
   document.querySelectorAll('.site-nav').forEach(function (nav) {
-    var cur = nav.querySelector('[aria-current="page"]'); if (!cur) return;
+    var cur = nav.querySelector('[aria-current="page"]'); if (!cur) { nav.classList.add('has-pill'); return; }   // e.g. the 404 page: same menu, no current page
     var pill = el('span', { class: 'nav-pill', 'aria-hidden': 'true' }); nav.insertBefore(pill, nav.firstChild);
     function place(a) { pill.style.width = a.offsetWidth + 'px'; pill.style.transform = 'translateX(' + a.offsetLeft + 'px)'; pill.style.top = a.offsetTop + 'px'; pill.style.height = a.offsetHeight + 'px'; }
     function settle() { nav.classList.remove('is-moving'); nav.querySelectorAll('a').forEach(function (a) { a.classList.toggle('is-on', a === cur); }); place(cur); }

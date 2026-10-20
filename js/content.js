@@ -36,7 +36,7 @@ window.SITE = {
     bio: [
       'Toby Kessler is a marketing and proposal strategist specializing in construction and real estate, experienced in content development and optimization, and formally trained in photography and design, bringing a creative, solution-driven approach that consistently helps win clients and deliver results.'
     ],
-    skills: ['Web design', 'Photography', 'Videography', 'Social content', 'Brand & marketing design', 'Proposals & RFP packages', 'Tradeshow & environmental']
+    skills: ['Web Design', 'Photography', 'Videography', 'Social Content', 'Brand & Marketing Design', 'Proposals & RFP Packages', 'Tradeshow & Environmental']
   },
 
   designOrder: ['tf-cornerstone', 'triton', 'artillery', 'car-community', 'logos'],   // order on the Design page
@@ -101,7 +101,7 @@ window.SITE = {
           id: 'floor-plans',
           title: 'Floor Plans',
           items: [
-            { src: 'images/tf-cornerstone/floorplans/220MALT_803-TK_GR-Notes_125%25-200%25.jpg', width: 1855, height: 2400, title: '220 Malt Drive', meta: 'Floor plan' }
+            { src: 'images/tf-cornerstone/floorplans/220MALT_803-TK_GR-Notes_125%25-200%25.jpg', width: 1855, height: 2400, title: '220 Malt Drive', meta: 'Floor Plan' }
           ]
         }
       ],
@@ -111,15 +111,15 @@ window.SITE = {
       blogLabel: 'Copywriting, Web Design',
       blogSummary: 'Copywriting for the TF Cornerstone blog using HTML and WordPress as well as utilizing SEO best practices.',
       blog: [
-        { title: 'How To Take The NYC Ferry From Long Island City And Hunter’s Point South', meta: 'Living in NYC', url: 'https://tfc.com/blog/living-in-nyc/how-to-take-the-nyc-ferry-long-island-city-queens', image: 'images/tf-cornerstone/blog%20previews/How%20to%20Take%20the%20NYC%20Ferry%20from%20Long%20Island%20City%20and%20Hunter%27s%20Point%20South.jpeg' },
-        { title: 'Explore The Amenities At Malt Drive', meta: 'Apartment hunt guide', url: 'https://tfc.com/blog/nyc-apartment-hunt-guide/explore-the-amenities-at-malt-drive', image: 'images/tf-cornerstone/blog%20previews/malt-drive-ammenity-blog-cover.jpeg' },
+        { title: 'How To Take The NYC Ferry From Long Island City And Hunter’s Point South', meta: 'Living In NYC', url: 'https://tfc.com/blog/living-in-nyc/how-to-take-the-nyc-ferry-long-island-city-queens', image: 'images/tf-cornerstone/blog%20previews/How%20to%20Take%20the%20NYC%20Ferry%20from%20Long%20Island%20City%20and%20Hunter%27s%20Point%20South.jpeg' },
+        { title: 'Explore The Amenities At Malt Drive', meta: 'Apartment Hunt Guide', url: 'https://tfc.com/blog/nyc-apartment-hunt-guide/explore-the-amenities-at-malt-drive', image: 'images/tf-cornerstone/blog%20previews/malt-drive-ammenity-blog-cover.jpeg' },
         { title: 'Weekend Getaway Ideas From TFC Buildings', meta: 'Community', url: 'https://tfc.com/blog/tfc-nyc-community/weekend-getaway-ideas-from-tfc-buildings', image: 'images/tf-cornerstone/blog%20previews/Weekend%20Getaway%20Ideas%20from%20TFC%20Buildings.jpeg' },
-        { title: 'Introducing 2-20 And 2-21 Malt Drive: TFC’s Newest Buildings', meta: 'News & events', url: 'https://tfc.com/blog/news-events/introducing-220-221-malt-drive-hunters-point-south-queens', image: 'images/tf-cornerstone/blog%20previews/Introducing%202-20%20and%202-21%20Malt%20Drive%20-%20TFC%27s%20Newest%20Buildings.jpeg' },
-        { title: 'Malt Drive Artists In Focus: Matthew Shlian', meta: 'News & events', url: 'https://tfc.com/blog/news-events/matt-shlian-220-malt-drive', image: 'images/tf-cornerstone/blog%20previews/Malt%20Drive-%20Artists%20in%20Focus%20Matthew%20Shlian.jpeg' },
-        { title: 'How To Furnish A Small Apartment', meta: 'Living in NYC', url: 'https://tfc.com/blog/living-in-nyc/decorating-with-limited-space-establishing-a-functional-living-room', image: 'images/tf-cornerstone/blog%20previews/How%20To%20Furnish%20a%20Small%20Apartment.jpeg' },
-        { title: 'Explore The Amenities At 595 Dean St', meta: 'Apartment hunt guide', url: 'https://tfc.com/blog/nyc-apartment-hunt-guide/595-dean-st-amenities-luxury-apartments-brooklyn', image: 'images/tf-cornerstone/blog%20previews/Explore%20The%20Amenities%20at%20595%20Dean%20St.jpeg' },
-        { title: 'Chelsea Piers Fitness Prospect Heights Welcomes 595 Dean St', meta: 'News & events', url: 'https://tfc.com/blog/news-events/special-offer-50-off-chelsea-piers-fitness-prospect-heights', image: 'images/tf-cornerstone/blog%20previews/Chelsea%20Piers%20Fitness%20Prospect%20Heights%20Welcomes%20595%20Dean%20St.jpeg' },
-        { title: 'Sculpture Garden At Hunter’s Point South', meta: 'News & events', url: 'https://tfc.com/blog/news-events/sculpture-garden-at-hunters-point-south', image: 'images/tf-cornerstone/blog%20previews/culpture%20Garden%20at%20Hunter%27s%20Point%20South.jpeg' }
+        { title: 'Introducing 2-20 And 2-21 Malt Drive: TFC’s Newest Buildings', meta: 'News & Events', url: 'https://tfc.com/blog/news-events/introducing-220-221-malt-drive-hunters-point-south-queens', image: 'images/tf-cornerstone/blog%20previews/Introducing%202-20%20and%202-21%20Malt%20Drive%20-%20TFC%27s%20Newest%20Buildings.jpeg' },
+        { title: 'Malt Drive Artists In Focus: Matthew Shlian', meta: 'News & Events', url: 'https://tfc.com/blog/news-events/matt-shlian-220-malt-drive', image: 'images/tf-cornerstone/blog%20previews/Malt%20Drive-%20Artists%20in%20Focus%20Matthew%20Shlian.jpeg' },
+        { title: 'How To Furnish A Small Apartment', meta: 'Living In NYC', url: 'https://tfc.com/blog/living-in-nyc/decorating-with-limited-space-establishing-a-functional-living-room', image: 'images/tf-cornerstone/blog%20previews/How%20To%20Furnish%20a%20Small%20Apartment.jpeg' },
+        { title: 'Explore The Amenities At 595 Dean St', meta: 'Apartment Hunt Guide', url: 'https://tfc.com/blog/nyc-apartment-hunt-guide/595-dean-st-amenities-luxury-apartments-brooklyn', image: 'images/tf-cornerstone/blog%20previews/Explore%20The%20Amenities%20at%20595%20Dean%20St.jpeg' },
+        { title: 'Chelsea Piers Fitness Prospect Heights Welcomes 595 Dean St', meta: 'News & Events', url: 'https://tfc.com/blog/news-events/special-offer-50-off-chelsea-piers-fitness-prospect-heights', image: 'images/tf-cornerstone/blog%20previews/Chelsea%20Piers%20Fitness%20Prospect%20Heights%20Welcomes%20595%20Dean%20St.jpeg' },
+        { title: 'Sculpture Garden At Hunter’s Point South', meta: 'News & Events', url: 'https://tfc.com/blog/news-events/sculpture-garden-at-hunters-point-south', image: 'images/tf-cornerstone/blog%20previews/culpture%20Garden%20at%20Hunter%27s%20Point%20South.jpeg' }
       ]
     },
     {
@@ -136,7 +136,7 @@ window.SITE = {
       sections: [
         {
           id: 'car-photography',
-          label: 'Photography',
+          label: null,   // no label: it would repeat the heading
           title: 'Photography',
           preview: false,  // Design page and home show the design work instead
           items: [
@@ -151,6 +151,7 @@ window.SITE = {
         },
         {
           id: 'car-design',
+          label: null,
           title: 'Design',
           items: [
             { src: 'images/car%20community/design/PTS-LAUGINGMAN-4.jpg', width: 1920, height: 2400, title: 'Cars & Coffee Poster', meta: 'Print' },
