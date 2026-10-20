@@ -160,7 +160,7 @@
     return el('div', { class: 'section-head' }, [
       el('div', { class: 'text' }, [
         label ? el('p', { class: 'label', text: label }) : null,
-        titleHref ? el('h2', { class: 'headline' }, [el('a', { href: titleHref }, [document.createTextNode(title + ' '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : el('h2', { class: 'headline', text: title }),
+        titleHref ? el('h2', { class: 'headline' }, [el('a', { href: titleHref, text: title })]) : el('h2', { class: 'headline', text: title }),
         summary ? el('p', { class: 'summary', text: summary }) : null
       ]),
       link ? el('a', { class: 'more', href: link.href }, [document.createTextNode(link.text + ' '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })]) : null
