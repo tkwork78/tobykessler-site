@@ -34,7 +34,7 @@ window.SITE = {
 
   about: {
     bio: [
-      'Toby Kessler is a marketing and proposal strategist specializing in construction and real estate, experienced in content development and optimization, and formally trained in photography and design, bringing a creative, solution-driven approach that consistently helps win clients and deliver results.'
+      'Toby Kessler is a marketing and proposal strategist specializing in construction and real estate, he is experienced in content development and optimization, and formally trained in photography and design. Toby brings a creative, solution-driven approach that consistently helps win clients and deliver results.'
     ],
     skills: ['Web Design', 'Photography', 'Videography', 'Social Content', 'Brand & Marketing Design', 'Proposals & RFP Packages', 'Tradeshow & Environmental']
   },
@@ -45,7 +45,7 @@ window.SITE = {
     {
       id: 'tf-cornerstone',
       company: 'TF Cornerstone',
-      summary: 'At TF Cornerstone, I helped shape the marketing strategy for one of New York City’s largest real estate developers, with over 10,000 units across the city. I produced short-form social videos, wrote blog posts to engage current and prospective tenants, and led production of the Artists in Focus program, featuring local artists whose work is showcased in TF Cornerstone buildings through written spotlights, interviews, and video features. I was also involved in the launch and lease-up efforts for 595 Dean Street, as well as 2-20 and 2-21 Malt Drive, two significant residential developments in Brooklyn and Long Island City.',
+      summary: 'At TF Cornerstone, I helped shape the marketing strategy for one of New York City’s largest real estate developers, with over 10,000 units across the city. I produced short-form social videos, wrote blog posts to engage current and prospective tenants, and led production of the Artists in Focus program, featuring local artists whose work is showcased in TF Cornerstone buildings. I was also involved in the launch and lease-up efforts for 595 Dean Street, as well as 2-20 and 2-21 Malt Drive, two significant residential developments in Brooklyn and Long Island City.',
       page: 'projects-tf-cornerstone.html',   // has its own page, set up below
       summaryOnPageOnly: true,
       tags: 'Copywriting, Social Media, Video, Design, Web Design, Photography',
