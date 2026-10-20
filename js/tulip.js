@@ -1,5 +1,5 @@
-/* A red tulip on the Contact page. A bud pops out of the dark Contact pill in the menu, drops onto the footer line,
-   sprouts a stem with two leaves, opens, then sways gently. */
+/* A red tulip on the Contact page. It slowly grows up out of the first line under the Contact heading,
+   unfolds two leaves, opens, then sways gently. */
 (function () {
   if (!document.body.hasAttribute('data-tulip')) return;
 
@@ -23,22 +23,17 @@
   var tulip = layer.querySelector('.tulip'), stem = layer.querySelector('.tulip-stem'), head = layer.querySelector('.tulip-head');
 
   function rect(n) { return n.getBoundingClientRect(); }
-  // where it grows: straight under the Contact pill, standing on the footer line
+  // where it grows: from the first line under the Contact heading, near its right end, below the menu
   function spot() {
-    var pill = document.querySelector('.nav-pill') || document.querySelector('.site-nav [aria-current]');
-    var foot = document.querySelector('.site-footer .wrap');
-    var p = pill ? rect(pill) : { left: innerWidth - 80, width: 60, top: 20, height: 30 };
-    var x = p.left + p.width / 2, ground = (foot ? rect(foot).top : innerHeight) + scrollY;
-    // stay clear of the page text above that spot: the lowest text or rule line it would overlap
-    var top = 0;
+    var line = null;
     document.querySelectorAll('main *').forEach(function (n) {
-      var r = rect(n), cs;
-      if (!r.width || r.left > x + 30 || r.right < x - 30) return;
-      cs = getComputedStyle(n);
-      if (n.childElementCount === 0 || parseFloat(cs.borderBottomWidth) > 0) top = Math.max(top, r.bottom + scrollY);
+      if (parseFloat(getComputedStyle(n).borderTopWidth) > 0 && (!line || rect(n).top < rect(line).top)) line = n;
     });
-    var stemH = Math.max(50, Math.min(170, ground - top - BH - 14));
-    return { x: x, ground: ground, start: p.top + p.height / 2 + scrollY, stemH: stemH };
+    var l = line ? rect(line) : { left: 0, right: innerWidth - 40, top: innerHeight / 2 };
+    var head = document.querySelector('.site-header');
+    var room = l.top - (head ? rect(head).bottom : 0);
+    var stemH = Math.max(40, Math.min(150, room - BH - 16));
+    return { x: l.right - 40, ground: l.top + scrollY, stemH: stemH };
   }
 
   var s = spot();
@@ -54,31 +49,21 @@
   }
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
 
-  // 1. the bud pops out of the pill and drops onto the footer line with a small bounce
-  var y = s.start - s.ground, vy = -260, G = 2600, t0 = performance.now(), last = t0, bounces = 0;
-  function drop(t) {
-    var dt = Math.min(0.032, (t - last) / 1000); last = t;
-    vy += G * dt; y += vy * dt;
-    if (y >= -BH) { y = -BH; vy = -vy * 0.32; if (++bounces > 2 || Math.abs(vy) < 60) { vy = 0; place(1); return setTimeout(grow, 120); } }
-    place(Math.min(1, 0.45 + (t - t0) / 600));
-    requestAnimationFrame(drop);
-  }
-  function place(scale) { head.style.transform = 'translate(-50%, ' + y + 'px) scale(' + scale + ')'; }
-
-  // 2. the stem pushes the bud up, the leaves unfold, then 3. the petals open and it sways
+  // the bud peeks out of the line, the stem slowly pushes it up, the leaves unfold, then the petals open and it sways
   function grow() {
-    var g0 = performance.now(), D = 1100;
+    var g0 = performance.now(), D = 3200;
     tulip.classList.add('is-sprouting');
     (function rise(t) {
-      var k = Math.min(1, (t - g0) / D), e = 1 - Math.pow(1 - k, 3);
+      var k = Math.min(1, (t - g0) / D), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
       stem.style.transform = 'translateX(-50%) scaleY(' + e + ')';
-      head.style.transform = 'translate(-50%, ' + (-BH - s.stemH * e) + 'px)';
-      if (k > 0.35) tulip.classList.add('is-grown');
+      head.style.transform = 'translate(-50%, ' + (-BH - s.stemH * e) + 'px) scale(' + Math.min(1, 0.05 + k * 2) + ')';
+      if (k > 0.45) tulip.classList.add('is-grown');
       if (k < 1) return requestAnimationFrame(rise);
       stem.style.transform = '';
-      setTimeout(function () { tulip.classList.add('is-open'); }, 150);
-      setTimeout(function () { tulip.classList.add('is-swaying'); }, 900);
+      setTimeout(function () { tulip.classList.add('is-open'); }, 250);
+      setTimeout(function () { tulip.classList.add('is-swaying'); }, 1600);
     })(g0);
   }
-  requestAnimationFrame(function (t) { last = t0 = t; requestAnimationFrame(drop); });
+  head.style.transform = 'translate(-50%, ' + -BH + 'px) scale(0.05)';
+  setTimeout(grow, 400);
 })();
