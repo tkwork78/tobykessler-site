@@ -331,7 +331,7 @@
         document.querySelectorAll('.video-media').forEach(function (o) { if (o !== video) o.pause(); });
       });
       var play = el('span', { class: 'video-play', 'aria-hidden': 'true' });
-      video.addEventListener('play', function () { play.hidden = true; });
+      video.addEventListener('play', function () { play.hidden = true; video.classList.remove('is-fill'); });   // a filled preview plays uncropped
       var text = el('p', { class: 'video-text' }, (v.caption || '').split(/(@[A-Za-z0-9_.]+)/).map(function (part) {
         return /^@/.test(part)
           ? el('a', { href: 'https://www.instagram.com/' + part.slice(1) + '/', target: '_blank', rel: 'noopener', text: part })
