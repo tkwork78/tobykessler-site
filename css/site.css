@@ -345,7 +345,7 @@ body * { cursor: inherit; }
 /* Section links at the top of Projects and Photography glide to their section */
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
-/* The Contact tulip: grows slowly out of the first line under the heading and opens (js/tulip.js) */
+/* The Contact tulip: grows slowly out of the footer line above Home and opens (js/tulip.js) */
 body[data-tulip] { position: relative; }
 .tulip-layer { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: 5; }
 .tulip { position: absolute; width: 0; height: 0; transform-origin: 0 0; }
@@ -353,7 +353,7 @@ body[data-tulip] { position: relative; }
 @keyframes tulip-sway { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
 .tulip-stem { position: absolute; left: 0; bottom: 0; width: 3px; border-radius: 2px; background: #2f8f4e; transform: translateX(-50%) scaleY(0); transform-origin: 50% 100%; }
 .tulip.is-grown .tulip-stem { transform: translateX(-50%); }
-.tulip-leaf { position: absolute; bottom: 0; fill: #2f8f4e; transform: scale(0); transition: transform .7s cubic-bezier(.3, 1.4, .5, 1); }
+.tulip-leaf { position: absolute; bottom: 0; fill: #2f8f4e; transform: scale(0); transition: transform 1.2s cubic-bezier(.3, 1.4, .5, 1); }
 .tulip-leaf-l { right: 0; transform-origin: 100% 100%; }
 .tulip-leaf-r { left: 0; transform-origin: 0 100%; transition-delay: .15s; }
 .tulip.is-grown .tulip-leaf { transform: scale(1); }
