@@ -376,7 +376,7 @@
     design: function (mount) {
       var sub = document.querySelector('[data-subnav]');
       ordered(S.designOrder).forEach(function (c) {
-        if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
+        if (sub) sub.appendChild(el('a', { href: '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
           sectionHead(c.tags || null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View Project' }, c.page),
           grid(c.booklet ? homePreviewOf(c) : pickPhotos(itemsOf(c), c.designPreview) || previewOf(c), { maxRows: 1, scale: c.designScale, anchor: 'top', href: c.page })
@@ -414,7 +414,7 @@
     photography: function (mount) {
       var sub = document.querySelector('[data-subnav]');
       ((S.photography || {}).sections || []).forEach(function (sec) {
-        if (sub) sub.appendChild(el('a', { href: sec.page || '#' + sec.id, text: sec.title }));
+        if (sub) sub.appendChild(el('a', { href: '#' + sec.id, text: sec.title }));
         mount.appendChild(el('section', { class: 'section', id: sec.id }, [
           sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View Project' } : null, sec.page),
           sec.page ? grid(sec.items.slice(0, 6), { href: sec.page }) : grid(sec.items),
