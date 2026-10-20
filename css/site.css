@@ -328,3 +328,9 @@ body * { cursor: inherit; }
 .back-row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
 .next-btn { margin-left: auto; }
 .next-btn:hover .go-arrow { transform: translate(3px, -3px); }
+@media (max-width: 720px) {
+  .back-row { flex-wrap: nowrap; gap: var(--space-2); }
+  .back-row .back-btn { font-size: 13px; padding: 7px 12px; white-space: nowrap; }
+}
+@media (max-width: 400px) { .back-row .opt { display: none; } .back-row .back-btn { font-size: 12px; padding: 7px 10px; } }
+@media (max-width: 340px) { .back-row .back-btn { font-size: 11px; padding: 6px 9px; } }
