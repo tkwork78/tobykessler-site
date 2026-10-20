@@ -277,6 +277,8 @@ body[data-ball] .site-footer { padding-bottom: var(--space-6); }
 /* Cursor: a small black dot everywhere (lightbox zoom keeps its own) */
 html { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='5' fill='%23000' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E") 7 7, auto; }
 body * { cursor: inherit; }
+/* Over anything clickable the dot grows slightly */
+a, button, summary, label[for], select, video, .book { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Ccircle cx='9' cy='9' r='7' fill='%23000' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E") 9 9, pointer; }
 
 /* Home intro: New York spins like a slot reel and lands on itself */
 .spin-reel { display: inline-block; height: var(--lh, 1.5em); overflow: hidden; vertical-align: top; }
@@ -306,7 +308,7 @@ body * { cursor: inherit; }
 .leaf-face .book-page { box-shadow: 0 1px 10px rgba(0, 0, 0, .18); }
 .leaf-back { transform: rotateY(180deg); }
 .book-leaf.is-whole .leaf-back { visibility: hidden; }
-.booklet-arrow { position: relative; z-index: 3; flex: none; width: 44px; height: 44px; border-radius: 50%; color: var(--ink); font: inherit; font-size: 18px; line-height: 1; display: flex; align-items: center; justify-content: center; cursor: inherit; transition: background .2s ease, color .2s ease; }
+.booklet-arrow { position: relative; z-index: 3; flex: none; width: 44px; height: 44px; border-radius: 50%; color: var(--ink); font: inherit; font-size: 18px; line-height: 1; display: flex; align-items: center; justify-content: center; transition: background .2s ease, color .2s ease; }
 .booklet-arrow:disabled { opacity: .25; }
 .booklet-count { margin: var(--space-3, 12px) 0 0; text-align: center; font-size: 14px; line-height: 20px; color: var(--grey-600); }
 @media (max-width: 700px) { .booklet-stage { gap: 8px; padding: var(--space-3, 12px) 8px; } .booklet-arrow { width: 36px; height: 36px; font-size: 16px; } }
@@ -338,9 +340,9 @@ body * { cursor: inherit; }
 .h-arrow { display: inline-block; font-size: 1.15em; line-height: 1; transition: transform .25s ease; }
 .back-btn:hover .h-back { transform: translateX(-3px); }
 .back-btn:hover .h-next { transform: translateX(3px); }
-/* The About ball shows a bright teal hand so it reads as something to grab */
-.ball, .plane-hit { cursor: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3E%3Cg%20fill='%2300D4C8'%20stroke='%23004B47'%20stroke-width='1.4'%20stroke-linejoin='round'%3E%3Cpath%20d='M9%2016.5V9.2a1.9%201.9%200%200%201%203.8%200V15V6.4a1.9%201.9%200%200%201%203.8%200V15V7.4a1.9%201.9%200%200%201%203.8%200V15.5V9.6a1.9%201.9%200%200%201%203.8%200v9.4c0%205-3.2%208.5-8%208.5c-3.3%200-5.2-1.6-6.8-4.1l-3.6-5.6a1.9%201.9%200%200%201%203.1-2.2z'/%3E%3C/g%3E%3C/svg%3E") 16 14, grab; }
-.ball.is-held, .plane-hit.is-held { cursor: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3E%3Cg%20fill='%2300D4C8'%20stroke='%23004B47'%20stroke-width='1.4'%20stroke-linejoin='round'%3E%3Cpath%20d='M9%2015.5v-2.6a1.9%201.9%200%200%201%203.8%200V15v-3.4a1.9%201.9%200%200%201%203.8%200V15v-2.9a1.9%201.9%200%200%201%203.8%200V15.5v-1.6a1.9%201.9%200%200%201%203.8%200v5.1c0%205-3.2%208.5-8%208.5c-3.3%200-5.2-1.6-6.8-4.1l-2.4-3.8a1.9%201.9%200%200%201%203-2.2z'/%3E%3C/g%3E%3C/svg%3E") 16 16, grabbing; }
+/* The About ball and the Contact plane show a royal blue dot, a little bigger, so they read as something to grab */
+.ball, .plane-hit { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Ccircle cx='9' cy='9' r='7' fill='%234169E1' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E") 9 9, grab; }
+.ball.is-held, .plane-hit.is-held { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Ccircle cx='9' cy='9' r='6' fill='%234169E1' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E") 9 9, grabbing; }
 
 /* Section links at the top of Projects and Photography glide to their section */
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
