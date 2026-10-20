@@ -321,7 +321,7 @@
   function videoGrid(list) {
     return el('div', { class: 'video-grid' }, list.map(function (v) {
       // Click the video to play; the player controls appear once it starts.
-      var video = el('video', { class: 'video-media', src: v.src, poster: v.poster || '', playsinline: '', preload: 'none', width: v.width, height: v.height, 'aria-label': 'Play video: ' + v.title });
+      var video = el('video', { class: 'video-media' + (v.fill ? ' is-fill' : ''), src: v.src, poster: v.poster || '', playsinline: '', preload: 'none', width: v.width, height: v.height, 'aria-label': 'Play video: ' + v.title });
       video.addEventListener('click', function () {
         if (video.controls) return;
         video.controls = true;
