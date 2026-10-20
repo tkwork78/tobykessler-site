@@ -337,7 +337,20 @@
           ? el('a', { href: 'https://www.instagram.com/' + part.slice(1) + '/', target: '_blank', rel: 'noopener', text: part })
           : document.createTextNode(part);
       }));
-      return el('figure', { class: 'video-card' }, [el('div', { class: 'video-frame' }, [video, play]), el('figcaption', {}, [el('p', { class: 'pf-cap-title', text: v.title }), text])]);
+      // Captions longer than four lines are trimmed, with Read More / Read Less to open and close them.
+      var more = el('button', { type: 'button', class: 'video-more', text: 'Read More', hidden: '' });
+      var open = false;
+      more.onclick = function () { open = !open; text.classList.toggle('is-clamped', !open); more.textContent = open ? 'Read Less' : 'Read More'; };
+      function measure() {
+        if (open) return;
+        text.classList.add('is-clamped');
+        more.hidden = text.scrollHeight <= text.clientHeight + 1;
+        if (more.hidden) text.classList.remove('is-clamped');
+      }
+      requestAnimationFrame(measure);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+      window.addEventListener('resize', measure);
+      return el('figure', { class: 'video-card' }, [el('div', { class: 'video-frame' }, [video, play]), el('figcaption', {}, [el('p', { class: 'pf-cap-title', text: v.title }), text, more])]);
     }));
   }
 
