@@ -8,7 +8,7 @@ Pages
   projects-tf-cornerstone.html  TF Cornerstone: floor plans, emails, print, blog posts
   projects-car-community.html   Car Community: posters, illustration, photography
   photography.html  Photography: 6-photo previews of each project
-  photography-personal-work.html, photography-art-documentary.html  Full projects
+  photography-personal-work.html, photography-art-documentary.html, photography-car-community.html  Full projects
   about.html        Short bio, experience and focus areas
   contact.html      Email and links
 

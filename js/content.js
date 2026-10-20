@@ -251,9 +251,9 @@ window.SITE = {
   }
 };
 
-// The Photography page also features the car photos, linking to the Car Community page.
+// The Photography page also features the car photos, with their own photography project page.
 (function (S) {
   var car = S.design.filter(function (c) { return c.id === 'car-community'; })[0];
   var photos = car && car.sections.filter(function (s) { return s.id === 'car-photography'; })[0];
-  if (photos) S.photography.sections.push({ id: 'car-community', title: 'Car Community', page: car.page, items: photos.items });
+  if (photos) S.photography.sections.push({ id: 'car-community', title: 'Car Community', summary: 'Photography from the car scene.', page: 'photography-car-community.html', items: photos.items });
 })(window.SITE);
