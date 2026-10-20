@@ -312,4 +312,4 @@ body * { cursor: inherit; }
 .view-more { margin: var(--space-6) 0 0; font-size: 14px; line-height: 20px; }
 .view-more a { color: var(--grey-400); text-decoration: none; }
 .view-more a:hover { color: var(--ink); }
-@media (max-width: 340px) { .site-nav.has-pill a { padding: 6px 3px; } }
+@media (max-width: 340px) { .site-nav.has-pill { padding: 4px; } .site-nav.has-pill a { padding: 6px 3px; } }
