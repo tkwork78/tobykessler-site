@@ -24,6 +24,10 @@ window.SITE = {
   intro: 'Designer and photographer in New York.',
   introPlace: 'New York',   // on the home page it spins as a blur, then lands here
   email: 'tobykessler.work@gmail.com',
+  resumeRequest: {   // Contact page button: opens a pre-filled email
+    subject: 'Resume Request',
+    body: 'Hi Toby,\n\nI came across your portfolio and would like to request a copy of your resume.\n\nName:\nCompany:\n\nThank you,\n'
+  },
   links: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/tobykessler/' }
   ],

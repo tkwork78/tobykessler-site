@@ -445,6 +445,11 @@
         if (!/^mailto:/.test(r[1])) { a.target = '_blank'; a.rel = 'noopener'; }
         return el('li', {}, [el('span', { class: 'label', text: r[0] }), a]);
       })));
+      if (S.email && S.resumeRequest) {
+        var m = S.resumeRequest;
+        var href = 'mailto:' + S.email + '?subject=' + encodeURIComponent(m.subject) + '&body=' + encodeURIComponent(m.body);
+        mount.appendChild(el('p', { class: 'resume-request' }, [el('a', { class: 'back-btn', href: href }, [document.createTextNode('Request Resume '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]));
+      }
     }
   };
 
