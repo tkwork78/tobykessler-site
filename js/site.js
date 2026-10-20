@@ -463,6 +463,24 @@
   document.querySelectorAll('[data-render]').forEach(function (m) {
     var r = renderers[m.getAttribute('data-render')]; if (r) r(m);
   });
+  // First visit to Home: a white loading screen with a spinner covers the page (class set by an inline script in
+  // the head, so nothing flashes), then lifts away once the page and its images have loaded.
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains('first-load')) return;
+    try { localStorage.setItem('tk-seen', '1'); } catch (e) {}
+    var done = false;
+    function reveal() {
+      if (done) return; done = true;
+      setTimeout(function () {
+        root.classList.add('is-revealed');
+        setTimeout(function () { document.dispatchEvent(new Event('tk:revealed')); }, 350);
+        setTimeout(function () { root.classList.remove('first-load', 'is-revealed'); }, 1000);
+      }, Math.max(0, 1200 - performance.now()));        // shown for at least a moment, so it never just flickers
+    }
+    if (document.readyState === 'complete') reveal(); else window.addEventListener('load', reveal);
+    setTimeout(reveal, 6000);                           // never hold the page longer than this on a slow connection
+  })();
   document.querySelectorAll('[data-site-intro]').forEach(function (n) {
     if (!S.intro) return;
     var place = S.introPlace, at = place ? S.intro.lastIndexOf(place) : -1;
@@ -483,15 +501,21 @@
     fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     // Once it lands, swap the reel for plain text so nothing can be clipped.
     function settle() { if (!reel.parentNode) return; n.replaceChild(document.createTextNode(place), reel); n.removeChild(n.querySelector('.spin-sr')); n.normalize(); }
-    strip.addEventListener('transitionend', settle); setTimeout(settle, 3500);
+    strip.addEventListener('transitionend', settle);
     var lh = parseFloat(getComputedStyle(n).lineHeight) || 24;
     reel.style.setProperty('--lh', lh + 'px');
     var end = 'translateY(-' + (words.length - 1) * lh + 'px)';
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { settle(); return; }
-    requestAnimationFrame(function () { requestAnimationFrame(function () {
-      reel.classList.add('is-spinning');
-      strip.style.transform = end;
-    }); });
+    function spin() {
+      setTimeout(settle, 3500);
+      requestAnimationFrame(function () { requestAnimationFrame(function () {
+        reel.classList.add('is-spinning');
+        strip.style.transform = end;
+      }); });
+    }
+    // on a first visit the reel waits until the loading screen lifts
+    if (document.documentElement.classList.contains('first-load')) document.addEventListener('tk:revealed', spin, { once: true });
+    else spin();
     window.addEventListener('resize', function () {   // keep it lined up if the text size changes
       lh = parseFloat(getComputedStyle(n).lineHeight) || lh;
       reel.style.setProperty('--lh', lh + 'px');
