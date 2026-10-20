@@ -15,6 +15,7 @@
   --space-8: 32px;
   --space-12: 48px;
   --radius-none: 0px;
+  --radius-pill: 999px;
   --font-sans: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
   --margin: var(--space-12);
   --max: 1440px;
@@ -55,10 +56,10 @@ a { color: inherit; }
 .site-nav a:hover { color: var(--ink); }
 .site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink); }
 .site-nav.has-pill { position: relative; gap: var(--space-2) 2px; }
-.site-nav.has-pill a { position: relative; z-index: 1; padding: 6px 14px; border: 0; border-radius: 999px; transition: color .3s ease; }
+.site-nav.has-pill a { position: relative; z-index: 1; padding: 6px 14px; border: 0; border-radius: var(--radius-pill); transition: color .3s ease; }
 .site-nav.has-pill a:hover { color: var(--ink); background: var(--grey-100); }
 .site-nav.has-pill a.is-on, .site-nav.has-pill a.is-on:hover { color: var(--paper); background: none; }
-.nav-pill { position: absolute; z-index: 0; left: 0; top: 0; border-radius: 999px; background: var(--grey-800); box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.08); pointer-events: none; }
+.nav-pill { position: absolute; z-index: 0; left: 0; top: 0; border-radius: var(--radius-pill); background: var(--grey-800); box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.08); pointer-events: none; }
 .site-nav.is-moving .nav-pill { transition: transform .32s cubic-bezier(.4,0,.2,1), width .32s cubic-bezier(.4,0,.2,1); }
 .site-nav.is-moving a.is-on { transition: color .2s ease .14s; }
 
@@ -113,7 +114,7 @@ main { padding-bottom: var(--space-12); }
 .pf-lb-figure { grid-column: 2; grid-row: 1; margin: 0; height: 100%; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .pf-lb-img { display: block; flex: 0 1 auto; min-height: 0; max-width: 100%; max-height: 100%; object-fit: contain; border-radius: var(--radius-none); }
 .pf-lb-cap { flex: none; text-align: center; max-width: 100%; }
-.pf-lb-btn { font: inherit; font-size: 14px; line-height: 20px; font-weight: 400; color: var(--ink); background: none; border: 0; border-radius: var(--radius-none); padding: var(--space-2); display: inline-flex; align-items: center; justify-content: center; }
+.pf-lb-btn { font: inherit; font-size: 14px; line-height: 20px; font-weight: 400; color: var(--ink); background: none; border: 0; border-radius: var(--radius-pill); padding: var(--space-2); display: inline-flex; align-items: center; justify-content: center; }
 .pf-lb-btn:hover { color: var(--grey-600); }
 .pf-lb-btn:disabled { color: var(--grey-400); }
 .pf-lb-nav { justify-self: center; width: 48px; height: 48px; padding: 0; }
@@ -167,10 +168,10 @@ main { padding-bottom: var(--space-12); }
 .roam-open { color: var(--grey-600); text-decoration: none; border-bottom: 1px solid var(--grey-200); }
 .roam-open:hover { color: var(--ink); border-bottom-color: var(--ink); }
 .landing-note { margin: 0; font-size: 20px; line-height: 28px; font-weight: 300; color: var(--ink); }
-.roam-roll { font: inherit; font-size: 18px; line-height: 24px; font-weight: 300; color: var(--paper); background: var(--ink); border: 0; border-radius: var(--radius-none); padding: var(--space-4) var(--space-6); display: inline-flex; align-items: center; gap: var(--space-4); white-space: nowrap; }
+.roam-roll { font: inherit; font-size: 18px; line-height: 24px; font-weight: 300; color: var(--paper); background: var(--ink); border: 0; border-radius: var(--radius-pill); padding: var(--space-4) var(--space-6); display: inline-flex; align-items: center; gap: var(--space-4); white-space: nowrap; }
 .roam-roll:hover { background: var(--grey-800); }
 .roam-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); }
-.roam-access { font-size: 18px; line-height: 24px; font-weight: 300; color: var(--ink); text-decoration: none; border: 1px solid var(--ink); padding: calc(var(--space-4) - 1px) var(--space-6); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.roam-access { font-size: 18px; line-height: 24px; font-weight: 300; color: var(--ink); text-decoration: none; border: 1px solid var(--ink); border-radius: var(--radius-pill); padding: calc(var(--space-4) - 1px) var(--space-6); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
 .roam-access:hover { background: var(--ink); color: var(--paper); }
 .roam-spin { display: none; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.25); border-top-color: var(--paper); border-right-color: var(--paper); border-radius: 50%; animation: roam-spin .8s linear infinite; }
 .roam-roll.is-loading .roam-spin { display: block; }
@@ -190,7 +191,7 @@ main { padding-bottom: var(--space-12); }
 .crumb a { text-decoration: none; border-bottom: 1px solid var(--grey-200); }
 .crumb a::after { content: " ↗"; }
 .crumb a:hover { color: var(--ink); border-bottom-color: var(--ink); }
-.ig-card { display: flex; flex-direction: column; gap: var(--space-2); max-width: 480px; padding: var(--space-6); border: 1px solid var(--grey-200); text-decoration: none; }
+.ig-card { display: flex; flex-direction: column; gap: var(--space-2); max-width: 480px; padding: var(--space-6); border: 1px solid var(--grey-200); border-radius: 24px; text-decoration: none; }
 .ig-card:hover { border-color: var(--ink); }
 .ig-handle { font-size: 20px; line-height: 26px; font-weight: 300; }
 .ig-posts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-6); align-items: start; }
@@ -239,7 +240,7 @@ body[data-ball] .site-footer { padding-bottom: var(--space-6); }
 .headline a:hover .go-arrow { transform: translate(3px, -3px); }
 .back { margin: 0 0 var(--space-6); }
 .back-bottom { margin: var(--space-6) 0 0; }
-.back-btn { display: inline-block; font-size: 14px; line-height: 20px; text-decoration: none; color: var(--ink); border: 1px solid var(--ink); padding: 8px 14px; }
+.back-btn { display: inline-block; font-size: 14px; line-height: 20px; text-decoration: none; color: var(--ink); border: 1px solid var(--ink); border-radius: var(--radius-pill); padding: 8px 14px; }
 .back-btn:hover { background: var(--ink); color: var(--paper); }
 
 /* Video cards (Artists In Focus) */
