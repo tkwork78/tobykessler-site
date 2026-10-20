@@ -139,6 +139,7 @@ window.SITE = {
           label: null,   // no label: it would repeat the heading
           title: 'Photography',
           preview: false,  // Design page and home show the design work instead
+          show: 3, more: 'photography-car-community.html',   // first three photos here, the rest on the photography page
           items: [
             { src: 'images/car%20community/photography/lightingfinalmiata2KESSLER.jpg', width: 2400, height: 1714, alt: 'Red Miata at night under lit fencing' },
             { src: 'images/car%20community/photography/_K8A1249.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 parked by a green fence' },

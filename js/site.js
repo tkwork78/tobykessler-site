@@ -394,7 +394,10 @@
       var sub = document.querySelector('[data-subnav]');
       (c.sections || []).forEach(function (s) {
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
-        mount.appendChild(el('section', { class: 'section', id: s.id }, [(s.zoom && s.items ? s.items.forEach(function (it) { it.zoom = true; }) : null, sectionHead(s.label === null ? null : (s.label || 'Design Samples'), s.title)), s.videos ? videoGrid(s.videos) : s.embeds ? igEmbeds(s.embeds) : grid(s.items), s.credits ? el('p', { class: 'credits', text: s.credits }) : null]));
+        mount.appendChild(el('section', { class: 'section', id: s.id }, [(s.zoom && s.items ? s.items.forEach(function (it) { it.zoom = true; }) : null, sectionHead(s.label === null ? null : (s.label || 'Design Samples'), s.title, null, s.more ? { href: s.more, text: 'View More' } : null)),
+          s.videos ? videoGrid(s.videos) : s.embeds ? igEmbeds(s.embeds) : s.show ? grid(s.items.slice(0, s.show), { href: s.more }) : grid(s.items),
+          s.more ? el('p', { class: 'view-more' }, [el('a', { href: s.more }, [document.createTextNode('View More '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : null,
+          s.credits ? el('p', { class: 'credits', text: s.credits }) : null]));
       });
       if (c.blog) {
         if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog Posts' }));
