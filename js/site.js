@@ -411,7 +411,8 @@
         if (sub) sub.appendChild(el('a', { href: sec.page || '#' + sec.id, text: sec.title }));
         mount.appendChild(el('section', { class: 'section', id: sec.id }, [
           sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View project' } : null, sec.page),
-          sec.page ? grid(sec.items.slice(0, 6), { href: sec.page }) : grid(sec.items)
+          sec.page ? grid(sec.items.slice(0, 6), { href: sec.page }) : grid(sec.items),
+          sec.page ? el('p', { class: 'view-more' }, [el('a', { href: sec.page }, [document.createTextNode('View more '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : null
         ]));
       });
     },
