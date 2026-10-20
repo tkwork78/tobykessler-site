@@ -16,11 +16,16 @@
   var held = null, running = false, last = 0;
   var grow = 1, born = 0;                          // the ball swells to full size as it leaves the pill
 
-  // Surfaces the ball can land on from above: the line under the title, and the footer line.
+  // Surfaces the ball can land on from above: the line under the title, the list lines, and the footer line.
   function surfaces() {
     var sy = window.scrollY, list = [];
     var ledge = document.querySelector('main .section');
     if (ledge) { var a = ledge.getBoundingClientRect(); list.push({ y: a.top + sy, x1: a.left, x2: a.right }); }
+    // every line in the Selected Work and Focus lists: the top of each list and the line under each row
+    document.querySelectorAll('.about-list').forEach(function (ul) {
+      var u = ul.getBoundingClientRect(); list.push({ y: u.top + sy, x1: u.left, x2: u.right });
+      Array.prototype.forEach.call(ul.children, function (li) { var b = li.getBoundingClientRect(); list.push({ y: b.bottom + sy, x1: b.left, x2: b.right }); });
+    });
     var foot = document.querySelector('.site-footer .wrap');
     var f = foot ? foot.getBoundingClientRect().top + sy : document.body.scrollHeight;
     list.push({ y: f, x1: -1e4, x2: 1e4 });
