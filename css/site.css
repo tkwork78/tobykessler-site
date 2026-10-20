@@ -334,3 +334,7 @@ body * { cursor: inherit; }
 }
 @media (max-width: 400px) { .back-row .opt { display: none; } .back-row .back-btn { font-size: 12px; padding: 7px 10px; } }
 @media (max-width: 340px) { .back-row .back-btn { font-size: 11px; padding: 6px 9px; } }
+/* Bottom-of-page buttons use full-size horizontal arrows (z's request) */
+.h-arrow { display: inline-block; font-size: 1.15em; line-height: 1; transition: transform .25s ease; }
+.back-btn:hover .h-back { transform: translateX(-3px); }
+.back-btn:hover .h-next { transform: translateX(3px); }
