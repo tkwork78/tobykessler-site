@@ -46,7 +46,8 @@ a { color: inherit; }
 }
 
 /* Header */
-.site-header { padding: var(--space-6) 0; position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .72); -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%); transition: opacity .35s ease, visibility 0s linear 0s; }
+.site-header { padding: var(--space-6) 0; position: sticky; top: 0; z-index: 50; transition: opacity .35s ease, visibility 0s linear 0s; }
+.site-header::before { content: ''; position: absolute; z-index: -1; left: 0; right: 0; top: 0; bottom: -40px; pointer-events: none; background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .6) 60%, rgba(255, 255, 255, 0)); -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%); -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); }
 .site-header.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .35s ease, visibility 0s linear .35s; }
 .site-header .wrap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-2) var(--space-6); }
 .site-name { font-size: 20px; line-height: 26px; font-weight: 700; text-decoration: none; }
