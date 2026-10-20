@@ -262,7 +262,7 @@ body[data-ball] .site-footer { padding-bottom: var(--space-6); }
 .video-media { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: contain; background: var(--grey-100); }   /* same frame for every video, nothing cropped */
 .video-media.is-fill { object-fit: cover; }   /* a shorter video fills the frame as a preview, then plays at its own shape (Judith Weller) */
 .video-card figcaption { margin-top: var(--space-2); }
-.video-text { margin: var(--space-2) 0 0; font-size: 14px; line-height: 20px; font-weight: 300; color: var(--grey-600); }
+.video-text { margin: var(--space-2) 0 0; font-size: 14px; line-height: 20px; font-weight: 300; color: var(--grey-600); white-space: pre-line; }   /* blank lines in a caption become paragraph breaks */
 @media (max-width: 1100px) { .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .video-grid { grid-template-columns: minmax(0, 1fr); } }
 .credits { margin: var(--space-6) 0 0; font-size: 14px; line-height: 20px; color: var(--grey-600); }
