@@ -183,12 +183,10 @@ main { padding-bottom: var(--space-12); }
 .roam-open { color: var(--grey-600); text-decoration: none; border-bottom: 1px solid var(--grey-200); }
 .roam-open:hover { color: var(--ink); border-bottom-color: var(--ink); }
 .landing-note { margin: 0; font-size: 20px; line-height: 28px; font-weight: 300; color: var(--ink); }
-.roam-roll { font: inherit; font-size: 18px; line-height: 24px; font-weight: 300; color: var(--paper); background: var(--ink); border: 0; border-radius: var(--radius-pill); padding: var(--space-4) var(--space-6); display: inline-flex; align-items: center; gap: var(--space-4); white-space: nowrap; }
-.roam-roll:hover { background: var(--grey-800); }
+.roam-roll { font: inherit; font-size: 18px; line-height: 24px; font-weight: 300; color: var(--ink); border-radius: var(--radius-pill); padding: calc(var(--space-4) - 1px) var(--space-6); display: inline-flex; align-items: center; gap: var(--space-4); white-space: nowrap; }
 .roam-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); }
-.roam-access { font-size: 18px; line-height: 24px; font-weight: 300; color: var(--ink); text-decoration: none; border: 1px solid var(--ink); border-radius: var(--radius-pill); padding: calc(var(--space-4) - 1px) var(--space-6); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
-.roam-access:hover { background: var(--ink); color: var(--paper); }
-.roam-spin { display: none; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.25); border-top-color: var(--paper); border-right-color: var(--paper); border-radius: 50%; animation: roam-spin .8s linear infinite; }
+.roam-access { font-size: 18px; line-height: 24px; font-weight: 300; color: var(--ink); text-decoration: none; border-radius: var(--radius-pill); padding: calc(var(--space-4) - 1px) var(--space-6); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.roam-spin { display: none; width: 18px; height: 18px; border: 2px solid rgba(0,0,0,.15); border-top-color: currentColor; border-right-color: currentColor; border-radius: 50%; animation: roam-spin .8s linear infinite; }
 .roam-roll.is-loading .roam-spin { display: block; }
 @keyframes roam-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .roam-spin { animation-duration: 2s; } }
@@ -255,8 +253,7 @@ body[data-ball] .site-footer { padding-bottom: var(--space-6); }
 .headline a:hover .go-arrow { transform: translate(3px, -3px); }
 .back { margin: 0 0 var(--space-6); }
 .back-bottom { margin: var(--space-6) 0 0; }
-.back-btn { display: inline-block; font-size: 14px; line-height: 20px; text-decoration: none; color: var(--ink); border: 1px solid var(--ink); border-radius: var(--radius-pill); padding: 8px 14px; }
-.back-btn:hover { background: var(--ink); color: var(--paper); }
+.back-btn { display: inline-block; font-size: 14px; line-height: 20px; text-decoration: none; color: var(--ink); border-radius: var(--radius-pill); padding: 8px 14px; }
 
 /* Video cards (Artists In Focus) */
 .video-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-6); align-items: start; }
@@ -308,8 +305,7 @@ body * { cursor: inherit; }
 .leaf-face .book-page { box-shadow: 0 1px 10px rgba(0, 0, 0, .18); }
 .leaf-back { transform: rotateY(180deg); }
 .book-leaf.is-whole .leaf-back { visibility: hidden; }
-.booklet-arrow { position: relative; z-index: 3; flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--ink); background: var(--white, #fff); color: var(--ink); font: inherit; font-size: 18px; line-height: 1; display: flex; align-items: center; justify-content: center; cursor: inherit; transition: background .2s ease, color .2s ease; }
-.booklet-arrow:not(:disabled):hover { background: var(--ink); color: #fff; }
+.booklet-arrow { position: relative; z-index: 3; flex: none; width: 44px; height: 44px; border-radius: 50%; color: var(--ink); font: inherit; font-size: 18px; line-height: 1; display: flex; align-items: center; justify-content: center; cursor: inherit; transition: background .2s ease, color .2s ease; }
 .booklet-arrow:disabled { opacity: .25; }
 .booklet-count { margin: var(--space-3, 12px) 0 0; text-align: center; font-size: 14px; line-height: 20px; color: var(--grey-600); }
 @media (max-width: 700px) { .booklet-stage { gap: 8px; padding: var(--space-3, 12px) 8px; } .booklet-arrow { width: 36px; height: 36px; font-size: 16px; } }
@@ -318,3 +314,13 @@ body * { cursor: inherit; }
 .view-more a { color: var(--grey-400); text-decoration: none; }
 .view-more a:hover { color: var(--ink); }
 @media (max-width: 340px) { .site-nav.has-pill { padding: 4px; } .site-nav.has-pill a { padding: 6px 3px; } }
+
+/* Every pill button shares the menu's liquid glass look and turns black on hover */
+.back-btn, .roam-roll, .roam-access, .booklet-arrow {
+  border: 1px solid rgba(255, 255, 255, .7);
+  background: linear-gradient(135deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .5) 45%, rgba(255, 255, 255, .7));
+  -webkit-backdrop-filter: blur(3px) saturate(180%) brightness(1.06); backdrop-filter: blur(3px) saturate(180%) brightness(1.06);
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .95), inset -1px -1px 0 rgba(255, 255, 255, .5), inset 0 0 14px rgba(255, 255, 255, .45), 0 4px 16px rgba(0, 0, 0, .1), 0 0 0 .5px rgba(0, 0, 0, .1);
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.back-btn:hover, .roam-roll:hover, .roam-access:hover, .booklet-arrow:not(:disabled):hover { background: var(--ink); color: var(--paper); border-color: var(--ink); box-shadow: 0 4px 16px rgba(0, 0, 0, .18); }
