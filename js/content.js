@@ -109,7 +109,7 @@ window.SITE = {
       //   { title: 'Post Title', meta: 'Category', url: 'https://...', image: 'images/tf-cornerstone/blog/post.jpg' },
       // image is optional; without it the card shows a plain panel.
       blogLabel: 'Copywriting, Web Design',
-      blogSummary: 'Copywriting for the TF Cornerstone blog using HTML and WordPress as well as utilizing SEO best practices.',
+      blogSummary: 'Copywriting for the TF Cornerstone blog using HTML and WordPress, while incorporating SEO best practices.',
       blog: [
         { title: 'How To Take The NYC Ferry From Long Island City And Hunter’s Point South', meta: 'Living In NYC', url: 'https://tfc.com/blog/living-in-nyc/how-to-take-the-nyc-ferry-long-island-city-queens', image: 'images/tf-cornerstone/blog%20previews/How%20to%20Take%20the%20NYC%20Ferry%20from%20Long%20Island%20City%20and%20Hunter%27s%20Point%20South.jpeg' },
         { title: 'Explore The Amenities At Malt Drive', meta: 'Apartment Hunt Guide', url: 'https://tfc.com/blog/nyc-apartment-hunt-guide/explore-the-amenities-at-malt-drive', image: 'images/tf-cornerstone/blog%20previews/malt-drive-ammenity-blog-cover.jpeg' },
