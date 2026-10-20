@@ -51,16 +51,18 @@ a { color: inherit; }
 /* Liquid glass: one clear pill holding the name and the menu, bending the page behind it, with light catching the rim */
 .site-header .wrap { position: relative; }
 .site-header .wrap::before {
-  content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(var(--margin) - 18px); right: calc(var(--margin) - 5px); pointer-events: none;
+  content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; opacity: 0; transition: opacity .3s ease; left: calc(var(--margin) - 18px); right: calc(var(--margin) - 5px); pointer-events: none;
   border-radius: var(--radius-pill);
   background: linear-gradient(135deg, rgba(255, 255, 255, .66), rgba(255, 255, 255, .42) 45%, rgba(255, 255, 255, .58));
   -webkit-backdrop-filter: blur(3px) saturate(180%) brightness(1.06); backdrop-filter: blur(3px) saturate(180%) brightness(1.06);
   box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .95), inset -1px -1px 0 rgba(255, 255, 255, .5), inset 0 0 18px rgba(255, 255, 255, .45), inset 0 -8px 16px rgba(0, 0, 0, .03), 0 6px 22px rgba(0, 0, 0, .12), 0 0 0 .5px rgba(0, 0, 0, .08);
 }
+.site-header.is-stuck .wrap::before { opacity: 1; }
+.site-header.is-stuck.is-home .wrap { align-items: center; }
 .site-header.lg-refract .wrap::before { backdrop-filter: url(#lg-refract) blur(2.5px) saturate(180%) brightness(1.06); }
 .site-nav.has-pill { padding: 5px; }
 .site-header .site-name, .site-header .site-title { padding: 8px 18px; margin-left: -18px; }
-@media (max-width: 720px) { .site-header .wrap::before { border-radius: 26px; left: calc(var(--margin) - 12px); right: calc(var(--margin) - 12px); } .site-header .site-name, .site-header .site-title { padding: 8px 12px; margin-left: -12px; } }
+@media (max-width: 720px) { .site-header .wrap::before { border-radius: 26px; left: calc(var(--margin) - 12px); right: calc(var(--margin) - 12px); top: -4px; bottom: -7px; } .site-header .site-name, .site-header .site-title { padding: 8px 12px; margin-left: -12px; } }
 .site-header.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .35s ease, visibility 0s linear .35s; }
 .site-header .wrap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-2) var(--space-6); }
 .site-name { font-size: 20px; line-height: 26px; font-weight: 700; text-decoration: none; }

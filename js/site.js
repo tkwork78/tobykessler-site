@@ -530,6 +530,8 @@
       if (dy > 0) { down += dy; if (down > 120) h.classList.add('is-hidden'); }
       else if (dy < -6) { down = 0; h.classList.remove('is-hidden'); }
     }
+    update();
+    addEventListener('pageshow', update);
     addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
     h.addEventListener('focusin', function () { h.classList.remove('is-hidden'); });
   });
