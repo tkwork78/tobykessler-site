@@ -1,5 +1,5 @@
 /* A paper plane on the Contact page. It flies out from behind the dark Contact pill in the menu, left and down
-   across the page with a loop-the-loop, trailing a dotted line, and lands on the footer line. */
+   across the page with a loop-the-loop, with a short dotted trail behind it, and lands on the footer line. */
 (function () {
   if (!document.body.hasAttribute('data-plane')) return;
 
@@ -36,13 +36,17 @@
     ' A' + r + ' ' + r + ' 0 0 1 ' + lx + ' ' + (ly + r) +
     ' C' + (lx - r * 3) + ' ' + (ly + r) + ' ' + (ex + (lx - ex) * 0.6) + ' ' + ey + ' ' + ex + ' ' + ey;
 
-  // the dotted trail is revealed behind the plane through a mask that draws along the same path
+  // a short stretch of dotted trail just behind the plane, shown through a mask that slides along the same path
   var mask = make('mask', { id: 'plane-reveal', maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: W, height: H }, make('defs', {}, svg));
   var reveal = make('path', { d: d, fill: 'none', stroke: '#fff', 'stroke-width': 8 }, mask);
   var trail = make('path', { d: d, class: 'plane-trail', mask: 'url(#plane-reveal)' }, svg);
   var L = trail.getTotalLength();
-  reveal.setAttribute('stroke-dasharray', L + ' ' + L);
-  reveal.setAttribute('stroke-dashoffset', L);
+  var T = small ? 90 : 140;                      // trail length behind the plane
+  function tail(from, to) {
+    reveal.setAttribute('stroke-dasharray', Math.max(0.01, to - from) + ' ' + (L * 2));
+    reveal.setAttribute('stroke-dashoffset', -from);
+  }
+  tail(0, 0);
 
   // a paper dart seen from above, pointing right; it is turned to follow the path
   var plane = make('g', {}, svg);
@@ -63,10 +67,17 @@
     var k = Math.min(1, (t - t0) / D);
     var e = 0.5 * k + 0.25 * (1 - Math.cos(Math.PI * k));   // eases in and out, but keeps moving
     var len = L * e;
-    reveal.setAttribute('stroke-dashoffset', L - len);
+    tail(Math.max(0, len - T), len);
     at(len, Math.min(1, 0.4 + k * 3));
     if (k < 1) return requestAnimationFrame(fly);
-    setTimeout(function () { trail.classList.add('is-gone'); }, 1500);
+    // once it lands the trail catches up and tucks in behind it
+    var c0;
+    (function tuck(t2) {
+      if (!c0) c0 = t2;
+      var q = Math.min(1, (t2 - c0) / 700);
+      tail(L - T * (1 - q) * (1 - q), L);
+      if (q < 1) requestAnimationFrame(tuck); else trail.style.display = 'none';
+    })(performance.now());
   }
   at(0, 0.4);
   setTimeout(function () { requestAnimationFrame(fly); }, 300);
