@@ -45,7 +45,9 @@ a { color: inherit; }
 }
 
 /* Header */
-.site-header { padding: var(--space-6) 0; }
+.site-header { padding: var(--space-6) 0; position: sticky; top: 0; z-index: 50; background: var(--paper); transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s ease; }
+.site-header.is-stuck { box-shadow: 0 1px 0 var(--grey-200); }
+.site-header.is-hidden { transform: translateY(-100%); box-shadow: none; }
 .site-header .wrap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-2) var(--space-6); }
 .site-name { font-size: 20px; line-height: 26px; font-weight: 700; text-decoration: none; }
 .site-nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); }
