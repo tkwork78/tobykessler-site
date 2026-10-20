@@ -516,10 +516,16 @@
   });
   // Header stays pinned to the top, holds for a short scroll down, then fades away; any scroll up brings it back.
   document.querySelectorAll('.site-header').forEach(function (h) {
+    // Chromium can bend the page through an SVG filter; other browsers keep the clear glass without the bend.
+    if (window.chrome && !document.getElementById('lg-refract')) {
+      document.body.insertAdjacentHTML('beforeend', '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="lg-refract" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.02" numOctaves="2" seed="7" result="n"/><feGaussianBlur in="n" stdDeviation="2" result="m"/><feDisplacementMap in="SourceGraphic" in2="m" scale="14" xChannelSelector="R" yChannelSelector="G"/></filter></svg>');
+      h.classList.add('lg-refract');
+    }
     var last = scrollY, down = 0, ticking = false;
     function update() {
       ticking = false;
       var y = Math.max(0, scrollY), dy = y - last; last = y;
+      h.classList.toggle('is-stuck', y > 4);
       if (y < h.offsetHeight) { h.classList.remove('is-hidden'); down = 0; return; }
       if (dy > 0) { down += dy; if (down > 120) h.classList.add('is-hidden'); }
       else if (dy < -6) { down = 0; h.classList.remove('is-hidden'); }
