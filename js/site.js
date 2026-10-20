@@ -379,7 +379,7 @@
         if (sub) sub.appendChild(el('a', { href: c.page || '#' + c.id, text: c.company }));
         mount.appendChild(el('section', { class: 'section', id: c.id }, c.page ? [
           sectionHead(c.tags || null, c.company, c.summaryOnPageOnly ? null : c.summary, { href: c.page, text: 'View Project' }, c.page),
-          grid(pickPhotos(itemsOf(c), c.designPreview) || previewOf(c), { maxRows: 1, scale: c.designScale, anchor: 'top', href: c.page })
+          grid(c.booklet ? homePreviewOf(c) : pickPhotos(itemsOf(c), c.designPreview) || previewOf(c), { maxRows: 1, scale: c.designScale, anchor: 'top', href: c.page })
         ] : [
           sectionHead(c.tags || null, c.company, c.summary),
           c.links ? noteOf(c) : c.booklet ? booklet(c.booklet) : grid(c.items)
@@ -399,6 +399,9 @@
           s.more ? el('p', { class: 'view-more' }, [el('a', { href: s.more }, [document.createTextNode('View More '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : null,
           s.credits ? el('p', { class: 'credits', text: s.credits }) : null]));
       });
+      if (!c.sections && (c.booklet || (c.items && c.items.length))) {
+        mount.appendChild(el('section', { class: 'section' }, [c.booklet ? booklet(c.booklet) : grid(c.items)]));
+      }
       if (c.blog) {
         if (sub) sub.appendChild(el('a', { href: '#blog', text: 'Blog Posts' }));
         mount.appendChild(blogSection(c.blog, c.blogSummary, c.blogLabel));

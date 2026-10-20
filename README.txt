@@ -7,6 +7,9 @@ Pages
   projects.html     Projects: TF Cornerstone, Car Community, Logos, Triton (text only)
   projects-tf-cornerstone.html  TF Cornerstone: floor plans, emails, print, blog posts
   projects-car-community.html   Car Community: posters, illustration, photography
+  projects-artillery.html       Artillery Magazine: media kit booklet
+  projects-logos.html           Logos: logo and identity work
+                                Next Project order: TF Cornerstone, Car Community, Artillery, Logos, back to TF Cornerstone
   photography.html  Photography: 6-photo previews of each project
   photography-personal-work.html, photography-art-documentary.html, photography-car-community.html  Full projects
   about.html        Short bio, experience and focus areas

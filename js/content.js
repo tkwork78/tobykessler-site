@@ -164,6 +164,7 @@ window.SITE = {
     {
       id: 'logos',
       company: 'Logos',
+      page: 'projects-logos.html',
       collection: true,   // a set of work, not a client; left out of the About list
       homeContain: true,  // on Home, logos shrink to fit their boxes instead of being trimmed
       summary: 'Logo and identity work.',
@@ -187,8 +188,9 @@ window.SITE = {
     {
       id: 'artillery',
       company: 'Artillery Magazine',
+      page: 'projects-artillery.html',
       summary: 'Media kit for Artillery, a contemporary art magazine based in Los Angeles.',
-      // Pages are read as a booklet on the Design page: cover alone, then two-page spreads.
+      // Pages are read as a booklet on its project page: cover alone, then two-page spreads.
       booklet: { title: 'Media Kit', width: 1254, height: 1500, pages: ['images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_01.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_02.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_03.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_04.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_05.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_06.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_07.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_08.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_09.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_10.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_11.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_12.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_13.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_14.jpg?v=2', 'images/artiller%20magazine/media%20kit/ARTILLERY_MEDIA_KIT_FINAL_JPEG_Page_15.jpg?v=2'] },
       items: []
     }
