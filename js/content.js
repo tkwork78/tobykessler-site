@@ -32,7 +32,7 @@ window.SITE = {
     bio: [
       'Toby Kessler is a marketing and proposal strategist specializing in construction and real estate, experienced in content development and optimization, and formally trained in photography and design, bringing a creative, solution-driven approach that consistently helps win clients and deliver results.'
     ],
-    skills: ['Brand & marketing design', 'Proposals & RFP packages', 'Web design', 'Tradeshow & environmental', 'Social content', 'Photography']
+    skills: ['Web design', 'Photography', 'Videography', 'Social content', 'Brand & marketing design', 'Proposals & RFP packages', 'Tradeshow & environmental']
   },
 
   designOrder: ['tf-cornerstone', 'triton', 'artillery', 'car-community', 'logos'],   // order on the Design page

@@ -216,7 +216,7 @@ body.fit-window main { flex: 1 0 auto; padding-bottom: var(--space-6); }
 body[data-ball] .page-intro { padding: var(--space-8) 0 var(--space-6); }
 body[data-ball] main .section { padding: var(--space-6) 0; }
 body[data-ball] .about-list { margin-bottom: var(--space-6); }
-body[data-ball] .about-list li { padding: 6px 0; }
+body[data-ball] .about-list li { padding: 5px 0; }
 body[data-ball] .site-footer { padding-bottom: var(--space-6); }
 .headline a { color: inherit; text-decoration: none; }
 .go-arrow { display: inline-block; font-size: .75em; vertical-align: .2em; font-weight: 300; transition: transform .25s ease; }
