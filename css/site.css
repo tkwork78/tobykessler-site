@@ -325,3 +325,6 @@ body * { cursor: inherit; }
   transition: background .2s ease, color .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 .back-btn:hover, .roam-roll:hover, .roam-access:hover, .booklet-arrow:not(:disabled):hover { background: var(--ink); color: var(--paper); border-color: var(--ink); box-shadow: 0 4px 16px rgba(0, 0, 0, .18); }
+.back-row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+.next-btn { margin-left: auto; }
+.next-btn:hover .go-arrow { transform: translate(3px, -3px); }
