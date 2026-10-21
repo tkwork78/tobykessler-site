@@ -398,3 +398,8 @@ html.first-load.is-revealed body::after { opacity: 0; }
 .roam-pass.is-wrong { animation: roam-shake .4s ease; }
 @keyframes roam-shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.roam-pass.is-red, .roam-pass.is-red:hover, .roam-pass.is-red:focus-within { background: rgba(225, 45, 45, .12); border-color: #e12d2d; box-shadow: 0 0 0 1px #e12d2d, 0 4px 16px rgba(225, 45, 45, .18); transition: background .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.roam-pass.is-red input::placeholder, .roam-pass.is-red button { color: #c81e1e; }
+.roam-pass.is-locked { opacity: .6; }
+.roam-pass.is-locked input { width: 280px; }   /* room for the lock message */
+.roam-pass.is-locked button:hover { background: none; color: var(--ink); }

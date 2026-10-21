@@ -63,13 +63,41 @@
   btn.addEventListener('click', roll);
   roll();
 
-  // Password box: the right word opens the full site. This only keeps casual visitors on this page; it is not real security.
+  // Password box: the right word opens the full site. A wrong word turns the box red for 2 seconds; after 5 wrong
+  // tries it locks for an hour. All of this lives in this browser only, so it is not real security.
   var pass = document.querySelector('[data-pass]');
-  if (pass) pass.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var input = pass.querySelector('input'), word = input.value.trim().toLowerCase();
-    if (word && btoa(unescape(encodeURIComponent(word))) === 'd2VsY29tZQ==') { location.href = 'home.html'; return; }
-    input.value = ''; input.placeholder = 'Try Again';
-    pass.classList.remove('is-wrong'); void pass.offsetWidth; pass.classList.add('is-wrong');
-  });
+  if (pass) (function () {
+    var input = pass.querySelector('input'), btn = pass.querySelector('button');
+    var TRIES = 5, LOCK = 60 * 60 * 1000, redTimer, lockTimer;
+    function get(k) { try { return parseInt(localStorage.getItem(k), 10) || 0; } catch (e) { return 0; } }
+    function set(k, v) { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch (e) {} }
+    function locked() {
+      var left = get('tk-pass-lock') - Date.now();
+      clearTimeout(lockTimer);
+      if (left <= 0) {
+        if (get('tk-pass-lock')) { set('tk-pass-lock', 0); set('tk-pass-fails', 0); }
+        input.disabled = btn.disabled = false; pass.classList.remove('is-locked');
+        if (input.placeholder.indexOf('Locked') === 0) input.placeholder = 'Password';
+        return false;
+      }
+      var mins = Math.ceil(left / 60000);
+      input.value = ''; input.disabled = btn.disabled = true; pass.classList.add('is-locked');
+      input.placeholder = 'Locked, Try Again In ' + mins + (mins === 1 ? ' Minute' : ' Minutes');
+      lockTimer = setTimeout(locked, Math.min(left, (left % 60000) || 60000));
+      return true;
+    }
+    locked();
+    pass.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (locked()) return;
+      var word = input.value.trim().toLowerCase();
+      if (word && btoa(unescape(encodeURIComponent(word))) === 'd2VsY29tZQ==') { set('tk-pass-fails', 0); location.href = 'home.html'; return; }
+      var fails = get('tk-pass-fails') + 1;
+      set('tk-pass-fails', fails);
+      input.value = ''; input.placeholder = 'Try Again';
+      pass.classList.remove('is-wrong'); void pass.offsetWidth; pass.classList.add('is-wrong', 'is-red');
+      clearTimeout(redTimer); redTimer = setTimeout(function () { pass.classList.remove('is-red'); }, 2000);
+      if (fails >= TRIES) { set('tk-pass-lock', Date.now() + LOCK); setTimeout(locked, 400); }
+    });
+  })();
 })();
