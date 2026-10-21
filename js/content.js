@@ -21,7 +21,7 @@
 */
 window.SITE = {
   name: 'Toby Kessler',
-  intro: 'Designer and photographer in New York.',
+  intro: 'Creative strategist in New York.',
   introPlace: 'New York',   // on the home page it spins as a blur, then lands here
   email: 'tobykessler.work@gmail.com',
   resumeRequest: {   // Contact page button: opens a pre-filled email
