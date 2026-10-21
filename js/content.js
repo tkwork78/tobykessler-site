@@ -89,6 +89,7 @@ window.SITE = {
         },
         {
           id: 'email-templates',
+          summary: 'At TF Cornerstone, each property has its own designated branding which I helped develop, each email template follows this specific branding and highlights the property’s unique features and characteristics as part of the broader project branding.',
           full: true,   // show whole emails, no cropping
           zoom: true,   // click in the lightbox to zoom in and scroll
           title: 'Email Templates',
