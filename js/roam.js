@@ -62,4 +62,14 @@
   }
   btn.addEventListener('click', roll);
   roll();
+
+  // Password box: the right word opens the full site. This only keeps casual visitors on this page; it is not real security.
+  var pass = document.querySelector('[data-pass]');
+  if (pass) pass.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var input = pass.querySelector('input'), word = input.value.trim().toLowerCase();
+    if (word && btoa(unescape(encodeURIComponent(word))) === 'd2VsY29tZQ==') { location.href = 'home.html'; return; }
+    input.value = ''; input.placeholder = 'Try Again';
+    pass.classList.remove('is-wrong'); void pass.offsetWidth; pass.classList.add('is-wrong');
+  });
 })();

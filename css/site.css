@@ -386,3 +386,15 @@ html.first-load.is-revealed body::after { opacity: 0; }
 .oops-title { margin: 0 0 .12em; font-size: clamp(120px, 24vw, 280px); line-height: 1; font-weight: 300; letter-spacing: -.04em; }
 .oops .lead { margin-top: var(--space-4); }
 .oops .back { margin-top: var(--space-6); }
+
+/* Landing page password box: a glass pill holding the field and an arrow button (js/roam.js) */
+.roam-pass { padding: 0 0 0 var(--space-6); gap: 0; }
+.roam-pass:hover { background: linear-gradient(135deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .5) 45%, rgba(255, 255, 255, .7)); color: var(--ink); border-color: rgba(255, 255, 255, .7); }
+.roam-pass input { width: 150px; min-width: 0; flex: 1; padding: calc(var(--space-4) - 1px) 0; border: 0; background: none; outline: none; font: inherit; color: var(--ink); }
+.roam-pass input::placeholder { color: var(--grey-600); opacity: 1; }
+.roam-pass button { flex: none; display: flex; align-items: center; justify-content: center; width: 48px; align-self: stretch; padding: 0; border: 0; border-radius: var(--radius-pill); background: none; color: var(--ink); font: inherit; transition: background .2s ease, color .2s ease; }
+.roam-pass button:hover { background: var(--ink); color: var(--paper); }
+.roam-pass:focus-within { box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .95), 0 4px 16px rgba(0, 0, 0, .1), 0 0 0 1px var(--ink); }
+.roam-pass.is-wrong { animation: roam-shake .4s ease; }
+@keyframes roam-shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
