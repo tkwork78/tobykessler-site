@@ -381,3 +381,17 @@ html.first-load.is-revealed body::after { opacity: 0; }
 @media (max-width: 720px) { .yt-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); } }
 .yt-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--grey-100); }
 .yt-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* 404: a big Oops, a way home, and a game of snake (js/snake.js) */
+.oops-title { margin: 0 0 .12em; font-size: clamp(120px, 24vw, 280px); line-height: 1; font-weight: 300; letter-spacing: -.04em; }
+.oops .lead { margin-top: var(--space-4); }
+.oops .back { margin-top: var(--space-6); }
+.snake-bar { display: flex; gap: var(--space-6); margin-bottom: var(--space-3, 12px); }
+.snake-score { margin: 0; font-size: 14px; line-height: 20px; color: var(--grey-600); }
+.snake-score b { color: var(--ink); font-weight: 700; margin-left: 4px; }
+.snake-board { position: relative; max-width: 800px; touch-action: none; }
+.snake-board canvas { display: block; width: 100%; height: auto; background: var(--grey-100); }
+.snake-overlay { position: absolute; inset: 0; background: rgba(242, 242, 242, .72); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-4); }
+.snake-overlay[hidden] { display: none; }
+.snake-msg { margin: 0; font-size: 32px; line-height: 36px; font-weight: 300; }
+.snake-msg:empty { display: none; }
