@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap">
   <link rel="stylesheet" href="/css/site.css">
 </head>
-<body>
+<body class="fit-window">
   <header class="site-header">
     <div class="wrap">
       <a class="site-name" href="/home.html">Toby Kessler</a>
@@ -25,14 +25,6 @@
       <p class="lead">That page doesn't exist.</p>
       <p class="back"><a class="back-btn" href="/home.html"><span class="h-arrow h-back" aria-hidden="true">←</span> Back To Home</a></p>
     </div>
-    <section class="section snake" aria-label="Snake game">
-      <div class="section-head"><div class="text"><h2 class="headline">Play Snake</h2><p class="summary">Arrow keys or WASD on a keyboard, swipe on a phone. Space to pause.</p></div></div>
-      <div class="snake-bar"><p class="snake-score">Score <b data-snake-score>0</b></p><p class="snake-score">Best <b data-snake-best>0</b></p></div>
-      <div class="snake-board">
-        <canvas data-snake width="800" height="560"></canvas>
-        <div class="snake-overlay" data-snake-overlay><p class="snake-msg" data-snake-msg></p><button type="button" class="back-btn" data-snake-start>Start</button></div>
-      </div>
-    </section>
   </div>
   </main>
   <footer class="site-footer">
@@ -43,6 +35,5 @@
   </footer>
   <script src="/js/content.js"></script>
   <script src="/js/site.js"></script>
-  <script src="/js/snake.js"></script>
 </body>
 </html>
