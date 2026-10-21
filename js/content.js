@@ -81,7 +81,7 @@ window.SITE = {
           id: 'home-tours',
           label: 'Video',
           title: 'Home Tours',
-          summary: 'The Home Tour series reimagined the traditional real estate video tour, turning property walkthroughs into engaging YouTube content. Rather than simply showcasing rooms and amenities, the videos gave audiences a more personal look at TF Cornerstone’s spaces and what it would be like to live there. The concept offered a fresh approach to real estate advertising, helping TF Cornerstone stand out in a crowded market and generating over 1 million views.',
+          summary: 'The Home Tour series reimagined the traditional real estate video tour, turning property walkthroughs into engaging YouTube content. Rather than simply showcasing rooms and amenities, the videos gave audiences a more personal look at TF Cornerstone’s spaces and what it would be like to live there. The concept offered a fresh approach to real estate advertising, helping TF Cornerstone stand out in a crowded market and generating millions of views for the company on an otherwise underutilized channel for real estate developers.',
           youtube: [   // id = the part after watch?v= in the YouTube link
             { id: '7lBpadzaimM', title: 'LIC Studio With Unobstructed River Views', meta: 'Over 1 Million Views' },
             { id: 'P1OaFlCKLDc', title: 'LIC 2-Bed With Park + Water Views', meta: 'Over 680,000 Views' }
