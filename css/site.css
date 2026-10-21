@@ -374,6 +374,10 @@ html.first-load.is-revealed body::after { opacity: 0; }
   html.first-load.is-revealed body::before { transform: none; opacity: 0; }
 }
 
-/* A YouTube video (TF Cornerstone Home Tours) */
+/* YouTube videos (TF Cornerstone Home Tours): two side by side, stacked on phones */
+.yt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.yt-card { margin: 0; }
+.yt-card figcaption { margin-top: var(--space-2); }
+@media (max-width: 720px) { .yt-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); } }
 .yt-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--grey-100); }
 .yt-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }

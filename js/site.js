@@ -317,9 +317,14 @@
     return box;
   }
 
-  // A YouTube video, full width at 16:9 (privacy-friendly youtube-nocookie player)
-  function youtubeEmbed(id, title) {
-    return el('div', { class: 'yt-frame' }, [el('iframe', { src: 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0', title: title || 'Video', loading: 'lazy', allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share', allowfullscreen: '', referrerpolicy: 'strict-origin-when-cross-origin' })]);
+  // YouTube videos side by side at 16:9 (privacy-friendly youtube-nocookie player), each with a name and a line under it
+  function youtubeGrid(list) {
+    return el('div', { class: 'yt-grid' }, list.map(function (v) {
+      return el('figure', { class: 'yt-card' }, [
+        el('div', { class: 'yt-frame' }, [el('iframe', { src: 'https://www.youtube-nocookie.com/embed/' + v.id + '?rel=0', title: v.title || 'Video', loading: 'lazy', allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share', allowfullscreen: '', referrerpolicy: 'strict-origin-when-cross-origin' })]),
+        el('figcaption', {}, [v.title ? el('p', { class: 'pf-cap-title', text: v.title }) : null, v.meta ? el('p', { class: 'pf-cap-meta', text: v.meta }) : null])
+      ]);
+    }));
   }
 
   // Video cards: name, video (plays inline with controls) and caption. @handles link to Instagram.
@@ -413,7 +418,7 @@
       (c.sections || []).forEach(function (s) {
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
         mount.appendChild(el('section', { class: 'section', id: s.id }, [(s.zoom && s.items ? s.items.forEach(function (it) { it.zoom = true; }) : null, sectionHead(s.label === null ? null : (s.label || 'Design Samples'), s.title, s.summary || null, s.more ? { href: s.more, text: 'View More' } : null)),
-          s.youtube ? youtubeEmbed(s.youtube, s.title) : s.videos ? videoGrid(s.videos) : s.embeds ? igEmbeds(s.embeds) : s.show ? grid(s.items.slice(0, s.show), { href: s.more }) : grid(s.items),
+          s.youtube ? youtubeGrid(s.youtube) : s.videos ? videoGrid(s.videos) : s.embeds ? igEmbeds(s.embeds) : s.show ? grid(s.items.slice(0, s.show), { href: s.more }) : grid(s.items),
           s.more ? el('p', { class: 'view-more' }, [el('a', { href: s.more }, [document.createTextNode('View More '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : null,
           s.credits ? el('p', { class: 'credits', text: s.credits }) : null]));
       });

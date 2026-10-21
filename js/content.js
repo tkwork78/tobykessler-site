@@ -81,8 +81,11 @@ window.SITE = {
           id: 'home-tours',
           label: 'Video',
           title: 'Home Tours',
-          summary: 'The Home Tour program was developed to set TF Cornerstone apart from competitors by bringing the public into these spaces from the comfort of their home. This tour has over 1 million views.',
-          youtube: '7lBpadzaimM'   // the YouTube video id, from youtube.com/watch?v=...
+          summary: 'The Home Tour program was developed to set TF Cornerstone apart from competitors by bringing the public into these spaces from the comfort of their home.',
+          youtube: [   // id = the part after watch?v= in the YouTube link
+            { id: '7lBpadzaimM', title: 'LIC Studio With Unobstructed River Views', meta: 'Over 1 Million Views' },
+            { id: 'P1OaFlCKLDc', title: 'LIC 2-Bed With Park + Water Views', meta: 'Over 680,000 Views' }
+          ]
         },
         {
           id: 'email-templates',
