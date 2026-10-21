@@ -57,7 +57,7 @@ window.SITE = {
       ],
       homeRatio: 0.75,   // home row: equal 3:4 boxes, so the email and blog photo are cropped to fit
       homePreview: [   // home page row, left to right; blog: n adds the first n blog post photos last
-        { video: 'Christine Galvez', title: 'Christine Galvez - Artists in Focus', image: 'images/tf-cornerstone/artists%20in%20focus/christine-home-preview.jpg?v=2', width: 900, height: 1200, anchor: 'top' },
+        { video: 'Christine Galvez', title: 'Christine Galvez - Artists in Focus', image: 'images/tf-cornerstone/artists%20in%20focus/christine-home-preview.jpg?v=3', width: 900, height: 1200, anchor: 'top' },
         { src: 'images/tf-cornerstone/email%20templates/Malt_Dr_2024-9-06-2024-OLR-1.jpg', anchor: 'top' },   // zoomed in from the top
         { blog: 1 }
       ],   // the description shows only on its own page
