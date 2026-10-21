@@ -78,6 +78,13 @@ window.SITE = {
           ]
         },
         {
+          id: 'home-tours',
+          label: 'Video',
+          title: 'Home Tours',
+          summary: 'The Home Tour program was developed to set TF Cornerstone apart from competitors by bringing the public into these spaces from the comfort of their home. This tour has over 1 million views.',
+          youtube: '7lBpadzaimM'   // the YouTube video id, from youtube.com/watch?v=...
+        },
+        {
           id: 'email-templates',
           full: true,   // show whole emails, no cropping
           zoom: true,   // click in the lightbox to zoom in and scroll
