@@ -212,9 +212,8 @@ window.SITE = {
   carArticle: {
     publication: 'The Drive',
     title: 'I Bought a Cheap R53 Mini Cooper S to Fulfill My Supercharged Hot Hatch Dreams',
-    dek: 'The 2002-2006 Mini Cooper S is a great low-buck driver’s car these days.',
+    dek: '“Sometimes you find the car, sometimes the car finds you.”',
     credit: 'Words By Maddox Kay, Photos By Toby Kessler, August 25, 2023',
-    excerpt: '“Sometimes you find the car, sometimes the car finds you.”',
     url: 'https://www.thedrive.com/guides-and-gear/i-bought-a-cheap-r53-mini-cooper-s-to-fulfill-my-supercharged-hot-hatch-dreams',
     images: [
       { src: 'images/car%20community/photography/Maddox%20Mini%20Red%20Hook%20The%20Drive/MK-08-17-13.jpg', width: 2400, height: 1600, alt: 'R53 Mini Cooper S, side detail' },
@@ -257,40 +256,35 @@ window.SITE = {
         id: 'art-documentary',
         title: 'Art Documentary',
         page: 'photography-art-documentary.html',
+        gallery: true,   // artists shown gallery style on the project page
         summary: 'Art documentary services for artists and gallery clients.',
         groups: [   // one section per artist, full views then details
           {
             id: 'logan-roach',
+            show: 3, previewColumns: 3, wholeFirst: true,   // preview on Art Documentary: one row of three, whole artworks first
             page: 'photography-logan-roach.html',
             summary: 'Paintings by Logan Roach.',
             title: 'Logan Roach',
             items: [
-              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
               { src: 'images/art%20documentary/Logan%20Roach/LR_May-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
               { src: 'images/art%20documentary/Logan%20Roach/LR_May-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
               { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
               { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-6.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-              { src: 'images/art%20documentary/Logan%20Roach/LR_May-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
               { src: 'images/art%20documentary/Logan%20Roach/LR_May-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
               { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-7.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
               { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-8.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-9.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
               { src: 'images/art%20documentary/Logan%20Roach/LR_May-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-              { src: 'images/art%20documentary/LR-09-05-23-01.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-              { src: 'images/art%20documentary/LR-09-05-23-02.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-              { src: 'images/art%20documentary/LR-09-05-23-03.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR-09-05-23-01.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR-09-05-23-02.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
               { src: 'images/art%20documentary/Logan%20Roach/LR-12-3-23-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
               { src: 'images/art%20documentary/Logan%20Roach/LR-12-3-23-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' }
             ]
           },
           {
             id: 'tiffany-alfonseca',
+            show: 3, previewColumns: 3, wholeFirst: true,   // preview on Art Documentary: one row of three, whole artworks first
             page: 'photography-tiffany-alfonseca.html',
             summary: 'Paintings by Tiffany Alfonseca.',
-            show: 4,   // preview on Art Documentary
             title: 'Tiffany Alfonseca',
             columns: 2,   // two by two
             items: [
@@ -302,6 +296,7 @@ window.SITE = {
           },
           {
             id: 'jonah-dillon',
+            show: 3, previewColumns: 3, wholeFirst: true,   // preview on Art Documentary: one row of three, whole artworks first
             page: 'photography-jonah-dillon.html',
             summary: 'Sculpture by Jonah Dillon.',
             title: 'Jonah Dillon',
@@ -317,6 +312,7 @@ window.SITE = {
           },
           {
             id: 'hannah-lupton-reinhard',
+            show: 3, previewColumns: 3, wholeFirst: true,   // preview on Art Documentary: one row of three, whole artworks first
             page: 'photography-hannah-lupton-reinhard.html',
             summary: 'A portrait painting by Hannah Lupton Reinhard.',
             title: 'Hannah Lupton Reinhard',
@@ -336,7 +332,7 @@ window.SITE = {
   var photos = car && car.sections.filter(function (s) { return s.id === 'car-photography'; })[0];
   if (photos) S.photography.sections.push({ id: 'car-community', title: 'Car Community', summary: 'Photography from the car scene.', page: 'photography-car-community.html', groups: [
     { id: 'car-scene', items: photos.items.filter(function (it) { return !/_K8A1249/.test(it.src); }) },   // the blue M2 has its own page
-    { id: 'blue-m2', title: 'BMW M2 In Red Hook', page: 'photography-blue-m2.html', , items: [
+    { id: 'blue-m2', title: 'BMW M2 In Red Hook', page: 'photography-blue-m2.html', items: [
       { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-1.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 from behind by a green fence' },
       { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-2.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 side profile by a green fence' },
       { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-3.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 front three-quarter view' },

@@ -323,7 +323,7 @@
     var more = head.querySelector('.more'); if (more) { more.target = '_blank'; more.rel = 'noopener'; }
     return el('section', { class: 'section article', id: 'article' }, [head,
       el('p', { class: 'article-credit', text: a.credit }),
-      el('p', { class: 'article-excerpt', text: a.excerpt }),
+      a.excerpt ? el('p', { class: 'article-excerpt', text: a.excerpt }) : null,
       a.images && a.images.length ? grid(a.images, { columns: Math.min(3, a.images.length) }) : null,   // the photos always fill the width
       el('p', { class: 'view-more' }, [el('a', { href: a.url, target: '_blank', rel: 'noopener' }, [document.createTextNode('Read The Full Article On ' + a.publication + ' '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])])
     ]);
@@ -459,6 +459,11 @@
       });
     },
     'photo-project': function (mount) {
+      function previewOf(g) {   // whole artworks first (details are marked in the alt text), then anything else
+        if (!g.wholeFirst) return g.items.slice(0, g.show || 3);
+        var whole = g.items.filter(function (it) { return !/detail/i.test(it.alt || ''); });
+        return whole.concat(g.items.filter(function (it) { return whole.indexOf(it) < 0; })).slice(0, g.show || 3);
+      }
       var sec = ((S.photography || {}).sections || []).filter(function (s) { return s.id === mount.getAttribute('data-project'); })[0];
       if (!sec) return;
       var only = mount.getAttribute('data-group');   // a subpage for one artist or shoot
@@ -470,11 +475,22 @@
         return;
       }
       document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = sec.summary || ''; });
-      if (sec.groups) sec.groups.forEach(function (g) {   // one section per artist or shoot; those with their own page show a preview
+      if (sec.gallery && sec.groups) {   // gallery look: rows of photos, each captioned by a light name beside View More, no headings or rules
+        mount.appendChild(el('div', { class: 'gallery' }, sec.groups.map(function (g) {
+          return el('section', { class: 'gallery-row', id: g.id }, [
+            grid(previewOf(g), { columns: g.previewColumns || g.columns || 3, href: g.page }),
+            el('p', { class: 'gallery-cap' }, [
+              el('a', { class: 'gallery-name', href: g.page, text: g.title }),
+              el('a', { class: 'gallery-more', href: g.page }, [document.createTextNode('View More '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])
+            ])
+          ]);
+        })));
+      }
+      else if (sec.groups) sec.groups.forEach(function (g) {   // one section per artist or shoot; those with their own page show a preview
         var more = g.page ? el('p', { class: 'view-more' }, [el('a', { href: g.page }, [document.createTextNode('View More '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : null;
         mount.appendChild(el('section', { class: 'section', id: g.id }, [
           g.title ? sectionHead(null, g.title, null, g.page ? { href: g.page, text: 'View Project' } : null, g.page) : null,
-          g.page ? grid(g.items.slice(0, g.show || 3), { columns: g.columns || 3, href: g.page }) : grid(g.items, { columns: g.columns || 3 }),
+          g.page ? grid(previewOf(g), { columns: g.previewColumns || g.columns || 3, href: g.page }) : grid(g.items, { columns: g.columns || 3 }),
           more
         ]));
       });
