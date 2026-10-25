@@ -81,11 +81,11 @@ a { color: inherit; }
 
 /* Page sections */
 main { padding-bottom: var(--space-12); }
-.page-intro { padding: var(--space-12) 0; max-width: 880px; }
+.page-intro { padding: var(--space-12) 0; }   /* summary lines run the full width so they stay on one line where they fit */
 .page-intro .lead { margin-top: var(--space-4); color: var(--grey-600); }
 .section { padding: var(--space-12) 0; border-top: 1px solid var(--grey-200); }
 .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--space-4) var(--space-12); margin-bottom: var(--space-6); }
-.section-head .text { max-width: 640px; }
+.section-head .text { max-width: none; flex: 1 1 auto; min-width: 0; }
 .section-head .label { color: var(--grey-600); margin-bottom: var(--space-2); }
 .section-head .summary { margin: var(--space-2) 0 0; font-weight: 300; color: var(--grey-600); }
 .more { font-size: 14px; line-height: 20px; font-weight: 400; text-decoration: none; white-space: nowrap; border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
@@ -408,3 +408,10 @@ html.first-load.is-revealed body::after { opacity: 0; }
 .article-credit { margin: 0 0 var(--space-4); font-size: 14px; line-height: 20px; color: var(--grey-600); }
 .article-excerpt { margin: 0 0 var(--space-6); max-width: 640px; font-size: 18px; line-height: 28px; font-weight: 300; }
 .article .section-head .text { max-width: none; flex: 1 1 100%; }   /* the headline runs the full width of the page */
+
+/* Breadcrumbs: Home / Projects / This Page, small grey text above the page title */
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 var(--space-4); font-size: 14px; line-height: 20px; color: var(--grey-600); }
+.crumbs a { color: var(--grey-600); text-decoration: none; }
+.crumbs a:hover { color: var(--ink); }
+.crumbs [aria-current] { color: var(--ink); }
+.crumb-sep { color: var(--grey-400); }
