@@ -407,3 +407,4 @@ html.first-load.is-revealed body::after { opacity: 0; }
 /* A published article on a photography page (Car Community, The Drive) */
 .article-credit { margin: 0 0 var(--space-4); font-size: 14px; line-height: 20px; color: var(--grey-600); }
 .article-excerpt { margin: 0 0 var(--space-6); max-width: 640px; font-size: 18px; line-height: 28px; font-weight: 300; }
+.article .section-head .text { max-width: none; flex: 1 1 100%; }   /* the headline runs the full width of the page */
