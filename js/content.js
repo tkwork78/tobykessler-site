@@ -257,7 +257,7 @@ window.SITE = {
         id: 'art-documentary',
         title: 'Art Documentary',
         page: 'photography-art-documentary.html',
-        summary: 'Paintings and sculpture by Logan Roach, Tiffany Alfonseca, Jonah Dillon and more.',
+        summary: 'Paintings and sculpture by Logan Roach, Tiffany Alfonseca, Jonah Dillon and Hannah Lupton Reinhard.',
         groups: [   // one section per artist, full views then details
           {
             id: 'logan-roach',
@@ -308,10 +308,10 @@ window.SITE = {
             ]
           },
           {
-            id: 'other-work',
-            title: 'Other Work',
+            id: 'hannah-lupton-reinhard',
+            title: 'Hannah Lupton Reinhard',
             items: [
-              { src: 'images/art%20documentary/Library-Hannah-July-2023/TK-HLR-1.jpg', width: 1600, height: 2400, alt: 'Portrait painting, full view' }
+              { src: 'images/art%20documentary/Library-Hannah-July-2023/TK-HLR-1.jpg', width: 1600, height: 2400, alt: 'Portrait painting by Hannah Lupton Reinhard, full view' }
             ]
           }
         ]
