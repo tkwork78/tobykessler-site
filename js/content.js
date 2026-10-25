@@ -257,6 +257,7 @@ window.SITE = {
         id: 'art-documentary',
         title: 'Art Documentary',
         page: 'photography-art-documentary.html',
+        gallery: true,   // artists shown gallery style on the project page
         summary: 'Art documentary services for artists and gallery clients.',
         groups: [   // one section per artist, full views then details
           {

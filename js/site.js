@@ -475,7 +475,18 @@
         return;
       }
       document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = sec.summary || ''; });
-      if (sec.groups) sec.groups.forEach(function (g) {   // one section per artist or shoot; those with their own page show a preview
+      if (sec.gallery && sec.groups) {   // gallery look: rows of photos, each captioned by a light name beside View More, no headings or rules
+        mount.appendChild(el('div', { class: 'gallery' }, sec.groups.map(function (g) {
+          return el('section', { class: 'gallery-row', id: g.id }, [
+            grid(previewOf(g), { columns: g.previewColumns || g.columns || 3, href: g.page }),
+            el('p', { class: 'gallery-cap' }, [
+              el('a', { class: 'gallery-name', href: g.page, text: g.title }),
+              el('a', { class: 'gallery-more', href: g.page }, [document.createTextNode('View More '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])
+            ])
+          ]);
+        })));
+      }
+      else if (sec.groups) sec.groups.forEach(function (g) {   // one section per artist or shoot; those with their own page show a preview
         var more = g.page ? el('p', { class: 'view-more' }, [el('a', { href: g.page }, [document.createTextNode('View More '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : null;
         mount.appendChild(el('section', { class: 'section', id: g.id }, [
           g.title ? sectionHead(null, g.title, null, g.page ? { href: g.page, text: 'View Project' } : null, g.page) : null,

@@ -415,3 +415,12 @@ html.first-load.is-revealed body::after { opacity: 0; }
 .crumbs a:hover { color: var(--ink); }
 .crumbs [aria-current] { color: var(--ink); }
 .crumb-sep { color: var(--grey-400); }
+
+/* Gallery look (Art Documentary): photo rows with a light caption, no headings or dividing lines */
+.gallery { padding: var(--space-12) 0; border-top: 1px solid var(--grey-200); }
+.gallery-row + .gallery-row { margin-top: var(--space-12); }
+.gallery-cap { display: flex; align-items: baseline; gap: var(--space-4); margin: var(--space-3, 12px) 0 0; }
+.gallery-name { font-size: 18px; line-height: 28px; font-weight: 300; color: var(--ink); text-decoration: none; }
+.gallery-name:hover { color: var(--grey-600); }
+.gallery-more { font-size: 14px; line-height: 20px; color: var(--grey-400); text-decoration: none; }
+.gallery-more:hover { color: var(--ink); }
