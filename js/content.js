@@ -89,13 +89,14 @@ window.SITE = {
         },
         {
           id: 'email-templates',
+          summary: 'At TF Cornerstone, each property has its own designated branding which I helped develop, each email template follows this specific branding and highlights the property’s unique features and characteristics as part of the broader project branding.',
           full: true,   // show whole emails, no cropping
           zoom: true,   // click in the lightbox to zoom in and scroll
           title: 'Email Templates',
           items: [
             { src: 'images/tf-cornerstone/email%20templates/2023-10-13_OLR_595-Dean-St-Final-(1)-1.jpg', width: 1200, height: 4200, title: '595 Dean St', meta: 'Email' },
             { src: 'images/tf-cornerstone/email%20templates/Malt_Dr_2024-9-06-2024-OLR-1.jpg', width: 1200, height: 4725, title: 'Malt Drive', meta: 'Email' },
-            { src: 'images/tf-cornerstone/email%20templates/Weekly-Listings-Midtown-4-Template_2024-10-24-1.jpg', width: 1200, height: 4761, title: 'Weekly Listings, Midtown', meta: 'Email' }
+            { src: 'images/tf-cornerstone/email%20templates/Weekly-Listings-Midtown-4-Template_2024-10-24-1.jpg', width: 1200, height: 4761, title: 'The MAX at 606 W 57th St', meta: 'Email' }
           ]
         },
         {

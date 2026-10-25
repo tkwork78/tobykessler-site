@@ -381,3 +381,25 @@ html.first-load.is-revealed body::after { opacity: 0; }
 @media (max-width: 720px) { .yt-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); } }
 .yt-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--grey-100); }
 .yt-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* 404: a big Oops and a way home */
+.oops-title { margin: 0 0 .12em; font-size: clamp(120px, 24vw, 280px); line-height: 1; font-weight: 300; letter-spacing: -.04em; }
+.oops .lead { margin-top: var(--space-4); }
+.oops .back { margin-top: var(--space-6); }
+
+/* Landing page password box: a glass pill holding the field and an arrow button (js/roam.js) */
+.roam-pass { padding: 0 0 0 var(--space-6); gap: 0; }
+.roam-pass:hover { background: linear-gradient(135deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .5) 45%, rgba(255, 255, 255, .7)); color: var(--ink); border-color: rgba(255, 255, 255, .7); }
+.roam-pass input { width: 150px; min-width: 0; flex: 1; padding: calc(var(--space-4) - 1px) 0; border: 0; background: none; outline: none; font: inherit; color: var(--ink); }
+.roam-pass input::placeholder { color: var(--grey-600); opacity: 1; }
+.roam-pass button { flex: none; display: flex; align-items: center; justify-content: center; width: 48px; align-self: stretch; padding: 0; border: 0; border-radius: var(--radius-pill); background: none; color: var(--ink); font: inherit; transition: background .2s ease, color .2s ease; }
+.roam-pass button:hover { background: var(--ink); color: var(--paper); }
+.roam-pass:focus-within { box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .95), 0 4px 16px rgba(0, 0, 0, .1), 0 0 0 1px var(--ink); }
+.roam-pass.is-wrong { animation: roam-shake .4s ease; }
+@keyframes roam-shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.roam-pass.is-red, .roam-pass.is-red:hover, .roam-pass.is-red:focus-within { background: rgba(225, 45, 45, .12); border-color: #e12d2d; box-shadow: 0 0 0 1px #e12d2d, 0 4px 16px rgba(225, 45, 45, .18); transition: background .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.roam-pass.is-red input::placeholder, .roam-pass.is-red button { color: #c81e1e; }
+.roam-pass.is-locked { opacity: .6; }
+.roam-pass.is-locked input { width: 280px; }   /* room for the lock message */
+.roam-pass.is-locked button:hover { background: none; color: var(--ink); }

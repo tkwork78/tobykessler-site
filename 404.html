@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap">
   <link rel="stylesheet" href="/css/site.css">
 </head>
-<body>
+<body class="fit-window">
   <header class="site-header">
     <div class="wrap">
       <a class="site-name" href="/home.html">Toby Kessler</a>
@@ -20,9 +20,10 @@
   </header>
   <main>
   <div class="wrap">
-    <div class="page-intro">
-      <h1 class="display">Page Not Found</h1>
-      <p class="lead">That page doesn't exist. <a href="/home.html">Go to the home page</a>.</p>
+    <div class="page-intro oops">
+      <h1 class="oops-title">Oops</h1>
+      <p class="lead">That page doesn't exist.</p>
+      <p class="back"><a class="back-btn" href="/home.html"><span class="h-arrow h-back" aria-hidden="true">←</span> Back To Home</a></p>
     </div>
   </div>
   </main>
@@ -34,5 +35,6 @@
   </footer>
   <script src="/js/content.js"></script>
   <script src="/js/site.js"></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ce2b7ef1b42548dbbc8b27d580a15b81"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
