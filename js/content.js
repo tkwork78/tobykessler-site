@@ -257,7 +257,7 @@ window.SITE = {
         id: 'art-documentary',
         title: 'Art Documentary',
         page: 'photography-art-documentary.html',
-        summary: 'Art documentary services for artists. Clients include artists and galleries.',
+        summary: 'Art documentary services for artists and gallery clients.',
         groups: [   // one section per artist, full views then details
           {
             id: 'logan-roach',
