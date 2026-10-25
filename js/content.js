@@ -141,7 +141,7 @@ window.SITE = {
       homeLabel: 'Design And Photography',
       homePreview: [   // home page row, left to right
         { src: 'images/car%20community/design/PTS-LAUGINGMAN-4.jpg', whole: true },   // poster is never trimmed; the photos give way
-        { src: 'images/car%20community/photography/_MG_8849-Edit-Edit%20copy.jpg', title: 'Porsche 996 GT3 Motion', meta: 'Photography' },   // captions show on Home only
+        { src: 'images/car%20community/photography/_MG_8849-Edit-Edit%20copy.jpg', title: 'Porsche 996 GT3 in Motion', meta: 'Photography' },   // captions show on Home only
         { src: 'images/car%20community/photography/_K8A1249.jpg', title: 'BMW M2 in Red Hook', meta: 'Photography' }
       ],
       sections: [
