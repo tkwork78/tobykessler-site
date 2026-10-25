@@ -317,6 +317,18 @@
     return box;
   }
 
+  // A published article featuring Toby's photos: publication, headline, standfirst, credits, a short preview, a link out, then the photos
+  function articleSection(a) {
+    var head = sectionHead('Published In ' + a.publication, a.title, a.dek, { href: a.url, text: 'Read The Article' });
+    var more = head.querySelector('.more'); if (more) { more.target = '_blank'; more.rel = 'noopener'; }
+    return el('section', { class: 'section article', id: 'article' }, [head,
+      el('p', { class: 'article-credit', text: a.credit }),
+      el('p', { class: 'article-excerpt', text: a.excerpt }),
+      a.images && a.images.length ? grid(a.images) : null,
+      el('p', { class: 'view-more' }, [el('a', { href: a.url, target: '_blank', rel: 'noopener' }, [document.createTextNode('Read The Full Article On ' + a.publication + ' '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])])
+    ]);
+  }
+
   // YouTube videos side by side at 16:9 (privacy-friendly youtube-nocookie player), each with a name and a line under it
   function youtubeGrid(list) {
     return el('div', { class: 'yt-grid' }, list.map(function (v) {
@@ -450,6 +462,7 @@
       if (!sec) return;
       document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = sec.summary || ''; });
       mount.appendChild(el('section', { class: 'section' }, [grid(sec.items)]));
+      if (sec.article) mount.appendChild(articleSection(sec.article));
     },
     about: function (mount) {
       var A = S.about || {};

@@ -208,6 +208,18 @@ window.SITE = {
     }
   ],
 
+  // A published article with Toby's photos, shown on the Car Community photography page.
+  // images: add { src, width, height } entries once the photo files are in the repo.
+  carArticle: {
+    publication: 'The Drive',
+    title: 'I Bought a Cheap R53 Mini Cooper S to Fulfill My Supercharged Hot Hatch Dreams',
+    dek: 'The 2002-2006 Mini Cooper S is a great low-buck driver’s car these days.',
+    credit: 'Words By Maddox Kay, Photos By Toby Kessler, August 25, 2023',
+    excerpt: '“Sometimes you find the car, sometimes the car finds you.” A clean, original-owner, 51,000-mile R53 Mini Cooper S with a manual gearbox, spotted for sale on a running route, and the photos that came with the story.',
+    url: 'https://www.thedrive.com/guides-and-gear/i-bought-a-cheap-r53-mini-cooper-s-to-fulfill-my-supercharged-hot-hatch-dreams',
+    images: []
+  },
+
   photography: {
     summary: 'Art documentary and personal work.',
     homePhotos: [   // the Photography row on the home page
@@ -270,5 +282,5 @@ window.SITE = {
 (function (S) {
   var car = S.design.filter(function (c) { return c.id === 'car-community'; })[0];
   var photos = car && car.sections.filter(function (s) { return s.id === 'car-photography'; })[0];
-  if (photos) S.photography.sections.push({ id: 'car-community', title: 'Car Community', summary: 'Photography from the car scene.', page: 'photography-car-community.html', items: photos.items });
+  if (photos) S.photography.sections.push({ id: 'car-community', title: 'Car Community', summary: 'Photography from the car scene.', page: 'photography-car-community.html', items: photos.items, article: S.carArticle });
 })(window.SITE);

@@ -403,3 +403,7 @@ html.first-load.is-revealed body::after { opacity: 0; }
 .roam-pass.is-locked { opacity: .6; }
 .roam-pass.is-locked input { width: 280px; }   /* room for the lock message */
 .roam-pass.is-locked button:hover { background: none; color: var(--ink); }
+
+/* A published article on a photography page (Car Community, The Drive) */
+.article-credit { margin: 0 0 var(--space-4); font-size: 14px; line-height: 20px; color: var(--grey-600); }
+.article-excerpt { margin: 0 0 var(--space-6); max-width: 640px; font-size: 18px; line-height: 28px; font-weight: 300; }
