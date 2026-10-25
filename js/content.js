@@ -212,9 +212,8 @@ window.SITE = {
   carArticle: {
     publication: 'The Drive',
     title: 'I Bought a Cheap R53 Mini Cooper S to Fulfill My Supercharged Hot Hatch Dreams',
-    dek: 'The 2002-2006 Mini Cooper S is a great low-buck driver’s car these days.',
+    dek: '“Sometimes you find the car, sometimes the car finds you.”',
     credit: 'Words By Maddox Kay, Photos By Toby Kessler, August 25, 2023',
-    excerpt: '“Sometimes you find the car, sometimes the car finds you.”',
     url: 'https://www.thedrive.com/guides-and-gear/i-bought-a-cheap-r53-mini-cooper-s-to-fulfill-my-supercharged-hot-hatch-dreams',
     images: [
       { src: 'images/car%20community/photography/Maddox%20Mini%20Red%20Hook%20The%20Drive/MK-08-17-13.jpg', width: 2400, height: 1600, alt: 'R53 Mini Cooper S, side detail' },

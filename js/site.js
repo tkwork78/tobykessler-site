@@ -323,7 +323,7 @@
     var more = head.querySelector('.more'); if (more) { more.target = '_blank'; more.rel = 'noopener'; }
     return el('section', { class: 'section article', id: 'article' }, [head,
       el('p', { class: 'article-credit', text: a.credit }),
-      el('p', { class: 'article-excerpt', text: a.excerpt }),
+      a.excerpt ? el('p', { class: 'article-excerpt', text: a.excerpt }) : null,
       a.images && a.images.length ? grid(a.images, { columns: Math.min(3, a.images.length) }) : null,   // the photos always fill the width
       el('p', { class: 'view-more' }, [el('a', { href: a.url, target: '_blank', rel: 'noopener' }, [document.createTextNode('Read The Full Article On ' + a.publication + ' '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])])
     ]);
