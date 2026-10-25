@@ -287,6 +287,7 @@ window.SITE = {
           {
             id: 'tiffany-alfonseca',
             title: 'Tiffany Alfonseca',
+            columns: 2,   // two by two
             items: [
               { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-3.jpg', width: 2400, height: 1625, alt: 'Painting by Tiffany Alfonseca, full view' },
               { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-4.jpg', width: 2400, height: 1600, alt: 'Painting by Tiffany Alfonseca, detail' },

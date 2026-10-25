@@ -463,7 +463,7 @@
       if (!sec) return;
       document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = sec.summary || ''; });
       if (sec.groups) sec.groups.forEach(function (g) {   // one section per artist or shoot, each with its own heading
-        mount.appendChild(el('section', { class: 'section', id: g.id }, [g.title ? sectionHead(null, g.title, g.summary || null) : null, grid(g.items)]));
+        mount.appendChild(el('section', { class: 'section', id: g.id }, [g.title ? sectionHead(null, g.title, g.summary || null) : null, grid(g.items, { columns: g.columns || 3 })]));
       });
       else mount.appendChild(el('section', { class: 'section' }, [grid(sec.items)]));
       if (sec.article) mount.appendChild(articleSection(sec.article));
