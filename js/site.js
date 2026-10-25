@@ -449,6 +449,7 @@
     photography: function (mount) {
       var sub = document.querySelector('[data-subnav]');
       ((S.photography || {}).sections || []).forEach(function (sec) {
+        if (!sec.items && sec.groups) sec.items = sec.groups.reduce(function (all, g) { return all.concat(g.items); }, []);
         if (sub) sub.appendChild(el('a', { href: '#' + sec.id, text: sec.title }));
         mount.appendChild(el('section', { class: 'section', id: sec.id }, [
           sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View Project' } : null, sec.page),
@@ -461,7 +462,10 @@
       var sec = ((S.photography || {}).sections || []).filter(function (s) { return s.id === mount.getAttribute('data-project'); })[0];
       if (!sec) return;
       document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = sec.summary || ''; });
-      mount.appendChild(el('section', { class: 'section' }, [grid(sec.items)]));
+      if (sec.groups) sec.groups.forEach(function (g) {   // one section per artist or shoot, each with its own heading
+        mount.appendChild(el('section', { class: 'section', id: g.id }, [g.title ? sectionHead(null, g.title, g.summary || null) : null, grid(g.items)]));
+      });
+      else mount.appendChild(el('section', { class: 'section' }, [grid(sec.items)]));
       if (sec.article) mount.appendChild(articleSection(sec.article));
     },
     about: function (mount) {
@@ -560,6 +564,21 @@
     });
   });
   document.querySelectorAll('[data-year]').forEach(function (n) { n.textContent = new Date().getFullYear(); });
+  // Breadcrumbs at the top of every page but Home: Home / section / this page.
+  (function () {
+    var intro = document.querySelector('main .page-intro');
+    var file = location.pathname.split('/').pop() || 'index.html';
+    if (!intro || /^(home|index|404)\.html$/.test(file)) return;
+    var here = (document.querySelector('[data-company-name]') || {}).textContent || document.title.split(' — ')[0];
+    var trail = [['Home', 'home.html']];
+    if (/^projects-/.test(file)) trail.push(['Projects', 'projects.html']);
+    if (/^photography-/.test(file)) trail.push(['Photography', 'photography.html']);
+    var crumbs = el('nav', { class: 'crumbs', 'aria-label': 'Breadcrumb' });
+    trail.forEach(function (t) { crumbs.appendChild(el('a', { href: t[1], text: t[0] })); crumbs.appendChild(el('span', { class: 'crumb-sep', 'aria-hidden': 'true', text: '/' })); });
+    crumbs.appendChild(el('span', { 'aria-current': 'page', text: here.trim() }));
+    intro.insertBefore(crumbs, intro.firstChild);
+  })();
+
   // Menu: a dark grey pill sits behind the current page and slides to the page clicked before it opens.
   document.querySelectorAll('.site-nav').forEach(function (nav) {
     var cur = nav.querySelector('[aria-current="page"]'); if (!cur) { nav.classList.add('has-pill'); return; }   // e.g. the 404 page: same menu, no current page

@@ -156,7 +156,7 @@ window.SITE = {
             { src: 'images/car%20community/photography/lightingfinalmiata2KESSLER.jpg', width: 2400, height: 1714, alt: 'Red Miata at night under lit fencing' },
             { src: 'images/car%20community/photography/_K8A1249.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 parked by a green fence' },
             { src: 'images/car%20community/photography/_MG_0695-Edit2.jpg', width: 2400, height: 1600, alt: 'Orange supercar with doors open in a showroom' },
-            { src: 'images/car%20community/photography/Untitled-1.jpg', width: 1500, height: 1500, alt: 'Black and white collage of a car meet' },
+            { src: 'images/car%20community/photography/new-canaan-collage.jpg', width: 1500, height: 1500, alt: 'Black and white collage of a car meet' },
             { src: 'images/car%20community/photography/_MG_8849-Edit-Edit%20copy.jpg', width: 2400, height: 1530, alt: 'Black Porsche 996 GT3 in motion on a track' },
             { src: 'images/car%20community/photography/16152583722_afbd046ca7_o.jpg', width: 2172, height: 1448, alt: 'Silver sports car rear detail' },
             { src: 'images/car%20community/photography/_C0A0282-Edit1.jpg', width: 2400, height: 1350, alt: 'Close-up of a silver car body' }
@@ -257,33 +257,63 @@ window.SITE = {
         id: 'art-documentary',
         title: 'Art Documentary',
         page: 'photography-art-documentary.html',
-        summary: 'Paintings by Logan Roach, Tiffany Alfonseca and more.',
-        items: [
-          // Full paintings first, then details
-          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR_May-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR_May-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-6.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR_May-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR_May-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-7.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-8.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-9.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR_May-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/LR-09-05-23-01.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/LR-09-05-23-02.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/LR-09-05-23-03.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR-12-3-23-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach/LR-12-3-23-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-3.jpg', width: 2400, height: 1625, alt: 'Painting by Tiffany Alfonseca, full view' },
-          { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-4.jpg', width: 2400, height: 1600, alt: 'Painting by Tiffany Alfonseca, detail' },
-          { src: 'images/art%20documentary/Library-Hannah-July-2023/TK-HLR-1.jpg', width: 1600, height: 2400, alt: 'Portrait painting, full view' },
-          { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-5.jpg', width: 2400, height: 1625, alt: 'Painting by Tiffany Alfonseca, full view' },
-          { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-6.jpg', width: 2400, height: 1600, alt: 'Painting by Tiffany Alfonseca, detail' }
+        summary: 'Paintings and sculpture by Logan Roach, Tiffany Alfonseca, Jonah Dillon and more.',
+        groups: [   // one section per artist, full views then details
+          {
+            id: 'logan-roach',
+            title: 'Logan Roach',
+            items: [
+              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR_May-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR_May-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-6.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR_May-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR_May-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-7.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-8.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-9.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR_May-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+              { src: 'images/art%20documentary/LR-09-05-23-01.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+              { src: 'images/art%20documentary/LR-09-05-23-02.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+              { src: 'images/art%20documentary/LR-09-05-23-03.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR-12-3-23-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+              { src: 'images/art%20documentary/Logan%20Roach/LR-12-3-23-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' }
+            ]
+          },
+          {
+            id: 'tiffany-alfonseca',
+            title: 'Tiffany Alfonseca',
+            items: [
+              { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-3.jpg', width: 2400, height: 1625, alt: 'Painting by Tiffany Alfonseca, full view' },
+              { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-4.jpg', width: 2400, height: 1600, alt: 'Painting by Tiffany Alfonseca, detail' },
+              { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-5.jpg', width: 2400, height: 1625, alt: 'Painting by Tiffany Alfonseca, full view' },
+              { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-6.jpg', width: 2400, height: 1600, alt: 'Painting by Tiffany Alfonseca, detail' }
+            ]
+          },
+          {
+            id: 'jonah-dillon',
+            title: 'Jonah Dillon',
+            items: [
+              { src: 'images/art%20documentary/Jonah%20Dillon/moose/JD-04-20-24-1.jpg', width: 2400, height: 1600, alt: 'Antler sculpture by Jonah Dillon, full view' },
+              { src: 'images/art%20documentary/Jonah%20Dillon/moose/JD-04-20-24-6.jpg', width: 2400, height: 1600, alt: 'Antler sculpture by Jonah Dillon, full view' },
+              { src: 'images/art%20documentary/Jonah%20Dillon/moose/JD-04-20-24-7.jpg', width: 2400, height: 1600, alt: 'Antler sculpture by Jonah Dillon, detail' },
+              { src: 'images/art%20documentary/Jonah%20Dillon/moose/JD-04-20-24-9.jpg', width: 2400, height: 1600, alt: 'Antler sculpture by Jonah Dillon, detail' },
+              { src: 'images/art%20documentary/Jonah%20Dillon/moose/JD-04-20-24-10.jpg', width: 2400, height: 1600, alt: 'Antler sculpture by Jonah Dillon, detail' },
+              { src: 'images/art%20documentary/Jonah%20Dillon/moose/JD-04-20-24-11.jpg', width: 2400, height: 1600, alt: 'Antler sculpture by Jonah Dillon, detail' },
+              { src: 'images/art%20documentary/Jonah%20Dillon/moose/JD-04-20-24-12.jpg', width: 2400, height: 1600, alt: 'Antler sculpture by Jonah Dillon, detail' }
+            ]
+          },
+          {
+            id: 'other-work',
+            title: 'Other Work',
+            items: [
+              { src: 'images/art%20documentary/Library-Hannah-July-2023/TK-HLR-1.jpg', width: 1600, height: 2400, alt: 'Portrait painting, full view' }
+            ]
+          }
         ]
       }
     ]
@@ -294,5 +324,16 @@ window.SITE = {
 (function (S) {
   var car = S.design.filter(function (c) { return c.id === 'car-community'; })[0];
   var photos = car && car.sections.filter(function (s) { return s.id === 'car-photography'; })[0];
-  if (photos) S.photography.sections.push({ id: 'car-community', title: 'Car Community', summary: 'Photography from the car scene.', page: 'photography-car-community.html', items: photos.items, article: S.carArticle });
+  if (photos) S.photography.sections.push({ id: 'car-community', title: 'Car Community', summary: 'Photography from the car scene.', page: 'photography-car-community.html', groups: [
+    { id: 'car-scene', items: photos.items },
+    { id: 'blue-m2', title: 'Blue BMW M2 In Red Hook', items: [
+      { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-1.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 from behind by a green fence' },
+      { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-2.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 side profile by a green fence' },
+      { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-3.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 front three-quarter view' },
+      { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-4.jpg', width: 2400, height: 1600, alt: 'Front wheel and fender of a blue BMW M2' },
+      { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-5.jpg', width: 2400, height: 1600, alt: 'Rear wheel and flank of a blue BMW M2' },
+      { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-6.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 in front of a brick warehouse' },
+      { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-7.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 side profile in front of a brick warehouse' }
+    ] }
+  ], article: S.carArticle });
 })(window.SITE);

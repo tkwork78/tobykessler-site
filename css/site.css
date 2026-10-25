@@ -408,3 +408,10 @@ html.first-load.is-revealed body::after { opacity: 0; }
 .article-credit { margin: 0 0 var(--space-4); font-size: 14px; line-height: 20px; color: var(--grey-600); }
 .article-excerpt { margin: 0 0 var(--space-6); max-width: 640px; font-size: 18px; line-height: 28px; font-weight: 300; }
 .article .section-head .text { max-width: none; flex: 1 1 100%; }   /* the headline runs the full width of the page */
+
+/* Breadcrumbs: Home / Projects / This Page, small grey text above the page title */
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 var(--space-4); font-size: 14px; line-height: 20px; color: var(--grey-600); }
+.crumbs a { color: var(--grey-600); text-decoration: none; }
+.crumbs a:hover { color: var(--ink); }
+.crumbs [aria-current] { color: var(--ink); }
+.crumb-sep { color: var(--grey-400); }
