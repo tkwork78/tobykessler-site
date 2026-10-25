@@ -461,9 +461,22 @@
     'photo-project': function (mount) {
       var sec = ((S.photography || {}).sections || []).filter(function (s) { return s.id === mount.getAttribute('data-project'); })[0];
       if (!sec) return;
+      var only = mount.getAttribute('data-group');   // a subpage for one artist or shoot
+      if (only) {
+        var g = (sec.groups || []).filter(function (x) { return x.id === only; })[0];
+        if (!g) return;
+        document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = g.summary || ''; });
+        mount.appendChild(el('section', { class: 'section' }, [grid(g.items, { columns: g.columns || 3 })]));
+        return;
+      }
       document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = sec.summary || ''; });
-      if (sec.groups) sec.groups.forEach(function (g) {   // one section per artist or shoot, each with its own heading
-        mount.appendChild(el('section', { class: 'section', id: g.id }, [g.title ? sectionHead(null, g.title, g.summary || null) : null, grid(g.items, { columns: g.columns || 3 })]));
+      if (sec.groups) sec.groups.forEach(function (g) {   // one section per artist or shoot; those with their own page show a preview
+        var more = g.page ? el('p', { class: 'view-more' }, [el('a', { href: g.page }, [document.createTextNode('View More '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : null;
+        mount.appendChild(el('section', { class: 'section', id: g.id }, [
+          g.title ? sectionHead(null, g.title, null, g.page ? { href: g.page, text: 'View Project' } : null, g.page) : null,
+          g.page ? grid(g.items.slice(0, g.show || 3), { columns: g.columns || 3, href: g.page }) : grid(g.items, { columns: g.columns || 3 }),
+          more
+        ]));
       });
       else mount.appendChild(el('section', { class: 'section' }, [grid(sec.items)]));
       if (sec.article) mount.appendChild(articleSection(sec.article));
@@ -573,6 +586,7 @@
     var trail = [['Home', 'home.html']];
     if (/^projects-/.test(file)) trail.push(['Projects', 'projects.html']);
     if (/^photography-/.test(file)) trail.push(['Photography', 'photography.html']);
+    if (intro.getAttribute('data-parent')) trail.push(intro.getAttribute('data-parent').split('|'));   // a subpage: its project comes next
     var crumbs = el('nav', { class: 'crumbs', 'aria-label': 'Breadcrumb' });
     trail.forEach(function (t) { crumbs.appendChild(el('a', { href: t[1], text: t[0] })); crumbs.appendChild(el('span', { class: 'crumb-sep', 'aria-hidden': 'true', text: '/' })); });
     crumbs.appendChild(el('span', { 'aria-current': 'page', text: here.trim() }));
