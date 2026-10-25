@@ -261,6 +261,7 @@ window.SITE = {
         groups: [   // one section per artist, full views then details
           {
             id: 'logan-roach',
+            show: 2, previewColumns: 2, wholeFirst: true,   // preview on Art Documentary: two whole artworks side by side, like Tiffany's
             page: 'photography-logan-roach.html',
             summary: 'Paintings by Logan Roach.',
             title: 'Logan Roach',
@@ -281,9 +282,9 @@ window.SITE = {
           },
           {
             id: 'tiffany-alfonseca',
+            show: 2, previewColumns: 2, wholeFirst: true,   // preview on Art Documentary: two whole artworks side by side, like Tiffany's
             page: 'photography-tiffany-alfonseca.html',
             summary: 'Paintings by Tiffany Alfonseca.',
-            show: 4,   // preview on Art Documentary
             title: 'Tiffany Alfonseca',
             columns: 2,   // two by two
             items: [
@@ -295,6 +296,7 @@ window.SITE = {
           },
           {
             id: 'jonah-dillon',
+            show: 2, previewColumns: 2, wholeFirst: true,   // preview on Art Documentary: two whole artworks side by side, like Tiffany's
             page: 'photography-jonah-dillon.html',
             summary: 'Sculpture by Jonah Dillon.',
             title: 'Jonah Dillon',
@@ -310,6 +312,7 @@ window.SITE = {
           },
           {
             id: 'hannah-lupton-reinhard',
+            show: 2, previewColumns: 2, wholeFirst: true,   // preview on Art Documentary: two whole artworks side by side, like Tiffany's
             page: 'photography-hannah-lupton-reinhard.html',
             summary: 'A portrait painting by Hannah Lupton Reinhard.',
             title: 'Hannah Lupton Reinhard',

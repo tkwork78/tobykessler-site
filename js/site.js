@@ -459,6 +459,11 @@
       });
     },
     'photo-project': function (mount) {
+      function previewOf(g) {   // whole artworks first (details are marked in the alt text), then anything else
+        if (!g.wholeFirst) return g.items.slice(0, g.show || 3);
+        var whole = g.items.filter(function (it) { return !/detail/i.test(it.alt || ''); });
+        return whole.concat(g.items.filter(function (it) { return whole.indexOf(it) < 0; })).slice(0, g.show || 3);
+      }
       var sec = ((S.photography || {}).sections || []).filter(function (s) { return s.id === mount.getAttribute('data-project'); })[0];
       if (!sec) return;
       var only = mount.getAttribute('data-group');   // a subpage for one artist or shoot
@@ -474,7 +479,7 @@
         var more = g.page ? el('p', { class: 'view-more' }, [el('a', { href: g.page }, [document.createTextNode('View More '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : null;
         mount.appendChild(el('section', { class: 'section', id: g.id }, [
           g.title ? sectionHead(null, g.title, null, g.page ? { href: g.page, text: 'View Project' } : null, g.page) : null,
-          g.page ? grid(g.items.slice(0, g.show || 3), { columns: g.columns || 3, href: g.page }) : grid(g.items, { columns: g.columns || 3 }),
+          g.page ? grid(previewOf(g), { columns: g.previewColumns || g.columns || 3, href: g.page }) : grid(g.items, { columns: g.columns || 3 }),
           more
         ]));
       });
