@@ -336,7 +336,7 @@ window.SITE = {
   var photos = car && car.sections.filter(function (s) { return s.id === 'car-photography'; })[0];
   if (photos) S.photography.sections.push({ id: 'car-community', title: 'Car Community', summary: 'Photography from the car scene.', page: 'photography-car-community.html', groups: [
     { id: 'car-scene', items: photos.items.filter(function (it) { return !/_K8A1249/.test(it.src); }) },   // the blue M2 has its own page
-    { id: 'blue-m2', title: 'BMW M2 In Red Hook', page: 'photography-blue-m2.html', summary: 'A blue BMW M2 in Red Hook, Brooklyn.', items: [
+    { id: 'blue-m2', title: 'BMW M2 In Red Hook', page: 'photography-blue-m2.html', , items: [
       { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-1.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 from behind by a green fence' },
       { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-2.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 side profile by a green fence' },
       { src: 'images/car%20community/photography/M2%20Red%20Hook/RL-07-23-24-3.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 front three-quarter view' },
