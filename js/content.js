@@ -209,7 +209,6 @@ window.SITE = {
   ],
 
   // A published article with Toby's photos, shown on the Car Community photography page.
-  // images: add { src, width, height } entries once the photo files are in the repo.
   carArticle: {
     publication: 'The Drive',
     title: 'I Bought a Cheap R53 Mini Cooper S to Fulfill My Supercharged Hot Hatch Dreams',
@@ -217,7 +216,10 @@ window.SITE = {
     credit: 'Words By Maddox Kay, Photos By Toby Kessler, August 25, 2023',
     excerpt: '“Sometimes you find the car, sometimes the car finds you.” A clean, original-owner, 51,000-mile R53 Mini Cooper S with a manual gearbox, spotted for sale on a running route, and the photos that came with the story.',
     url: 'https://www.thedrive.com/guides-and-gear/i-bought-a-cheap-r53-mini-cooper-s-to-fulfill-my-supercharged-hot-hatch-dreams',
-    images: []
+    images: [
+      { src: 'images/car%20community/photography/Maddox%20Mini%20Red%20Hook%20The%20Drive/MK-08-17-13.jpg', width: 2400, height: 1600, alt: 'R53 Mini Cooper S, side detail' },
+      { src: 'images/car%20community/photography/Maddox%20Mini%20Red%20Hook%20The%20Drive/MK-08-17-20.jpg', width: 2400, height: 1600, alt: 'Driving the R53 Mini Cooper S' }
+    ]
   },
 
   photography: {
@@ -255,23 +257,33 @@ window.SITE = {
         id: 'art-documentary',
         title: 'Art Documentary',
         page: 'photography-art-documentary.html',
-        summary: 'Paintings by Logan Roach.',
+        summary: 'Paintings by Logan Roach, Tiffany Alfonseca and more.',
         items: [
           // Full paintings first, then details
-          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/LR_May/LR_May-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/LR_May/LR_May-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-6.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/LR_May/LR_May-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/LR_May/LR_May-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-7.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
-          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-8.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/Logan%20Roach%20August%202024/LR-08-15-24-9.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
-          { src: 'images/art%20documentary/LR_May/LR_May-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' }
+          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR_May-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR_May-2.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-6.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR_May-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR_May-4.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-7.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-8.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR-08-15-24-9.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR_May-5.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+          { src: 'images/art%20documentary/LR-09-05-23-01.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+          { src: 'images/art%20documentary/LR-09-05-23-02.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+          { src: 'images/art%20documentary/LR-09-05-23-03.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR-12-3-23-1.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, full view' },
+          { src: 'images/art%20documentary/Logan%20Roach/LR-12-3-23-3.jpg', width: 2400, height: 1600, alt: 'Painting by Logan Roach, detail' },
+          { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-3.jpg', width: 2400, height: 1625, alt: 'Painting by Tiffany Alfonseca, full view' },
+          { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-4.jpg', width: 2400, height: 1600, alt: 'Painting by Tiffany Alfonseca, detail' },
+          { src: 'images/art%20documentary/Library-Hannah-July-2023/TK-HLR-1.jpg', width: 1600, height: 2400, alt: 'Portrait painting, full view' },
+          { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-5.jpg', width: 2400, height: 1625, alt: 'Painting by Tiffany Alfonseca, full view' },
+          { src: 'images/art%20documentary/Tiffany%20Alfonseca/TK-TA-6.jpg', width: 2400, height: 1600, alt: 'Painting by Tiffany Alfonseca, detail' }
         ]
       }
     ]
