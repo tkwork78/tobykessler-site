@@ -600,7 +600,7 @@
     if (!intro || /^(home|index|404)\.html$/.test(file)) return;
     var here = (document.querySelector('[data-company-name]') || {}).textContent || document.title.split(' — ')[0];
     var trail = [['Home', 'home.html']];
-    if (/^projects-/.test(file)) trail.push(['Projects', 'projects.html']);
+    if (/^projects-/.test(file)) trail.push(['Design', 'projects.html']);
     if (/^photography-/.test(file)) trail.push(['Photography', 'photography.html']);
     if (intro.getAttribute('data-parent')) trail.push(intro.getAttribute('data-parent').split('|'));   // a subpage: its project comes next
     var crumbs = el('nav', { class: 'crumbs', 'aria-label': 'Breadcrumb' });

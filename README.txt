@@ -4,7 +4,7 @@ TOBY KESSLER — PORTFOLIO SITE
 Pages
   index.html        Temporary "Site under construction" page (what tobykessler.com shows)
   home.html         Home: intro + a row of work from each section
-  projects.html     Projects: TF Cornerstone, Car Community, Logos, Triton (text only)
+  projects.html     Design: TF Cornerstone, Car Community, Logos, Triton (text only)
   projects-tf-cornerstone.html  TF Cornerstone: floor plans, emails, print, blog posts
   projects-car-community.html   Car Community: posters, illustration, photography
   projects-artillery.html       Artillery Magazine: media kit booklet
