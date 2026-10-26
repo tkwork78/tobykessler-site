@@ -428,12 +428,20 @@
       document.querySelectorAll('[data-company-summary]').forEach(function (n) { n.textContent = c.summary; });
       var sub = document.querySelector('[data-subnav]');
       (c.sections || []).forEach(function (s) {
+        if (s.teaser) {   // a quiet preview row that links to another page: no heading, left out of the section links
+          mount.appendChild(el('section', { class: 'section section-teaser', id: s.id }, [
+            grid(s.items, { maxRows: 1, columns: s.teaser.columns || 4, href: s.teaser.href }),
+            el('p', { class: 'teaser-link' }, [el('a', { class: 'more', href: s.teaser.href }, [document.createTextNode(s.teaser.text + ' '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])])
+          ]));
+          return;
+        }
         if (sub) sub.appendChild(el('a', { href: '#' + s.id, text: s.title }));
         mount.appendChild(el('section', { class: 'section', id: s.id }, [(s.zoom && s.items ? s.items.forEach(function (it) { it.zoom = true; }) : null, sectionHead(s.label === null ? null : (s.label || 'Design Samples'), s.title, s.summary || null, s.more ? { href: s.more, text: 'View More' } : null)),
           s.youtube ? youtubeGrid(s.youtube) : s.videos ? videoGrid(s.videos) : s.embeds ? igEmbeds(s.embeds) : s.show ? grid(s.items.slice(0, s.show), { href: s.more }) : grid(s.items),
           s.more ? el('p', { class: 'view-more' }, [el('a', { href: s.more }, [document.createTextNode('View More '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : null,
           s.credits ? el('p', { class: 'credits', text: s.credits }) : null]));
       });
+      if (sub && sub.children.length < 2) sub.style.display = 'none';   // one link alone would just repeat the heading below
       if (!c.sections && (c.booklet || (c.items && c.items.length))) {
         mount.appendChild(el('section', { class: 'section' }, [c.booklet ? booklet(c.booklet) : grid(c.items)]));
       }
