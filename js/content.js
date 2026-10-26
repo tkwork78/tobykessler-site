@@ -147,6 +147,15 @@ window.SITE = {
       ],
       sections: [
         {
+          id: 'car-design',
+          label: null,
+          title: 'Design',
+          items: [
+            { src: 'images/car%20community/design/PTS-LAUGINGMAN-4.jpg', width: 1920, height: 2400, title: 'Cars & Coffee Poster', meta: 'Print' },
+            { src: 'images/car%20community/design/e30m3vector.jpg', width: 2400, height: 1600, title: 'E30 M3 Illustration', meta: 'Illustration' }
+          ]
+        },
+        {
           id: 'car-photography',
           label: null,   // no label: it would repeat the heading
           title: 'Photography',
@@ -160,15 +169,6 @@ window.SITE = {
             { src: 'images/car%20community/photography/_MG_8849-Edit-Edit%20copy.jpg', width: 2400, height: 1530, alt: 'Black Porsche 996 GT3 in motion on a track' },
             { src: 'images/car%20community/photography/16152583722_afbd046ca7_o.jpg', width: 2172, height: 1448, alt: 'Silver sports car rear detail' },
             { src: 'images/car%20community/photography/_C0A0282-Edit1.jpg', width: 2400, height: 1350, alt: 'Close-up of a silver car body' }
-          ]
-        },
-        {
-          id: 'car-design',
-          label: null,
-          title: 'Design',
-          items: [
-            { src: 'images/car%20community/design/PTS-LAUGINGMAN-4.jpg', width: 1920, height: 2400, title: 'Cars & Coffee Poster', meta: 'Print' },
-            { src: 'images/car%20community/design/e30m3vector.jpg', width: 2400, height: 1600, title: 'E30 M3 Illustration', meta: 'Illustration' }
           ]
         }
       ]
