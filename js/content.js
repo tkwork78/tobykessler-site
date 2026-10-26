@@ -160,7 +160,7 @@ window.SITE = {
           label: null,   // no label: it would repeat the heading
           title: 'Photography',
           preview: false,  // Design page and home show the design work instead
-          teaser: { text: 'View Car Automotive Photography', href: 'photography-car-community.html' },   // one preview row under the design work, linking to the photography page
+          teaser: { text: 'View Automotive Photography', href: 'photography-car-community.html' },   // one preview row under the design work, linking to the photography page
           items: [
             { src: 'images/car%20community/photography/lightingfinalmiata2KESSLER.jpg', width: 2400, height: 1714, alt: 'Red Miata at night under lit fencing' },
             { src: 'images/car%20community/photography/_K8A1249.jpg', width: 2400, height: 1600, alt: 'Blue BMW M2 parked by a green fence' },
