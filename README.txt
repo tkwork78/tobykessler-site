@@ -38,3 +38,5 @@ While the site is under construction
   live but unlisted at tobykessler.com/home.html, and every page has a
   noindex tag so search engines skip it. To launch: replace index.html
   with home.html and remove the noindex tags.
+
+Google Analytics (GA4, ID G-EQ9WMNVFV4) is in the <head> of every HTML page; add it to any new page. Cloudflare Web Analytics sits before </body>.
