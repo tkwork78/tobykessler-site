@@ -120,7 +120,6 @@
       });
     });
     mount.appendChild(grid);
-    var y = document.querySelector('[data-year]'); if (y) y.textContent = new Date().getFullYear();
     body.classList.add('is-open'); window.scrollTo(0, 0);
   }
 
