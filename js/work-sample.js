@@ -21,11 +21,17 @@
       return subtle.deriveKey({ name: 'PBKDF2', salt: b64(SALT), iterations: ITER, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, true, ['decrypt']);
     });
   }
+  // Each set of files is tied to its salt, so a browser or CDN copy from an older version is never mixed in.
+  var VER = encodeURIComponent(SALT.slice(0, 8));
   function fetchDecrypt(key, name) {
-    return fetch(DIR + name).then(function (r) { if (!r.ok) throw new Error(name); return r.arrayBuffer(); }).then(function (buf) {
-      return subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(buf, 0, 12) }, key, new Uint8Array(buf, 12));
-    });
+    function get(opts) {
+      return fetch(DIR + name + '?v=' + VER, opts).then(function (r) { if (!r.ok) throw new Error(name); return r.arrayBuffer(); }).then(function (buf) {
+        return subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(buf, 0, 12) }, key, new Uint8Array(buf, 12));
+      });
+    }
+    return get().catch(function () { return get({ cache: 'reload' }); });   // one fresh retry
   }
+
 
   // Decrypted pages are cached as blob URLs so turning back is instant.
   var cache = {};
@@ -117,7 +123,7 @@
         cover.innerHTML = '';
         cover.appendChild(picture(url, doc.title));
         var sh = document.createElement('span'); sh.className = 'shield'; cover.appendChild(sh);
-      });
+      }).catch(function () { cover.innerHTML = '<span class="doc-meta">Couldn\'t Load, Please Refresh</span>'; delete cache[doc.files[0][0]]; });
     });
     mount.appendChild(grid);
     body.classList.add('is-open'); window.scrollTo(0, 0);
