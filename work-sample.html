@@ -11,7 +11,7 @@
   </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Unlisted page: not linked anywhere on the site, password locked (client side only). -->
+  <!-- Unlisted page: not linked anywhere on the site. Files in data/ws are encrypted and only open with the password. -->
   <meta name="robots" content="noindex, nofollow, noimageindex">
   <title>Work Sample — Toby Kessler</title>
   <link rel="icon" href="images/favicon.svg?v=2" type="image/svg+xml">
@@ -45,22 +45,46 @@
     body.is-open .samples { display: block; }
     .samples > header h1 { margin: 0 0 8px; font-size: 40px; line-height: 48px; font-weight: 300; }
     .samples > header p { margin: 0; color: var(--grey-600); }
-    .sample { margin-top: 72px; }
-    .sample h2 { margin: 0 0 4px; font-size: 20px; line-height: 28px; font-weight: 400; }
-    .sample .meta { margin: 0 0 20px; font-size: 14px; line-height: 20px; color: var(--grey-600); }
-    .pages { display: flex; flex-direction: column; gap: 16px; }
-    .sheet { position: relative; margin: 0 auto; width: 100%; background: var(--grey-100); }
-    .sheet.portrait { max-width: 760px; }
-    .sheet img { display: block; width: 100%; height: auto; pointer-events: none; -webkit-user-drag: none; user-select: none; }
-    .sheet::after { content: ""; position: absolute; inset: 0; }   /* shield over the image */
-    .sheet.portrait.paper img { box-shadow: 0 0 0 1px var(--grey-200); }
-    footer { padding: 32px 0 48px; font-size: 14px; color: var(--grey-600); }
+    /* One block per doc: cover in a grey box (whole page, never cropped), title and page count under it */
+    .docs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 32px; margin-top: 56px; }
+    .doc { display: block; width: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+    .doc-cover { position: relative; display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 3; padding: 24px; background: var(--grey-100); transition: background .2s ease; }
+    .doc:hover .doc-cover { background: var(--grey-200); }
+    .doc-cover img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; box-shadow: 0 2px 12px rgba(0, 0, 0, .12); }
+    .doc-title { display: block; margin-top: 12px; font-size: 18px; line-height: 26px; }
+    .doc-meta { display: block; font-size: 14px; line-height: 20px; color: var(--grey-600); }
+    img { pointer-events: none; -webkit-user-drag: none; user-select: none; }
+    .shield { position: absolute; inset: 0; }   /* covers images so they can't be grabbed */
+    footer { padding: 72px 0 48px; font-size: 14px; color: var(--grey-600); }
 
+    /* Viewer */
+    .viewer { position: fixed; inset: 0; z-index: 10; display: none; background: var(--grey-100); }
+    .viewer.is-open { display: block; }
+    body.has-viewer { overflow: hidden; }
+    .viewer-stage { position: absolute; inset: 64px 96px 72px; display: flex; align-items: center; justify-content: center; }
+    .viewer-stage img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; box-shadow: 0 2px 16px rgba(0, 0, 0, .12); }
+    .viewer-top { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; padding: 0 24px; }
+    .viewer-title { font-size: 16px; }
+    .viewer-count { position: absolute; bottom: 0; left: 0; right: 0; height: 72px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--grey-600); }
+    .vbtn { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; border: 1px solid var(--grey-200); border-radius: 999px; background: var(--paper); color: var(--ink); font: inherit; font-size: 18px; cursor: pointer; transition: background .2s ease, color .2s ease, opacity .2s ease; }
+    .vbtn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .vbtn[disabled] { opacity: .3; pointer-events: none; }
+    .vprev, .vnext { position: absolute; top: 50%; margin-top: -24px; }
+    .vprev { left: 24px; } .vnext { right: 24px; }
+    .viewer.is-single .vprev, .viewer.is-single .vnext, .viewer.is-single .viewer-count span { display: none; }
+    .spin { width: 28px; height: 28px; border: 2px solid var(--grey-200); border-top-color: var(--ink); border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 1000px) { .docs { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) {
       .wrap { padding: 0 16px; }
       .samples { padding-top: 40px; }
-      .sample { margin-top: 56px; }
-      .pages { gap: 10px; }
+      .docs { grid-template-columns: 1fr; gap: 40px; margin-top: 40px; }
+      .viewer-top { padding: 0 16px; }
+      .viewer-stage { inset: 64px 12px 88px; }
+      .vprev, .vnext { top: auto; bottom: 12px; margin-top: 0; }
+      .vprev { left: 16px; } .vnext { right: 16px; }
+      .viewer-count { height: 72px; }
     }
     @media print { body * { display: none !important; } }
   </style>
@@ -84,7 +108,15 @@
     <footer>© <span data-year></span> Toby Kessler. All Rights Reserved.</footer>
   </main>
 
-  <script src="js/work-sample.js?v=1"></script>
+  <div class="viewer" role="dialog" aria-modal="true" aria-label="Document viewer">
+    <div class="viewer-top"><span class="viewer-title"></span><button class="vbtn vclose" type="button" aria-label="Close">×</button></div>
+    <div class="viewer-stage"></div>
+    <button class="vbtn vprev" type="button" aria-label="Previous page">←</button>
+    <button class="vbtn vnext" type="button" aria-label="Next page">→</button>
+    <p class="viewer-count" style="margin:0"><span></span></p>
+  </div>
+
+  <script src="js/work-sample.js?v=3"></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ce2b7ef1b42548dbbc8b27d580a15b81"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
