@@ -44,7 +44,7 @@
     body.is-open .lock { display: none; }
     body.is-open .samples { display: block; }
     .samples > header h1 { margin: 0 0 8px; font-size: 40px; line-height: 48px; font-weight: 300; }
-    .samples > header p { margin: 0; color: var(--grey-600); }
+    .note { margin: 8px 0 0; font-weight: 300; color: var(--grey-600); }   /* same as the site's summary lines */
     /* One block per doc: cover in a grey box (whole page, never cropped), title and page count under it */
     .docs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 32px; margin-top: 56px; }
     .doc { display: block; width: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
@@ -91,7 +91,7 @@
 </head>
 <body>
   <main class="lock">
-    <h1>Private Work Sample</h1>
+    <div><h1>Private Work Sample</h1><p class="note">Confidential, Please Do Not Share.</p></div>
     <form class="pass" autocomplete="off">
       <label for="ws-pass" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Password</label>
       <input id="ws-pass" type="password" placeholder="Password" autocomplete="off" spellcheck="false" autofocus>
@@ -102,6 +102,7 @@
   <main class="samples wrap" aria-live="polite">
     <header>
       <h1>Private Work Sample</h1>
+      <p class="note">Confidential, Please Do Not Share.</p>
     </header>
     <div data-samples></div>
   </main>
@@ -114,7 +115,7 @@
     <p class="viewer-count" style="margin:0"><span></span></p>
   </div>
 
-  <script src="js/work-sample.js?v=4"></script>
+  <script src="js/work-sample.js?v=5"></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ce2b7ef1b42548dbbc8b27d580a15b81"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
