@@ -4,7 +4,7 @@
    To change the samples, re-run the encrypt script kept in the project files (work-sample/encrypt.py) with a new salt, then update SALT here. */
 (function () {
   var DIR = 'data/ws/';
-  var SALT = '+60Lt48mhw7SAKHqUfqBtQ==';
+  var SALT = 'uYWjNiuJLAuKmOjP7FXuuQ==';
   var ITER = 600000;
   var KEY = 'tk-ws-key';
   var body = document.body;
