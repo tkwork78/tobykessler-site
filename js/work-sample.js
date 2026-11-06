@@ -4,7 +4,7 @@
    To change the samples, re-run the encrypt script kept in the project files (work-sample/encrypt.py) with a new salt, then update SALT here. */
 (function () {
   var DIR = 'data/ws/';
-  var SALT = 'vtMIcmlOr8jrO0BrKRK/ZA==';
+  var SALT = 'ACv57jGZuuep1BQpZ9qMxg==';
   var ITER = 600000;
   var KEY = 'tk-ws-key';
   var body = document.body;
@@ -50,12 +50,14 @@
   var stage = viewer.querySelector('.viewer-stage');
   var vTitle = viewer.querySelector('.viewer-title');
   var vCount = viewer.querySelector('.viewer-count span');
+  var vNote = viewer.querySelector('.viewer-note');
   var vPrev = viewer.querySelector('.vprev'), vNext = viewer.querySelector('.vnext');
   var cur = null, page = 0, theKey = null, lastFocus = null;
   function show(i) {
     page = i;
     var f = cur.files[i];
     vCount.textContent = (i + 1) + ' / ' + cur.files.length;
+    vNote.textContent = f[3] || '';   // per-page note, e.g. on pages a redaction disturbed
     vPrev.disabled = i === 0; vNext.disabled = i === cur.files.length - 1;
     stage.innerHTML = '<div class="spin" aria-label="Loading"></div>';
     imageUrl(theKey, f[0]).then(function (url) {
