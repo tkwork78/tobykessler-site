@@ -166,4 +166,29 @@
     var k = (e.key || '').toLowerCase();
     if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'p' || k === 'u')) e.preventDefault();
   });
+
+  // Screenshot deterrent. A web page can't truly block screenshots (Netflix does it with paid video DRM),
+  // so the samples are hidden whenever a capture is likely: the window loses focus (Snipping Tool, screen
+  // recorders, switching apps), the tab is hidden, or screenshot keys are pressed (Print Screen, Windows key,
+  // Cmd+Shift on a Mac). Phone screenshots and cameras can't be detected.
+  var keyShade = false;
+  function shade() {
+    var on = keyShade || document.hidden || !document.hasFocus();
+    body.classList.toggle('is-shaded', on);
+  }
+  window.addEventListener('blur', shade);
+  window.addEventListener('focus', shade);
+  document.addEventListener('visibilitychange', shade);
+  document.addEventListener('keydown', function (e) {
+    var k = e.key || '';
+    if (k === 'PrintScreen' || k === 'Meta' || k === 'OS' || (e.metaKey && e.shiftKey) || (e.ctrlKey && e.shiftKey && (k === 'S' || k === 's'))) { keyShade = true; shade(); }
+  });
+  document.addEventListener('keyup', function (e) {
+    if (e.key === 'PrintScreen') { try { navigator.clipboard.writeText('').catch(function () {}); } catch (err) {} }   // overwrite the capture
+    if (!e.metaKey && !e.shiftKey) { keyShade = false; setTimeout(shade, 300); }
+  });
+  ['pointermove', 'pointerdown', 'touchstart'].forEach(function (t) {
+    document.addEventListener(t, function () { if (keyShade && !document.hidden && document.hasFocus()) { keyShade = false; shade(); } }, { passive: true });
+  });
+  setInterval(shade, 500);   // catches focus changes some browsers don't report
 })();
