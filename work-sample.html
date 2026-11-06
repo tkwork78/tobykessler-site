@@ -89,6 +89,9 @@
       .viewer-count { height: 72px; }
     }
     @media print { body * { display: none !important; } }
+    /* Screen shield: covers the samples whenever a screenshot is likely (window not focused, screenshot keys held) */
+    .shade { position: fixed; inset: 0; z-index: 30; display: none; align-items: center; justify-content: center; padding: 24px; background: var(--paper); color: var(--grey-600); font-size: 14px; text-align: center; }
+    body.is-open.is-shaded .shade { display: flex; }
   </style>
 </head>
 <body>
@@ -117,7 +120,8 @@
     <p class="viewer-count" style="margin:0"><span></span><span class="viewer-note"></span></p>
   </div>
 
-  <script src="js/work-sample.js?v=15"></script>
+  <div class="shade" aria-hidden="true">Hidden While This Window Isn't Active</div>
+  <script src="js/work-sample.js?v=16"></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ce2b7ef1b42548dbbc8b27d580a15b81"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
