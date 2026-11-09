@@ -40,7 +40,7 @@ window.SITE = {
   },
 
   designOrder: ['tf-cornerstone', 'triton', 'artillery', 'car-community', 'logos'],   // order on the Design page
-  homeOrder: ['tf-cornerstone', 'car-community', 'triton', 'artillery', 'logos'],       // order on Home (Photography follows TF Cornerstone)
+  homeOrder: ['triton', 'tf-cornerstone', 'car-community', 'artillery', 'logos'],       // order on Home (Photography follows TF Cornerstone; Triton first, z 2026-11-09)
   design: [
     {
       id: 'tf-cornerstone',
