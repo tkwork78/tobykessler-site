@@ -508,15 +508,16 @@
     about: function (mount) {
       var A = S.about || {};
       mount.appendChild(el('section', { class: 'section about' }, [
-        el('div', { class: 'about-bio' }, (A.bio || []).map(function (t) { return el('p', { class: 'lead', text: t }); })),
+        el('div', { class: 'about-bio' }, (A.bio || []).map(function (t) { return el('p', { class: 'lead', text: t }); }).concat([
+          el('p', { class: 'about-cta' }, [el('a', { class: 'back-btn next-btn', href: 'contact.html' }, [document.createTextNode('Get In Touch '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])])
+        ])),
         el('div', { class: 'about-side' }, [
           el('p', { class: 'label', text: 'Selected Work' }),
           el('ul', { class: 'about-list' }, (S.design || []).filter(function (c) { return !c.collection; }).map(function (c) {
             return el('li', {}, [el('a', { class: 'about-co', href: companyHref(c), text: c.company })]);
           })),
           A.skills && A.skills.length ? el('p', { class: 'label', text: 'Focus' }) : null,
-          A.skills && A.skills.length ? el('ul', { class: 'about-list' }, A.skills.map(function (k) { return el('li', { text: k }); })) : null,
-          el('a', { class: 'more', href: 'contact.html' }, [document.createTextNode('Get In Touch '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])
+          A.skills && A.skills.length ? el('ul', { class: 'about-list' }, A.skills.map(function (k) { return el('li', { text: k }); })) : null
         ])
       ]));
     },
