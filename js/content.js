@@ -193,7 +193,7 @@ window.SITE = {
       tags: 'Design, Proposals, Photography, Events, Web Design',
       links: [                // shown instead of images
         { text: 'Triton Construction On LinkedIn', href: 'https://www.linkedin.com/company/2493096/' },
-        { text: 'Contact Me', href: 'contact.html' }
+        { text: 'Contact Me', href: 'contact.html', notOnHome: true }   // hidden on Home (z)
       ],
       items: []
     },
