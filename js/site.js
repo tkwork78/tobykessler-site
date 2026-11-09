@@ -460,7 +460,7 @@
         if (!sec.items && sec.groups) sec.items = sec.groups.reduce(function (all, g) { return all.concat(g.items); }, []);
         if (sub) sub.appendChild(el('a', { href: '#' + sec.id, text: sec.title }));
         mount.appendChild(el('section', { class: 'section', id: sec.id }, [
-          sectionHead(null, sec.title, sec.summary, sec.page ? { href: sec.page, text: 'View Project' } : null, sec.page),
+          sectionHead(null, sec.title, sec.summary, null, sec.page   /* no View Project here: the View More under each row does that (z) */),
           sec.page ? grid(sec.items.slice(0, 6), { href: sec.page }) : grid(sec.items),
           sec.page ? el('p', { class: 'view-more' }, [el('a', { href: sec.page }, [document.createTextNode('View More '), el('span', { class: 'go-arrow', 'aria-hidden': 'true', text: '↗' })])]) : null
         ]));
