@@ -4,7 +4,7 @@
    To change the samples, re-run the encrypt script kept in the project files (work-sample/encrypt.py) with a new salt, then update SALT here. */
 (function () {
   var DIR = 'data/ws/';
-  var SALT = 'slV3uqsgPwcXPVLF6LEq2g==';
+  var SALT = 'suvCF7asP5Eh8wD8MwvsDQ==';
   var ITER = 600000;
   var KEY = 'tk-ws-key';
   var body = document.body;
@@ -118,7 +118,10 @@
       cover.innerHTML = '<span class="spin"></span>';
       var t = document.createElement('span'); t.className = 'doc-title'; t.textContent = doc.title;
       var m = document.createElement('span'); m.className = 'doc-meta'; m.textContent = doc.meta || 'Image';
-      b.appendChild(cover); b.appendChild(t); b.appendChild(m);
+      b.appendChild(cover); b.appendChild(t);
+      if (doc.desc) { var d = document.createElement('span'); d.className = 'doc-desc'; d.textContent = doc.desc; b.appendChild(d); }
+      b.appendChild(m);
+      if (doc.badge) { var bg = document.createElement('span'); bg.className = 'doc-badge'; bg.textContent = doc.badge; b.appendChild(bg); }
       b.addEventListener('click', function () { openDoc(doc); });
       grid.appendChild(b);
       imageUrl(key, doc.files[0][0]).then(function (url) {
