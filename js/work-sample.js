@@ -5,7 +5,7 @@
 (function () {
   var DIR = 'data/ws/';
   var INDEX = document.body.getAttribute('data-index') || 'index.bin';   // the Web Design subpage reads web.bin
-  var SALT = '/om2kKZbJRtO2GJV3iHzLw==';
+  var SALT = 'l9VUeEwmTjLTNCni57/TGw==';
   var ITER = 600000;
   var KEY = 'tk-ws-key';
   var body = document.body;
@@ -75,14 +75,14 @@
     });
     [i + 1, i + 2, i - 1].forEach(function (j) { if (cur.files[j]) imageUrl(theKey, cur.files[j][0]); });
   }
-  function openDoc(doc) {
+  function openDoc(doc, at) {
     lastFocus = document.activeElement;
     cur = doc; vTitle.textContent = doc.title;
     viewer.classList.toggle('is-single', doc.files.length === 1);
     viewer.classList.toggle('is-page', doc.shape === 'page');
     stage.scrollTop = 0;
     viewer.classList.add('is-open'); body.classList.add('has-viewer');
-    show(0); viewer.querySelector('.vclose').focus();
+    show(at || 0); viewer.querySelector('.vclose').focus();
   }
   function closeDoc() {
     viewer.classList.remove('is-open'); body.classList.remove('has-viewer'); cur = null; stage.innerHTML = '';
@@ -111,10 +111,34 @@
     if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
   });
 
+  // Photo grid (work-sample-photos.html): every photo of the one doc as its own tile, whole and uncropped,
+  // loaded as it scrolls into view; a click opens the viewer at that photo.
+  function renderGrid(key, doc, mount) {
+    var grid = document.createElement('div'); grid.className = 'photos';
+    var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); e.target._load(); } });
+    }, { rootMargin: '600px' }) : null;
+    doc.files.forEach(function (f, i) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'photo';
+      b.style.aspectRatio = f[1] + ' / ' + f[2];
+      b.addEventListener('click', function () { openDoc(doc, i); });
+      b._load = function () {
+        imageUrl(key, f[0]).then(function (url) {
+          b.appendChild(picture(url, doc.title + ', photo ' + (i + 1)));
+          var sh = document.createElement('span'); sh.className = 'shield'; b.appendChild(sh);
+        });
+      };
+      grid.appendChild(b);
+      if (io) io.observe(b); else b._load();
+    });
+    mount.appendChild(grid);
+  }
+
   function render(key, manifest) {
     theKey = key;
     var mount = document.querySelector('[data-samples]');
     mount.innerHTML = '';
+    if (document.body.hasAttribute('data-grid')) { renderGrid(key, manifest[0], mount); body.classList.add('is-open'); window.scrollTo(0, 0); return; }
     var grid = document.createElement('div'); grid.className = 'docs';
     manifest.forEach(function (doc) {
       var b = document.createElement('button'); b.type = 'button'; b.className = 'doc';
