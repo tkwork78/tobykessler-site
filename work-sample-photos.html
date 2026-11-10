@@ -47,6 +47,9 @@
     .note { margin: 8px 0 0; font-weight: 300; color: var(--grey-600); }   /* same as the site's summary lines */
     /* One block per doc: cover in a grey box (whole page, never cropped), title and page count under it */
     .docs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 32px; margin-top: 56px; }
+    .docs-divider { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; color: var(--grey-600); font-size: 14px; font-weight: 300; }
+    .docs-divider::after { content: ""; flex: 1; height: 1px; background: var(--grey-200, #e5e5e5); }
+    .docs-divider:not(:first-child) { margin-top: 24px; }
     .doc { display: block; width: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
     .doc-cover { position: relative; display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 3; padding: 24px; background: var(--grey-100); transition: background .2s ease; }
     .doc:hover .doc-cover { background: var(--grey-200); }
@@ -135,7 +138,7 @@
   </div>
 
   <div class="shade" aria-hidden="true">Hidden While This Window Isn't Active</div>
-  <script src="js/work-sample.js?v=33"></script>
+  <script src="js/work-sample.js?v=34"></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ce2b7ef1b42548dbbc8b27d580a15b81"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
