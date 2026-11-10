@@ -44,6 +44,8 @@
     body.is-open .lock { display: none; }
     body.is-open .samples { display: block; }
     .samples > header h1 { margin: 0 0 8px; font-size: 40px; line-height: 48px; font-weight: 300; }
+    .home-btn { display: inline-block; margin-bottom: 32px; padding: 8px 16px; border: 1px solid var(--grey-200); border-radius: 999px; font-size: 14px; line-height: 20px; color: var(--ink); text-decoration: none; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+    .home-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
     .note { margin: 8px 0 0; font-weight: 300; color: var(--grey-600); }   /* same as the site's summary lines */
     /* One block per doc: cover in a grey box (whole page, never cropped), title and page count under it */
     .docs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 32px; margin-top: 56px; }
@@ -116,6 +118,7 @@
 
   <main class="samples wrap" aria-live="polite">
     <header>
+      <a class="home-btn" href="home.html">← Back To Home</a>
       <h1>Private Work Sample</h1>
       <p class="note">Confidential, Please Do Not Share.</p>
     </header>
