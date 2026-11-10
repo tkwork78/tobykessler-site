@@ -5,7 +5,7 @@
 (function () {
   var DIR = 'data/ws/';
   var INDEX = document.body.getAttribute('data-index') || 'index.bin';   // the Web Design subpage reads web.bin
-  var SALT = 'RZp4e1q30tlj2IL/rohGWQ==';
+  var SALT = 'yNHDIB54wnG+OpnhCI434A==';
   var ITER = 600000;
   var KEY = 'tk-ws-key';
   var body = document.body;
