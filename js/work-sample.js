@@ -140,7 +140,17 @@
     mount.innerHTML = '';
     if (document.body.hasAttribute('data-grid')) { renderGrid(key, manifest[0], mount); body.classList.add('is-open'); window.scrollTo(0, 0); return; }
     var grid = document.createElement('div'); grid.className = 'docs';
+    // Labelled dividers between new additions and earlier work (only when the list has both)
+    var hasNew = manifest.some(function (d) { return d.badge === 'New'; });
+    var hasOld = manifest.some(function (d) { return d.badge !== 'New'; });
+    var lastNew = null;
+    function divider(label) {
+      var d = document.createElement('div'); d.className = 'docs-divider';
+      d.innerHTML = '<span></span>'; d.firstChild.textContent = label; grid.appendChild(d);
+    }
     manifest.forEach(function (doc) {
+      var isNew = doc.badge === 'New';
+      if (hasNew && hasOld && isNew !== lastNew) { divider(isNew ? 'New Additions' : 'Previous Work'); lastNew = isNew; }
       var b = document.createElement('button'); b.type = 'button'; b.className = 'doc';
       var cover = document.createElement('span'); cover.className = 'doc-cover';
       cover.innerHTML = '<span class="spin"></span>';
