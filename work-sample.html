@@ -76,6 +76,10 @@
     .vbtn[disabled] { opacity: .3; pointer-events: none; }
     .vprev, .vnext { position: absolute; top: 50%; margin-top: -24px; }
     .vprev { left: 24px; } .vnext { right: 24px; }
+    .viewer.is-page .viewer-stage { overflow-y: auto; align-items: flex-start; -webkit-overflow-scrolling: touch; }
+    .viewer.is-page .viewer-stage img { width: 100%; max-height: none; }
+    .back { display: inline-block; margin-bottom: 16px; font-size: 14px; color: var(--grey-600); text-decoration: none; }
+    .back:hover { color: var(--ink); }
     .viewer.is-single .vprev, .viewer.is-single .vnext, .viewer.is-single .viewer-count span { display: none; }
     .spin { width: 28px; height: 28px; border: 2px solid var(--grey-200); border-top-color: var(--ink); border-radius: 50%; animation: spin .8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -124,7 +128,7 @@
   </div>
 
   <div class="shade" aria-hidden="true">Hidden While This Window Isn't Active</div>
-  <script src="js/work-sample.js?v=19"></script>
+  <script src="js/work-sample.js?v=20"></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ce2b7ef1b42548dbbc8b27d580a15b81"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

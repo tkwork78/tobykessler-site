@@ -4,7 +4,8 @@
    To change the samples, re-run the encrypt script kept in the project files (work-sample/encrypt.py) with a new salt, then update SALT here. */
 (function () {
   var DIR = 'data/ws/';
-  var SALT = 'kb41qVxJ2/j4eCFfko5SDQ==';
+  var INDEX = document.body.getAttribute('data-index') || 'index.bin';   // the Web Design subpage reads web.bin
+  var SALT = '/om2kKZbJRtO2GJV3iHzLw==';
   var ITER = 600000;
   var KEY = 'tk-ws-key';
   var body = document.body;
@@ -65,7 +66,8 @@
         stage.innerHTML = '';
         var box = document.createElement('div'); box.style.position = 'relative'; box.style.maxWidth = '100%'; box.style.maxHeight = '100%'; box.style.display = 'flex';
         var img = picture(url, cur.title + ', page ' + (i + 1));
-        img.style.maxHeight = (stage.clientHeight) + 'px';
+        if (cur.shape === 'page') { box.style.maxHeight = 'none'; box.style.width = '100%'; }   // a whole web page: full width, scrolls
+        else img.style.maxHeight = (stage.clientHeight) + 'px';
         box.appendChild(img);
         var sh = document.createElement('span'); sh.className = 'shield'; box.appendChild(sh);
         stage.appendChild(box);
@@ -77,6 +79,8 @@
     lastFocus = document.activeElement;
     cur = doc; vTitle.textContent = doc.title;
     viewer.classList.toggle('is-single', doc.files.length === 1);
+    viewer.classList.toggle('is-page', doc.shape === 'page');
+    stage.scrollTop = 0;
     viewer.classList.add('is-open'); body.classList.add('has-viewer');
     show(0); viewer.querySelector('.vclose').focus();
   }
@@ -122,13 +126,14 @@
       if (doc.desc) { var d = document.createElement('span'); d.className = 'doc-desc'; d.textContent = doc.desc; b.appendChild(d); }
       b.appendChild(m);
       if (doc.badge) { var bg = document.createElement('span'); bg.className = 'doc-badge'; bg.textContent = doc.badge; b.appendChild(bg); }
-      b.addEventListener('click', function () { openDoc(doc); });
+      b.addEventListener('click', function () { if (doc.link) location.href = doc.link; else openDoc(doc); });
       grid.appendChild(b);
-      imageUrl(key, doc.files[0][0]).then(function (url) {
+      var coverFile = (doc.cover || doc.files[0])[0];
+      imageUrl(key, coverFile).then(function (url) {
         cover.innerHTML = '';
         cover.appendChild(picture(url, doc.title));
         var sh = document.createElement('span'); sh.className = 'shield'; cover.appendChild(sh);
-      }).catch(function () { cover.innerHTML = '<span class="doc-meta">Couldn\'t Load, Please Refresh</span>'; delete cache[doc.files[0][0]]; });
+      }).catch(function () { cover.innerHTML = '<span class="doc-meta">Couldn\'t Load, Please Refresh</span>'; delete cache[coverFile]; });
     });
     mount.appendChild(grid);
     body.classList.add('is-open'); window.scrollTo(0, 0);
@@ -136,7 +141,7 @@
 
   // Try a key: decrypting the index only works with the right password.
   function unlock(key) {
-    return fetchDecrypt(key, 'index.bin').then(function (plain) {
+    return fetchDecrypt(key, INDEX).then(function (plain) {
       render(key, JSON.parse(new TextDecoder().decode(plain)));
       return subtle.exportKey('raw', key).then(function (raw) { try { sessionStorage.setItem(KEY, unb64(raw)); } catch (e) {} });
     });
