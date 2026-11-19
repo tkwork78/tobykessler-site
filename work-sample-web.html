@@ -13,8 +13,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Unlisted page: not linked anywhere on the site. Files in data/ws are encrypted and only open with the password. -->
   <meta name="robots" content="noindex, nofollow, noimageindex">
-  <title>Web Design</title>
-  <link rel="icon" href="data:,">
+  <title>Page not found — Toby Kessler</title>
+  <link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap">
@@ -27,6 +27,12 @@
 
     /* Lock screen */
     .lock { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; padding: 24px; text-align: center; }
+    /* Locked: looks exactly like the site's 404 page (z 2026-11-19). Type the password and press Enter anywhere,
+       or tap "Oops" five times to show the password box (for phones). */
+    .lock { position: fixed; inset: 0; z-index: 5; display: block; min-height: 0; padding: 0; }
+    .lock-404 { display: block; width: 100%; height: 100%; border: 0; }
+    .lock .pass { position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%); z-index: 6; }
+    .lock .pass[hidden] { display: none; }
     .lock h1 { margin: 0; font-size: 40px; line-height: 48px; font-weight: 300; }
     .pass { display: flex; align-items: stretch; width: min(320px, 100%); border: 1px solid var(--grey-200); border-radius: 999px; background: var(--paper); transition: border-color .2s ease, background .2s ease; }
     .pass:focus-within { border-color: var(--ink); }
@@ -104,12 +110,12 @@
     body.is-open.is-shaded .shade { display: flex; }
   </style>
 </head>
-<body data-index="web.bin">
+<body data-index="web.bin" data-title="Web Design">
   <main class="lock">
-    <h1>Private Work Sample</h1>
-    <form class="pass" autocomplete="off">
+    <iframe class="lock-404" src="/404.html" title="Page not found"></iframe>
+    <form class="pass" autocomplete="off" hidden>
       <label for="ws-pass" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Password</label>
-      <input id="ws-pass" type="password" placeholder="Password" autocomplete="off" spellcheck="false" autofocus>
+      <input id="ws-pass" type="password" placeholder="Password" autocomplete="off" spellcheck="false">
       <button type="submit" aria-label="Enter">→</button>
     </form>
   </main>
@@ -133,7 +139,7 @@
   </div>
 
   <div class="shade" aria-hidden="true">Hidden While This Window Isn't Active</div>
-  <script src="js/work-sample.js?v=36"></script>
+  <script src="js/work-sample.js?v=37"></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ce2b7ef1b42548dbbc8b27d580a15b81"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

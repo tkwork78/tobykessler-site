@@ -5,7 +5,7 @@
 (function () {
   var DIR = 'data/ws/';
   var INDEX = document.body.getAttribute('data-index') || 'index.bin';   // the Web Design subpage reads web.bin
-  var SALT = 'cnJYssMOxx161T/G/TuBxA==';
+  var SALT = '2HBUHCYHGvPp8NVJLxQZPg==';
   var ITER = 600000;
   var KEY = 'tk-ws-key';
   var body = document.body;
@@ -177,6 +177,8 @@
   function unlock(key) {
     return fetchDecrypt(key, INDEX).then(function (plain) {
       render(key, JSON.parse(new TextDecoder().decode(plain)));
+      document.title = body.getAttribute('data-title') || document.title;   // drop the 404 disguise
+      var icon = document.querySelector('link[rel="icon"]'); if (icon) icon.href = 'data:,';
       return subtle.exportKey('raw', key).then(function (raw) { try { sessionStorage.setItem(KEY, unb64(raw)); } catch (e) {} });
     });
   }
@@ -187,6 +189,31 @@
     var saved = sessionStorage.getItem(KEY);
     if (saved) subtle.importKey('raw', b64(saved), { name: 'AES-GCM' }, true, ['decrypt']).then(unlock).catch(function () { try { sessionStorage.removeItem(KEY); } catch (e) {} });
   } catch (e) {}
+
+  // Hidden entry: the locked page shows the site's 404 (in a frame). Typing the password anywhere and
+  // pressing Enter unlocks; tapping "Oops" five times shows the password box (phones have no keyboard otherwise).
+  var typed = '';
+  function onKey(e) {
+    if (body.classList.contains('is-open') || e.target === input) return;
+    var k = e.key || '';
+    if (k === 'Enter') {
+      var word = typed.trim().split(/\s+/).pop().toLowerCase(); typed = '';
+      if (word) derive(word).then(unlock).catch(function () {});
+    } else if (k === 'Backspace') typed = typed.slice(0, -1);
+    else if (k.length === 1 && !e.ctrlKey && !e.metaKey) typed = (typed + k).slice(-40);
+  }
+  document.addEventListener('keydown', onKey);
+  var frame = document.querySelector('.lock-404');
+  if (frame) frame.addEventListener('load', function () {
+    try {
+      var doc = frame.contentDocument; doc.addEventListener('keydown', onKey);
+      var taps = 0, tapTimer, oops = doc.querySelector('.oops-title');
+      if (oops) oops.addEventListener('click', function () {
+        taps++; clearTimeout(tapTimer); tapTimer = setTimeout(function () { taps = 0; }, 2500);
+        if (taps >= 5) { taps = 0; form.hidden = false; input.focus(); }
+      });
+    } catch (e) {}
+  });
 
   var redTimer;
   form.addEventListener('submit', function (e) {
